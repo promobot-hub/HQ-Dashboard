@@ -16,6 +16,7 @@ import {
   verticalListSortingStrategy,
   useSortable,
 } from '@dnd-kit/sortable';
+import type { DragEndEvent } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import TaskItem from './TaskItem';
 
@@ -54,13 +55,14 @@ export default function TaskQueueSortable() {
     })
   );
 
-  const handleDragEnd = (event: { active: { id: string }; over: { id: string } | null }) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-
-    if (over && active.id !== over.id) {
-      const oldIndex = tasks.findIndex((task) => task.id === active.id);
-      const newIndex = tasks.findIndex((task) => task.id === over.id);
-
+    if (!over || active.id === over.id) {
+      return;
+    }
+    const oldIndex = tasks.findIndex((task) => String(task.id) === String(active.id));
+    const newIndex = tasks.findIndex((task) => String(task.id) === String(over.id));
+    if (oldIndex !== -1 && newIndex !== -1) {
       setTasks((items) => arrayMove(items, oldIndex, newIndex));
     }
   };
