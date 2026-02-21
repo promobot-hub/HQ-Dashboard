@@ -7,7 +7,11 @@
     "stateUpdated": true
   },
   "counters": {
-    "runsToday": 27,
-    "totalRuns": 27
+    "runsToday": 1,
+    "totalRuns": 28,
+    "lastDay": "2026-02-21"
+  },
+  "lastChecks": {
+    "heartbeat": "2026-02-21T19:16:29.492Z"
   }
 }
