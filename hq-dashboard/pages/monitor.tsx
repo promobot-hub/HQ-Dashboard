@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
+import BabyStep from '../components/BabyStep';
+import TaskTimeline from '../components/TaskTimeline';
 
 export default function Monitor() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<any[]>([]);
 
   useEffect(() => {
     fetch('/api/tasks')
@@ -28,6 +31,7 @@ export default function Monitor() {
       <section className="mt-6">
         <TaskTimeline tasks={tasks} />
       </section>
+      <Footer />
     </main>
   );
 }
