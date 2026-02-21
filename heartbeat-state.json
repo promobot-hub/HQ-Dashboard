@@ -1,21 +1,20 @@
 {
   "lastChecks": {
-    "heartbeat": "2026-02-21T18:12:05.175Z"
+    "heartbeat": "2026-02-21T18:22:00Z"
   },
   "counters": {
-    "runsToday": 3,
-    "totalRuns": 61,
-    "lastRunDate": "2026-02-21",
-    "lastDay": "2026-02-21"
+    "runsToday": 54,
+    "totalRuns": 63,
+    "lastRunDate": "2026-02-21"
   },
   "kpis": {
     "microCommit": true,
-    "skillProgress": false,
+    "skillProgress": true,
     "stateUpdated": true
   },
   "lastRun": {
-    "iso": "2026-02-21T17:39:00Z",
-    "note": "Cron DENKE — counters incremented; state/logs/STATUS/README refreshed"
+    "iso": "2026-02-21T18:22:00Z",
+    "note": "Cron DENKE — quick sync: incremented counters; updated STATUS and README badges"
   },
-  "version": 2
+  "version": 3
 }
