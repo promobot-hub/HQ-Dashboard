@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: hq-dashboard
+    env: node
+    rootDir: hq-dashboard
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: WEB_CONCURRENCY
+        value: 1
+    buildCommand: yarn install && yarn build
+    startCommand: yarn start
+    healthCheckPath: /
