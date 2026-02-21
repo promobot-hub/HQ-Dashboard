@@ -6,6 +6,19 @@
   const API_TASK_LOG = (id)=> `/api/task/${encodeURIComponent(id)}/logs`;
 
   const state = { tasks: [], mounted: false };
+  const DEBUG = false;
+
+  // Simple concurrency limiter (max 3 concurrent fetches)
+  const MAX_CONCURRENT = 3; let active = 0; const queue = [];
+  function limitedFetch(url, init){
+    return new Promise((resolve, reject)=>{
+      const run = ()=>{
+        active++;
+        fetch(url, init).then(resolve, reject).finally(()=>{ active--; const n=queue.shift(); n && n(); });
+      };
+      if (active < MAX_CONCURRENT) run(); else queue.push(run);
+    });
+  }
 
   function qs(sel, root=document){ return root.querySelector(sel); }
   function qsa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
@@ -69,6 +82,7 @@
     el.className = `rounded-xl border ${t.status==='pending'?'border-white/10':'border-white/10'} bg-white/5 p-3 text-sm text-white/90 hover:bg-white/10 transition-all duration-200 translate-y-0 opacity-100${pulse}${doneGlow}`;
     el.style.willChange = 'transform, opacity';
     el.dataset.taskId = t.id;
+    el.setAttribute('role','button'); el.setAttribute('tabindex','0'); el.setAttribute('aria-label',`Task ${t.id}: ${t.title} (${t.status})`);
     el.innerHTML = `
       <div class="flex items-center justify-between gap-2">
         <div class="font-semibold truncate">${t.id} — ${t.title}</div>
@@ -153,7 +167,7 @@
 
   async function fetchTasks(){
     try {
-      const r = await fetch(API_TASKS, { cache: 'no-store' });
+      const r = await limitedFetch(API_TASKS, { cache: 'no-store' });
       if (!r.ok) throw new Error('bad status');
       const data = await r.json();
       const tasks = (data.tasks||[]).map((t)=>({
