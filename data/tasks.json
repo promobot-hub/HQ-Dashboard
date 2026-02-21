@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "id": "T-1",
+      "title": "Initial wiring",
+      "status": "done",
+      "progress": 100
+    }
+  ]
+}
