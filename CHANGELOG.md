@@ -60,15 +60,4 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - 12:11 UTC: Cron micro-commit — bumped counters to runsToday=3/totalRuns=3; updated heartbeat-state.json, STATUS.md, README badges/time.
 - 12:13 UTC: Cron micro-commit — bumped counters to runsToday=5/totalRuns=5; updated heartbeat-state.json, STATUS.md, README badges/time; appended HEARTBEAT-LOG entry.
 - 12:16 UTC: Cron DENKE — bumped counters to runsToday=7/totalRuns=7; updated heartbeat-state.json, STATUS.md, README badges/time; appended HEARTBEAT-LOG entry.
-
-## 2026-02-21 09:31 UTC
-- Cron micro-commit: synced heartbeat-state, HEARTBEAT-LOG, STATUS.md
-
-## 2026-02-21 09:39 UTC
-- Added HQ-Dashboard Footer component showing Last updated via /api/status; wired into index and monitor pages.
-
-## 2026-02-21 09:55 UTC
-- Cron micro-commit: synced heartbeat-state, HEARTBEAT-LOG, STATUS.md.
-
-## 2026-02-21 09:59 UTC
-- Cron micro-commit: added run counters + updated STATUS and HEARTBEAT-LOG.
+- 12:19 UTC: Cron DENKE — bumped counters to runsToday=8/totalRuns=8; updated heartbeat-state.json, STATUS.md, README badges/time; appended HEARTBEAT-LOG entry.
