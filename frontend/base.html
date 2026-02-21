@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" class="dark h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clawbot HQ – Premium Dark</title>
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Fonts: Inter + Satoshi (fallback to system) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet" />
+
+    <!-- Tailwind via CDN (for static prototype). For app build, use PostCSS integration. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind config inline (ensures colors/shadows available in CDN mode)
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              base: { DEFAULT: '#0a0a0a', 50: '#0a0a0a', 100: '#111111', 200: '#1a1a1a', 300: '#222222' },
+              text: { high: 'rgba(255,255,255,0.95)', med: 'rgba(255,255,255,0.75)', low: 'rgba(255,255,255,0.55)' },
+              accent: { cyan: '#22d3ee', violet: '#a855f7' },
+              success: '#10b981', warning: '#f59e0b', danger: '#ef4444',
+              glass: 'rgba(255,255,255,0.06)', hairline: 'rgba(255,255,255,0.08)'
+            },
+            backgroundImage: {
+              'gradient-accent': 'linear-gradient(90deg, #22d3ee 0%, #a855f7 100%)',
+            },
+            boxShadow: {
+              glass: '0 8px 32px rgba(0,0,0,0.35)',
+              neu: 'inset 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.35)',
+              glow: '0 0 0 2px rgba(34,211,238,0.2), 0 0 40px rgba(168,85,247,0.25)'
+            },
+            fontFamily: {
+              sans: ['Inter', 'Satoshi', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'],
+              display: ['Satoshi', 'Inter', 'ui-sans-serif', 'system-ui']
+            },
+            borderRadius: { xl: '1rem', '2xl': '1.25rem', '3xl': '1.75rem' }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="./globals.css" />
+    <style>
+      /* Base background gradient for beautiful empty state */
+      .bg-grid {
+        background-image:
+          radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+        background-size: 24px 24px;
+      }
+    </style>
+  </head>
+  <body class="h-full bg-base text-text-med antialiased selection:bg-accent-cyan/30 selection:text-white">
+    <div class="min-h-screen bg-[#0a0a0a] bg-grid">
+      <div class="relative isolate">
+        <!-- Accent gradient bar top -->
+        <div class="h-[3px] w-full bg-gradient-accent"></div>
+
+        <!-- Centered Intro Card (Glass) -->
+        <main class="px-6 py-24 md:px-10 lg:px-16">
+          <section class="mx-auto max-w-3xl">
+            <div class="rounded-3xl border border-hairline bg-white/5 backdrop-blur-md shadow-glass p-8 md:p-10">
+              <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+                <span class="inline-block h-2 w-2 rounded-full bg-accent-cyan shadow-glow"></span>
+                <span>Clawbot HQ</span>
+              </div>
+              <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+                Premium Dark Interface
+              </h1>
+              <p class="mt-3 text-text-med">
+                Tailwind v4 design system · Glassmorphism panels · Neon accents · Inter + Satoshi
+              </p>
+              <div class="mt-8 flex items-center gap-3">
+                <a href="#" class="rounded-xl bg-accent-cyan px-5 py-2.5 font-semibold text-black hover:brightness-110 active:scale-[0.99] transition">
+                  Primary Action
+                </a>
+                <a href="#" class="rounded-xl border border-hairline bg-white/5 px-5 py-2.5 font-medium text-white/80 hover:bg-white/10 transition">
+                  Secondary
+                </a>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <!-- Accent gradient bar bottom -->
+        <div class="fixed inset-x-0 bottom-0 h-[2px] bg-gradient-accent opacity-70"></div>
+      </div>
+    </div>
+    <script>
+      // Smooth toggle for demo (keeps dark by default)
+      document.addEventListener('keydown', (e)=>{
+        if (e.key === 'd') document.documentElement.classList.toggle('dark');
+      });
+    </script>
+  </body>
+</html>

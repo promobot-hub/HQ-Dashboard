@@ -1,0 +1,97 @@
+/* Globals for Premium Dark – Clawbot HQ */
+/* Reset + Variables + Base Layer + Utilities */
+
+/* CSS Reset (modern minimal) */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html, body { height: 100%; }
+body { line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; }
+:root { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Variables */
+:root {
+  /* Colors */
+  --color-base: #0a0a0a;
+  --color-base-100: #111111;
+  --color-base-200: #1a1a1a;
+  --color-base-300: #222222;
+
+  --color-text-high: rgba(255,255,255,0.95);
+  --color-text-med: rgba(255,255,255,0.75);
+  --color-text-low: rgba(255,255,255,0.55);
+
+  --color-accent-cyan: #22d3ee;
+  --color-accent-violet: #a855f7;
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  --color-glass: rgba(255,255,255,0.06);
+  --color-hairline: rgba(255,255,255,0.08);
+
+  /* Shadows */
+  --shadow-glass: 0 8px 32px rgba(0,0,0,0.35);
+  --shadow-neu: inset 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.35);
+  --shadow-glow: 0 0 0 2px rgba(34,211,238,0.2), 0 0 40px rgba(168,85,247,0.25);
+
+  /* Radii */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+}
+
+/* Dark theme is default; override as needed */
+html, body { background: var(--color-base); color: var(--color-text-med); }
+
+/* Tailwind base layer augmentation (works alongside CDN) */
+@layer base {
+  :root {
+    --tw-ring-color: rgba(34,211,238,0.35);
+  }
+  body {
+    font-family: Inter, Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial;
+    background-color: var(--color-base);
+  }
+  h1, h2, h3, h4 { color: var(--color-text-high); }
+}
+
+/* Utility helpers */
+.glass {
+  background: var(--color-glass);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-glass);
+}
+.glow { box-shadow: var(--shadow-glow); }
+.hairline { border: 1px solid var(--color-hairline); }
+
+/* Buttons */
+.btn-primary {
+  background: var(--color-accent-cyan);
+  color: #000;
+  border-radius: var(--radius-xl);
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+}
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-secondary {
+  border: 1px solid var(--color-hairline);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.9);
+  border-radius: var(--radius-xl);
+  padding: 0.6rem 1rem;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+/* Focus states */
+:focus-visible { outline: 2px solid rgba(34,211,238,0.5); outline-offset: 2px; border-radius: 6px; }
