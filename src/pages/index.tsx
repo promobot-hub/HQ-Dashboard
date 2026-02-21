@@ -1,8 +1,9 @@
-import Auth from '../components/auth/Auth';
-import { executeMultiPlatformGrowth } from '../skills/multiPlatformViralGrowth';
-import LiveLogs from '../components/liveLogs/LiveLogs';
-import ThemeToggle from '../components/theme/ThemeToggle';
-import { useEffect } from 'react';
+import Auth from "../components/auth/Auth";
+import { executeMultiPlatformGrowth } from "../skills/multiPlatformViralGrowth";
+import LiveLogs from "../components/liveLogs/LiveLogs";
+import ThemeToggle from "../components/theme/ThemeToggle";
+import Footer from "../components/Footer";
+import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function Home() {
       <Auth />
       <LiveLogs />
       <ThemeToggle />
+      <Footer />
     </main>
   );
 }
