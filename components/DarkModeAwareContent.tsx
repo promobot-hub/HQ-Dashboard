@@ -26,6 +26,16 @@ const COLORS = {
   logTextLight: "#0F172A"
 };
 
+const FONT_SIZES = {
+  title: '3rem',
+  subtitle: '1.875rem',
+  sectionTitle: '1.5rem',
+  normal: '1rem',
+  small: '0.875rem',
+};
+
+const FONT_FAMILY = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+
 export default function DarkModeAwareContent() {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
@@ -41,13 +51,13 @@ export default function DarkModeAwareContent() {
   return (
     <div
       className="min-h-screen p-4 md:p-8 font-sans max-w-7xl mx-auto"
-      style={{ backgroundColor: bgColor, color: textColor }}
+      style={{ backgroundColor: bgColor, color: textColor, fontFamily: FONT_FAMILY }}
     >
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 md:gap-0">
-        <h1 className="text-4xl md:text-5xl font-extrabold">HQ Dashboard</h1>
+        <h1 style={{ fontSize: FONT_SIZES.title, fontWeight: 800 }}>HQ Dashboard</h1>
         <button
           className="px-4 py-2 rounded transition active:scale-95"
-          style={{ backgroundColor: primaryColor, color: textColor }}
+          style={{ backgroundColor: primaryColor, color: textColor, fontFamily: FONT_FAMILY }}
           onClick={toggleDarkMode}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = primaryHoverColor;
@@ -61,14 +71,14 @@ export default function DarkModeAwareContent() {
       </header>
 
       <section className="mb-12">
-        <h2 className="text-3xl font-semibold mb-6">Skills Status</h2>
+        <h2 style={{ fontSize: FONT_SIZES.subtitle, fontWeight: 600, marginBottom: '1.5rem' }}>Skills Status</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {/* TODO: Dynamische Skill Cards hier einbauen */}
         </div>
       </section>
 
       <section className="mb-12">
-        <h2 className="text-3xl font-semibold mb-6">Goals & Tasks</h2>
+        <h2 style={{ fontSize: FONT_SIZES.subtitle, fontWeight: 600, marginBottom: '1.5rem' }}>Goals & Tasks</h2>
         <TaskForm onAdd={(text) => { /* TODO */ }} />
         <TaskList tasks={[]} />
       </section>
@@ -98,7 +108,9 @@ export default function DarkModeAwareContent() {
           style={{ backgroundColor: errorBgColor, color: errorTextColor }}
           className="p-6 rounded overflow-y-auto max-h-96"
         >
-          <h3 className="text-2xl font-semibold mb-4">Error Log</h3>
+          <h3 style={{ fontSize: FONT_SIZES.sectionTitle, fontWeight: 600, marginBottom: '1rem' }}>
+            Error Log
+          </h3>
           <LiveLogViewer />
         </div>
 
@@ -106,7 +118,9 @@ export default function DarkModeAwareContent() {
           style={{ backgroundColor: logBgColor, color: logTextColor }}
           className="p-6 rounded overflow-y-auto max-h-96"
         >
-          <h3 className="text-2xl font-semibold mb-4">Full Log</h3>
+          <h3 style={{ fontSize: FONT_SIZES.sectionTitle, fontWeight: 600, marginBottom: '1rem' }}>
+            Full Log
+          </h3>
           <LiveLogViewer />
         </div>
       </section>
