@@ -1,0 +1,10 @@
+{
+  "sessions": [
+    {
+      "id": "main",
+      "agents": 2,
+      "concurrent": 1,
+      "durationSec": 3600
+    }
+  ]
+}
