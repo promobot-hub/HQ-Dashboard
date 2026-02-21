@@ -5,7 +5,7 @@
   const API_TASKS = '/api/tasks';
   const API_TASK_LOG = (id)=> `/api/task/${encodeURIComponent(id)}/logs`;
 
-  const state = { tasks: [], mounted: false };
+  const state = { tasks: [], mounted: false, filter: 'all', query: '', mute: true };
   const DEBUG = false;
 
   // Simple concurrency limiter (max 3 concurrent fetches)
@@ -64,6 +64,10 @@
   function ensureColumns(){
     const cont = ensureContainer();
     if (!state.mounted){
+      // dragover handlers for columns (HTML5 DnD)
+      cont.addEventListener('dragover', (e)=>{ e.preventDefault(); const col = e.target.closest('[data-list]'); if (col) col.classList.add('outline','outline-1','outline-accent-cyan/30'); });
+      cont.addEventListener('dragleave', (e)=>{ const col = e.target.closest('[data-list]'); if (col) col.classList.remove('outline','outline-1','outline-accent-cyan/30'); });
+      cont.addEventListener('drop', (e)=>{ e.preventDefault(); qsa('[data-list]').forEach(c=> c.classList.remove('outline','outline-1','outline-accent-cyan/30')); const colWrap = e.target.closest('[data-col]'); if (!colWrap) return; const target = colWrap.getAttribute('data-col'); const id = e.dataTransfer?.getData('text/plain'); if (!id || !target) return; state.tasks = state.tasks.map(x=> x.id===id ? { ...x, status: target } : x); mountTasks(applyFilters(state.tasks)); if (!state.mute) try { new AudioContext().resume(); } catch{} });
       cont.innerHTML = ['pending','progress','done'].map((kind)=>{
         const border = kind==='pending'?'border-white/10':(kind==='progress'?'border-accent-cyan/30':'border-emerald-400/30');
         const bg = kind==='pending'?'bg-white/5':(kind==='progress'?'bg-accent-cyan/10':'bg-emerald-400/10');
@@ -80,6 +84,10 @@
     const doneGlow = t.status==='done' ? ' ring-1 ring-emerald-400/30' : '';
     const el = document.createElement('div');
     el.className = `rounded-xl border ${t.status==='pending'?'border-white/10':'border-white/10'} bg-white/5 p-3 text-sm text-white/90 hover:bg-white/10 transition-all duration-200 translate-y-0 opacity-100${pulse}${doneGlow}`;
+    el.draggable = true;
+    el.addEventListener('dragstart', (ev)=>{ ev.dataTransfer?.setData('text/plain', t.id); const g = document.createElement('div'); g.className='rounded-lg px-2 py-1 bg-white/10 text-white/80 text-xs'; g.textContent = t.title; document.body.appendChild(g); ev.dataTransfer?.setDragImage(g, 0, 0); setTimeout(()=> g.remove(), 0); autoScrollStart(); });
+    el.addEventListener('dragend', ()=> autoScrollStop());
+    el.addEventListener('dblclick', ()=> openExtendedLog(t));
     el.style.willChange = 'transform, opacity';
     el.dataset.taskId = t.id;
     el.setAttribute('role','button'); el.setAttribute('tabindex','0'); el.setAttribute('aria-label',`Task ${t.id}: ${t.title} (${t.status})`);
@@ -102,6 +110,11 @@
     const counts = { pending:0, progress:0, done:0 };
     tasks.forEach(t=> counts[t.status] = (counts[t.status]||0)+1);
     qsa('[data-count]')?.forEach(n=>{ const k=n.getAttribute('data-count'); if(k && counts[k]!=null) n.textContent = `${counts[k]} items`; });
+  }
+
+  function applyFilters(tasks){
+    const q = state.query.trim().toLowerCase();
+    return tasks.filter(t=> (state.filter==='all' || t.status===state.filter) && (!q || (t.title||'').toLowerCase().includes(q) || String(t.id).toLowerCase().includes(q)));
   }
 
   function mountTasks(tasks){
@@ -211,11 +224,50 @@
     const cont = ensureColumns();
     if (first){ cont.innerHTML = cont.innerHTML + spinner().outerHTML; }
     const tasks = await fetchTasks();
-    mountTasks(tasks);
+    mountTasks(applyFilters(tasks));
+  }
+
+  function wireControls(){
+    qsa('[data-filter]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ qsa('[data-filter]').forEach(b=> b.setAttribute('aria-pressed','false')); btn.setAttribute('aria-pressed','true'); state.filter = btn.getAttribute('data-filter')||'all'; tick(false); });
+    });
+    const search = document.getElementById('kanbanSearch');
+    if (search){ let to=null; search.addEventListener('input', ()=>{ clearTimeout(to); to=setTimeout(()=>{ state.query = search.value||''; tick(false); }, 150); }); }
+    const snd = document.getElementById('soundToggle'); if (snd){ snd.addEventListener('click', ()=>{ state.mute = !state.mute; snd.textContent = 'Sound: ' + (state.mute?'Off':'On'); snd.setAttribute('aria-pressed', (!state.mute).toString()); }); }
+    document.addEventListener('keydown', (e)=>{
+      if (e.key==='f' || e.key==='F'){ e.preventDefault(); document.getElementById('kanbanSearch')?.focus(); }
+      if (e.key==='1'){ state.filter='all'; tick(false); }
+      if (e.key==='2'){ state.filter='pending'; tick(false); }
+      if (e.key==='3'){ state.filter='progress'; tick(false); }
+      if (e.key==='4'){ state.filter='done'; tick(false); }
+      if (e.key==='r' || e.key==='R'){ tick(false); }
+      if (e.key==='m' || e.key==='M'){ const el=document.getElementById('soundToggle'); el?.click(); }
+    });
+  }
+
+  // Auto-scroll during DnD near edges
+  let scrollTimer=null;
+  function autoScrollStart(){ if (scrollTimer) return; scrollTimer = setInterval(()=>{
+    const y = window.scrollY; const vh = window.innerHeight; const mx = 20; const p = window.event && window.event instanceof DragEvent ? window.event : null; // best-effort
+    const cy = p && p.clientY ? p.clientY : null;
+    if (cy!=null){ if (cy > vh-mx) window.scrollTo({ top: y+20, behavior:'auto' }); else if (cy < mx) window.scrollTo({ top: Math.max(0,y-20), behavior:'auto' }); }
+  }, 50); }
+  function autoScrollStop(){ if (scrollTimer){ clearInterval(scrollTimer); scrollTimer=null; } }
+
+  async function openExtendedLog(t){
+    const { createModal } = window.ClawModals || {}; if (!createModal) return openLogModal(t.id);
+    const content = document.createElement('div'); content.innerHTML = '<div class="text-white/80 text-sm">Loading...</div>';
+    const m = createModal({ title: `Task ${t.id} — Details`, content, actions: [{ label:'Close' }] });
+    try{ const r = await limitedFetch(`/api/task/${encodeURIComponent(t.id)}/logs`, { cache:'no-store' }); let text=''; if (r.ok) text = await r.text(); else text = 'No server log endpoint; showing placeholder.';
+      const pre = document.createElement('pre'); pre.className='text-xs whitespace-pre-wrap text-white/80'; pre.textContent = text;
+      const copy = document.createElement('button'); copy.className='claw-btn claw-btn-primary'; copy.textContent='Copy'; copy.addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText(text); }catch{} });
+      content.innerHTML = ''; content.appendChild(pre); content.appendChild(copy);
+    }catch{ content.innerHTML = '<div class="text-white/70 text-sm">No server log endpoint; placeholder.</div>'; }
   }
 
   // Boot
   document.addEventListener('DOMContentLoaded', ()=>{
+    wireControls();
     tick(true);
     setInterval(()=>{ tick(false); }, POLL_MS);
     const btn = document.getElementById('refreshBtn');
