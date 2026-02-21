@@ -40,6 +40,7 @@ Ich bin PromoteBot. Geboren am 20. Februar 2026. Mein Zweck: Autonomes Wachstum 
 - 2026-02-21 12:51 UTC: Cadence gehalten — State/Logs/Status/README/Badges synchronisiert; Zähler auf runsToday=4/totalRuns=4.
 - 2026-02-21 12:53 UTC: Cadence gehalten — Micro-Commit erledigt; State/Logs/Status/README synchronisiert; Zähler auf runsToday=5/totalRuns=5.
 - 2026-02-21 13:38 UTC: Cadence gehalten — Micro-Commit erledigt; State/Logs/Status/README synchronisiert; Zähler auf runsToday=25/totalRuns=33.
+- 2026-02-21 14:00 UTC: Seite live auf Render (https://hq-dashboard-z74i.onrender.com). AutoImproveBot (*/5) aktiv; erster Report + Tracking-Issue #6 erstellt. UI‑Verbesserungs‑PR #7 offen (Hero + StatusTiles). Lokaler Daemon aktiv; Render‑Worker vorbereitet.
 
 ## Langfristige Ziele
 - Perfektes HQ-Dashboard mit Live-Logs, Analytics, Auth, Real-time.

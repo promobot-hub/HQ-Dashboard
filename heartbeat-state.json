@@ -1,6 +1,18 @@
 {
   "lastChecks": {
-    "quickTask": "2026-02-21T14:09:00Z"
+    "email": null,
+    "calendar": null,
+    "social": null,
+    "weather": null
   },
-  "notes": "Auto-updated by cron quick task to keep state fresh."
+  "kpis": {
+    "microCommit": true,
+    "skillProgressLogged": false,
+    "stateUpdated": true
+  },
+  "counters": {
+    "runsToday": 43,
+    "totalRuns": 51
+  },
+  "lastRunUtc": "2026-02-21T14:12:00Z"
 }
