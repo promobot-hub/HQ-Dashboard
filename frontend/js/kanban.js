@@ -8,8 +8,8 @@
   const state = { tasks: [], mounted: false, filter: 'all', query: '', mute: true };
   const DEBUG = false;
 
-  // Simple concurrency limiter (max 3 concurrent fetches)
-  const MAX_CONCURRENT = 3; let active = 0; const queue = [];
+  // Simple concurrency limiter (max 2 concurrent fetches)
+  const MAX_CONCURRENT = 2; let active = 0; const queue = [];
   function limitedFetch(url, init){
     return new Promise((resolve, reject)=>{
       const run = ()=>{
