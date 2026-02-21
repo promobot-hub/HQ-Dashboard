@@ -1,14 +1,10 @@
 {
-  "lastRun": {
-    "type": "cron-denke",
-    "id": "065329dc-eeff-4c85-a259-16730f4e8319",
-    "timestamp": "2026-02-21T14:18:00Z",
-    "epoch": 1771673880
-  },
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
-    "social": null
-  }
+    "cronPing": "2026-02-21T14:20:00Z",
+    "heartbeat": "2026-02-21T14:20:00Z"
+  },
+  "runsToday": 51,
+  "totalRuns": 59,
+  "lastRun": "2026-02-21T14:20:00Z",
+  "lastRunDate": "2026-02-21"
 }
