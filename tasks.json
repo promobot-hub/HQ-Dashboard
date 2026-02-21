@@ -70,33 +70,8 @@
     "status": "todo"
   },
   {
-    "id": "task-1771642494692",
-    "title": "Baby Step Task: Task-Generator implementieren",
-    "status": "todo"
-  },
-  {
-    "id": "task-1771642494692",
-    "title": "Baby Step Task: Task-Executor implementieren",
-    "status": "todo"
-  },
-  {
-    "id": "task-1771642494693",
-    "title": "Baby Step Task: Telegram Integration implementieren",
-    "status": "todo"
-  },
-  {
-    "id": "task-1771642494693",
-    "title": "Baby Step Task: Automatischen Commit-Push Loop starten",
-    "status": "todo"
-  },
-  {
-    "id": "task-1771642494694",
-    "title": "Baby Step Task: Monitoring Dashboard bauen",
-    "status": "todo"
-  },
-  {
-    "id": "task-1771642494694",
-    "title": "Baby Step Task: Health-Check Modul aktivieren",
+    "id": "task-1771642508923",
+    "title": "Baby Step: Automatisiere neue Baby Step Generierung",
     "status": "todo"
   }
 ]
