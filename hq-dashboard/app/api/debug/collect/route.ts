@@ -8,8 +8,10 @@ export async function POST(req: NextRequest) {
     const repo = process.env.GH_REPO;
     const token = process.env.GH_TOKEN;
     const body = await req.text().catch(() => "");
-    if (!body) return NextResponse.json({ ok: false, error: "empty" }, { status: 400 });
-    if (!repo || !token) return NextResponse.json({ ok: true, persisted: false }, { status: 200 });
+    if (!body)
+      return NextResponse.json({ ok: false, error: "empty" }, { status: 400 });
+    if (!repo || !token)
+      return NextResponse.json({ ok: true, persisted: false }, { status: 200 });
 
     const existing = await ghGetContent(repo, PATH);
     let old = "";
@@ -26,9 +28,20 @@ export async function POST(req: NextRequest) {
       }
     })();
     const next = (old ? old + "\n" : "") + line;
-    const put = await ghPutContent(repo, PATH, next, `chore(debug): append debug events`);
-    return NextResponse.json({ ok: put.ok, persisted: true }, { status: put.ok ? 200 : 502 });
+    const put = await ghPutContent(
+      repo,
+      PATH,
+      next,
+      `chore(debug): append debug events`
+    );
+    return NextResponse.json(
+      { ok: put.ok, persisted: true },
+      { status: put.ok ? 200 : 502 }
+    );
   } catch (e: any) {
-    return NextResponse.json({ ok: false, error: String(e?.message || e) }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: String(e?.message || e) },
+      { status: 500 }
+    );
   }
 }
