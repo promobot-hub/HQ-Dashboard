@@ -35,6 +35,7 @@ export default function TaskCard({
     <div
       ref={ref}
       draggable
+      data-task-id={task.id}
       onDragStart={(ev) => {
         ev.dataTransfer.setData("text/plain", task.id);
         const g = document.createElement("div");
