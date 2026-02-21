@@ -1,7 +1,10 @@
 {
   "lastChecks": {
-    "heartbeat": "2026-02-21T14:00:00Z",
-    "cronDenke": "2026-02-21T14:00:00Z",
-    "status": "2026-02-21T14:00:00Z"
+    "cronQuickTask": 1771682460,
+    "state": 1771682460
+  },
+  "meta": {
+    "updatedBy": "PromoteBot",
+    "note": "Auto-updated by cron micro-commit"
   }
 }
