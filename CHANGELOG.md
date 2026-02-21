@@ -15,10 +15,12 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - `scripts/logKPI.js` and seeded `kpis/2026-02-21.json` for lightweight KPI logging.
 - `docs/MICRO-COMMITS.md`, `docs/QUICK-WINS.md`, `docs/ONE-STEP-TASKS.md`, and `docs/CRON-ONE-LINERS.md` to accelerate micro-commit cadence.
 - `scripts/utils.js` with shared UTC/KPI helpers for heartbeat tooling.
+- `scripts/incrementRunCounters.js` to maintain runsToday/totalRuns counters.
 
 ### Changed
 - README: Added Netlify Deploy and Docs badges; linked quick-access URLs.
 - STATUS.md: Logged KPIs for the last run; updated after implementing heartbeat bump script.
+- STATUS.md: Added counters section (runsToday, totalRuns).
 
 ### Maintenance
 - 08:46 UTC: Heartbeat micro-commit — updated heartbeat-state timestamp and logged progress.
@@ -32,10 +34,15 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - 09:23 UTC: hq-dashboard/README.md updated (Netlify Deploy link); STATUS/HEARTBEAT-LOG updated; heartbeat-state.json bumped.
 - 09:26 UTC: scripts/utils.js added; HEARTBEAT-LOG and STATUS updated; heartbeat-state.json bumped.
 - 09:30 UTC: Cron micro-commit — synced logs (HEARTBEAT-LOG), state (heartbeat-state.json), and STATUS.md.
-\n## 2026-02-21 09:31 UTC\n- Cron micro-commit: synced heartbeat-state, HEARTBEAT-LOG, STATUS.md
+
+## 2026-02-21 09:31 UTC
+- Cron micro-commit: synced heartbeat-state, HEARTBEAT-LOG, STATUS.md
 
 ## 2026-02-21 09:39 UTC
 - Added HQ-Dashboard Footer component showing Last updated via /api/status; wired into index and monitor pages.
 
 ## 2026-02-21 09:55 UTC
 - Cron micro-commit: synced heartbeat-state, HEARTBEAT-LOG, STATUS.md.
+
+## 2026-02-21 09:59 UTC
+- Cron micro-commit: added run counters + updated STATUS and HEARTBEAT-LOG.
