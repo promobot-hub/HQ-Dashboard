@@ -1,67 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import LogViewer from './components/LogViewer';
+import React from 'react';
+import TaskList from '../components/TaskList';
+import LogViewer from '../components/LogViewer';
 
-export default function HomePage() {
-  const [cronResults, setCronResults] = useState([]);
-  const [running, setRunning] = useState(false);
-  const [cronStatus, setCronStatus] = useState(false);
-
-  useEffect(() => {
-    // Periodically fetch cron running status
-    const statusInterval = setInterval(async () => {
-      const statusRes = await fetch('/api/cronStatus');
-      const statusData = await statusRes.json();
-      setCronStatus(statusData.running);
-      setRunning(statusData.running);
-    }, 5000);
-
-    return () => clearInterval(statusInterval);
-  }, []);
-
-  useEffect(() => {
-    if (running) {
-      const interval = setInterval(async () => {
-        try {
-          const res = await fetch('/api/cronManager', { method: 'POST' });
-          const data = await res.json();
-          setCronResults((prev) => [...prev, ...data.results]);
-        } catch (e) {
-          console.error('Error running cron:', e);
-        }
-      }, 10 * 60 * 1000); // 10 min
-      return () => clearInterval(interval);
-    }
-  }, [running]);
-
-  const startCron = async () => {
-    await fetch('/api/start-cron');
-    setRunning(true);
-  };
-
-  const stopCron = async () => {
-    await fetch('/api/stop-cron');
-    setRunning(false);
-  };
-
+export default function Home() {
   return (
-    <div className="p-5">
-      <h1>HQ Dashboard</h1>
-      <div>
-        <button onClick={startCron} className="bg-green-500 p-2 m-2 rounded text-white">Start Cron</button>
-        <button onClick={stopCron} className="bg-red-500 p-2 m-2 rounded text-white">Stop Cron</button>
-      </div>
-      <div>
-        <h2>Cron running status: {cronStatus ? 'Running' : 'Stopped'}</h2>
-      </div>
-      <div>
-        <h2>Cron task results</h2>
-        <ul>
-          {cronResults.map((result, idx) => (
-            <li key={idx}>{`Task #${result.taskId} completed at ${new Date(result.timestamp).toLocaleTimeString()}`}</li>
-          ))}
-        </ul>
+    <main className="p-4">
+      <h1 className="text-4xl font-bold mb-4">HQ-Dashboard</h1>
+      <section>
+        <TaskList />
+      </section>
+      <section className="mt-8">
         <LogViewer />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
