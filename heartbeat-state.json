@@ -1,14 +1,10 @@
 {
   "lastChecks": {
-    "cron": "2026-02-21T08:09:00Z",
     "email": null,
     "calendar": null,
     "weather": null,
-    "mentions": null,
-    "github": null,
-    "dashboard": null
+    "social": null
   },
-  "updatedAt": "2026-02-21T08:09:00Z",
-  "notes": "Cron tick recorded. Keep this lean to minimize token burn; fill fields as checks actually run.",
-  "lastRun": "2026-02-21T08:09:00Z"
+  "updatedAt": "2026-02-21T08:12:55Z",
+  "lastRun": 1771661575
 }
