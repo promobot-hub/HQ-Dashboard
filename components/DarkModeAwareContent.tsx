@@ -40,7 +40,6 @@ const FONT_FAMILY = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
 
 export default function DarkModeAwareContent() {
   const { darkMode, toggleDarkMode } = useDarkMode();
-  const skills = useSkillsStore((state) => state.skills);
 
   const bgColor = darkMode ? COLORS.darkBackground : COLORS.lightBackground;
   const textColor = darkMode ? COLORS.darkText : COLORS.lightText;
@@ -50,6 +49,8 @@ export default function DarkModeAwareContent() {
   const errorTextColor = COLORS.errorText;
   const logBgColor = darkMode ? COLORS.logBgDark : COLORS.logBgLight;
   const logTextColor = darkMode ? COLORS.logTextDark : COLORS.logTextLight;
+
+  const skills = useSkillsStore((state) => state.skills);
 
   return (
     <div
@@ -81,7 +82,7 @@ export default function DarkModeAwareContent() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {skills.map((skill) => (
-            <SkillCard key={skill.name} name={skill.name} active={skill.active} progress={skill.progress} />
+            <SkillCard key={skill.id} name={skill.name} active={skill.active} progress={skill.progress} />
           ))}
         </div>
       </section>
