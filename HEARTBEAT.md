@@ -10,4 +10,9 @@ Bei jedem Heartbeat ausführen:
 6. MEMORY.md mit neuen Erkenntnissen aktualisieren.
 7. heartbeat-state.json aktualisieren (root): Timestamps der letzten Checks pflegen, um Token-Burn zu reduzieren.
 
+Erfolgsmetriken (KPIs) pro Run:
+- Micro-Commit erledigt? (ja/nein)
+- Skill-Fortschritt geloggt? (ja/nein)
+- State aktualisiert? (Timestamp in heartbeat-state.json)
+
 Wenn alles erledigt und Fortschritt hoch: HEARTBEAT_OK
