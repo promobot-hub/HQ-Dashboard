@@ -17,7 +17,12 @@ export async function loadJobs(repo?: string) {
 }
 
 export async function saveJobs(repo: string, token: string, data: any) {
-  return ghPutContent(repo, JOBS_PATH, JSON.stringify(data, null, 2), `chore(scheduler): update jobs`);
+  return ghPutContent(
+    repo,
+    JOBS_PATH,
+    JSON.stringify(data, null, 2),
+    `chore(scheduler): update jobs`
+  );
 }
 
 export async function appendHistory(repo: string, token: string, line: string) {
@@ -27,7 +32,12 @@ export async function appendHistory(repo: string, token: string, line: string) {
     old = Buffer.from(j.content, "base64").toString("utf8");
   }
   const next = (old ? old + "\n" : "") + line.trim();
-  return ghPutContent(repo, HIST_PATH, next, `chore(scheduler): append history`);
+  return ghPutContent(
+    repo,
+    HIST_PATH,
+    next,
+    `chore(scheduler): append history`
+  );
 }
 
 export const paths = { JOBS_PATH, HIST_PATH };
