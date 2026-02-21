@@ -5,8 +5,14 @@ export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const login = () => {
+    setError("");
+    if (!email || !password) {
+      setError("Bitte Email und Passwort eingeben.");
+      return;
+    }
     setLoading(true);
     // Dummy login logik
     setTimeout(() => {
@@ -27,23 +33,24 @@ export default function Auth() {
   }
 
   return (
-    <div style={{ maxWidth: 320, margin: 'auto', padding: 20, border: '1px solid #ccc', borderRadius: 6 }}>
+    <div style={{ maxWidth: 320, margin: "auto", padding: 20, border: "1px solid #ccc", borderRadius: 6 }}>
       <h2>Login</h2>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        style={{ width: '100%', padding: 8, marginBottom: 12, borderRadius: 4, border: '1px solid #ccc' }}
+        style={{ width: "100%", padding: 8, marginBottom: 12, borderRadius: 4, border: "1px solid #ccc" }}
       />
       <input
         type="password"
         placeholder="Passwort"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        style={{ width: '100%', padding: 8, marginBottom: 12, borderRadius: 4, border: '1px solid #ccc' }}
+        style={{ width: "100%", padding: 8, marginBottom: 12, borderRadius: 4, border: "1px solid #ccc" }}
       />
-      <button onClick={login} disabled={loading} style={{ padding: 10, width: '100%', borderRadius: 4, backgroundColor: '#0070f3', color: 'white', border: 'none' }}>
+      <button onClick={login} disabled={loading} style={{ padding: 10, width: "100%", borderRadius: 4, backgroundColor: "#0070f3", color: "white", border: "none" }}>
         {loading ? "Lädt..." : "Login"}
       </button>
     </div>
