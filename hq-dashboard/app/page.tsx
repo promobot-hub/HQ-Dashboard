@@ -4,6 +4,7 @@ import HeartbeatWidget from "./components/HeartbeatWidget";
 import SelfImproveWidget from "./components/SelfImproveWidget";
 import KanbanBoard from "./components/KanbanBoard";
 import ActivityFeed from "./components/ActivityFeed";
+import QuickStats from "./components/QuickStats";
 
 export default function Home() {
   return (
@@ -33,32 +34,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full md:w-auto">
-            <div className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3 text-center">
-              <div className="text-[10px] uppercase tracking-wide text-white/60">
-                Runs Today
-              </div>
-              <div className="text-white text-xl font-extrabold">0</div>
-            </div>
-            <div className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3 text-center">
-              <div className="text-[10px] uppercase tracking-wide text-white/60">
-                Total Runs
-              </div>
-              <div className="text-white text-xl font-extrabold">0</div>
-            </div>
-            <div className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3 text-center">
-              <div className="text-[10px] uppercase tracking-wide text-white/60">
-                Last Run
-              </div>
-              <div className="text-white text-xl font-extrabold">—</div>
-            </div>
-            <div className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3 text-center">
-              <div className="text-[10px] uppercase tracking-wide text-white/60">
-                Liveness
-              </div>
-              <div className="text-emerald-400 text-xl font-extrabold">OK</div>
-            </div>
-          </div>
+          <QuickStats />
         </div>
       </section>
       <ChartsClient />
