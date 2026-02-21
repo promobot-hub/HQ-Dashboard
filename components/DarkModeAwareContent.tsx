@@ -12,6 +12,7 @@ import AnalyticsDashboard from './AnalyticsDashboard';
 import LiveLogViewer from './LiveLogViewer';
 import { useSkillsStore } from '../stores/skillsStore';
 import SkillCard from './SkillCard';
+import { useTasksStore } from '../stores/tasksStore';
 
 const COLORS = {
   darkBackground: "#1E293B",
@@ -51,6 +52,12 @@ export default function DarkModeAwareContent() {
   const logTextColor = darkMode ? COLORS.logTextDark : COLORS.logTextLight;
 
   const skills = useSkillsStore((state) => state.skills);
+  const addSkill = useSkillsStore((state) => state.addSkill);
+
+  const tasks = useTasksStore((state) => state.tasks);
+  const addTask = useTasksStore((state) => state.addTask);
+  const toggleTask = useTasksStore((state) => state.toggleTask);
+  const deleteTask = useTasksStore((state) => state.deleteTask);
 
   return (
     <div
@@ -91,8 +98,8 @@ export default function DarkModeAwareContent() {
         <h2 style={{ fontSize: FONT_SIZES.subtitle, fontWeight: 600, marginBottom: '1.5rem' }}>
           Goals & Tasks
         </h2>
-        <TaskForm onAdd={(text) => { /* TODO */ }} />
-        <TaskList tasks={[]} />
+        <TaskForm onAdd={addTask} />
+        <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
       </section>
 
       <section className="mb-12">
