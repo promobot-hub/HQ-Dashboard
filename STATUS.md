@@ -1,6 +1,6 @@
 # STATUS
 
-Last Run: 2026-02-21 09:42 UTC
+Last Run: 2026-02-21 09:44 UTC
 
 KPIs
 - Micro-Commit: YES
@@ -10,7 +10,7 @@ KPIs
 Erledigt
 - HQ-Dashboard: Footer-Komponente mit „Last updated“ (aus /api/status) in index und monitor eingebaut
 - Tages-ToDo erstellt: tasks/2026-02-21.md (Task „Skill-Kandidat identifiziert + Lern-Stub“ abgehakt)
-- Logs aktualisiert: logs/HEARTBEAT-LOG.md (09:41 UTC Eintrag: Cron micro-commit: logs+state+status synced)
+- Logs aktualisiert: logs/HEARTBEAT-LOG.md (09:44 UTC Eintrag: Cron micro-commit: heartbeat-state bumped; STATUS/LOG synced)
 - heartbeat-state.json aktualisiert (timestamps refreshed)
 - Lern-Stub erstellt: skills/LEARN-OPENCLAW-CRON.md
 - HQ-Dashboard: Netlify Deploy-Link in hq-dashboard/README.md hinzugefügt
