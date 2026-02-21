@@ -1,20 +1,13 @@
 {
+  "lastRun": "2026-02-21T12:49:00Z",
   "lastChecks": {
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null,
-    "heartbeat": "2026-02-21T12:50:04.554Z"
+    "social": null
   },
   "counters": {
-    "runsToday": 1,
-    "totalRuns": 30,
-    "lastRunAt": "2026-02-21T12:48:00Z",
-    "lastDay": "2026-02-21"
-  },
-  "meta": {
-    "lastUpdated": 1771678080,
-    "lastUpdatedIso": "2026-02-21T12:48:00Z",
-    "notes": "Cron DENKE: micro-commit — STATUS.md/README updated; counters bumped; logs appended."
+    "runsToday": 2,
+    "totalRuns": 2
   }
 }

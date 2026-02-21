@@ -26,7 +26,4 @@
 2026-02-21T12:44:00Z | cron | KPIs: Micro-Commit=yes; Skill-Fortschritt=no; State-Updated=yes; Notes=DENKE quick-step: counters to 27; synced state, STATUS, logs.
 2026-02-21T12:45:00Z | cron | KPIs: Micro-Commit=yes; Skill-Fortschritt=no; State-Updated=yes; Notes=DENKE quick-step: counters to 28; synced state, STATUS, README, logs.
 2026-02-21T12:48:00Z | cron | KPIs: Micro-Commit=yes; Skill-Fortschritt=no; State-Updated=yes; Notes=DENKE quick-step: counters to 29; synced state, STATUS, README, logs.
-
-- 2026-02-21T12:50:04.554Z — Counters updated (runsToday=1, totalRuns=30)
-- 2026-02-21 12:50:04.595 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
-- 2026-02-21 12:50:04 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Automated append.
+2026-02-21T12:49:00Z | cron | KPIs: Micro-Commit=yes; Skill-Fortschritt=no; State-Updated=yes; Notes=DENKE quick-step: counters to 2; synced state, STATUS, README, logs.
