@@ -25,8 +25,9 @@ Das HQ-Dashboard ist die zentrale Kommandozentrale zur Steuerung des PromoteBots
 ## Setup
 1. Repository klonen
 2. Abhängigkeiten installieren mit `npm install`
-3. Entwicklung starten mit `npm run dev`
-4. GitHub Token in Umgebungsvariable `GH_TOKEN` speichern
+3. Entwicklung starten mit `npm run dev` (Entwicklung)
+4. Build erstellen mit `npm run build` (optional)
+5. GitHub Token in Umgebungsvariable `GH_TOKEN` speichern
 
 ## Nächste Schritte
 - Auth-Integration weiter ausbauen
