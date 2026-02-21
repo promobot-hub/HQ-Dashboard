@@ -1,0 +1,39 @@
+<!-- Tables (Striped + Hover Glow) -->
+<div class="rounded-2xl border border-hairline bg-white/5 backdrop-blur-md shadow-glass overflow-hidden">
+  <table class="w-full text-left text-sm">
+    <thead class="text-white/70">
+      <tr>
+        <th class="px-4 py-3">Task</th>
+        <th class="px-4 py-3">Status</th>
+        <th class="px-4 py-3">Duration</th>
+        <th class="px-4 py-3 text-right">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-white/10">
+      <tr class="hover:bg-white/10 transition">
+        <td class="px-4 py-3 text-white/90">AutoImprove: Analyze UI</td>
+        <td class="px-4 py-3"><span class="rounded-md bg-accent-cyan/20 px-2 py-1 text-[11px] text-accent-cyan">Done</span></td>
+        <td class="px-4 py-3 text-white/70">18s</td>
+        <td class="px-4 py-3 text-right">
+          <button class="rounded-lg border border-hairline bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10">View</button>
+        </td>
+      </tr>
+      <tr class="bg-white/[0.03] hover:bg-white/10 transition">
+        <td class="px-4 py-3 text-white/90">Heartbeat: Micro-Commit</td>
+        <td class="px-4 py-3"><span class="rounded-md bg-white/10 px-2 py-1 text-[11px] text-white/70">Queued</span></td>
+        <td class="px-4 py-3 text-white/70">—</td>
+        <td class="px-4 py-3 text-right">
+          <button class="rounded-lg border border-hairline bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10">Open</button>
+        </td>
+      </tr>
+      <tr class="hover:bg-white/10 transition">
+        <td class="px-4 py-3 text-white/90">Render Deploy</td>
+        <td class="px-4 py-3"><span class="rounded-md bg-accent-violet/20 px-2 py-1 text-[11px] text-accent-violet">Live</span></td>
+        <td class="px-4 py-3 text-white/70">2m</td>
+        <td class="px-4 py-3 text-right">
+          <button class="rounded-lg border border-hairline bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10">Logs</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

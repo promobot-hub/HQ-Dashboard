@@ -1,0 +1,26 @@
+<!-- Reusable Cards (Glass + Variants) -->
+<div class="grid grid-cols-12 gap-4">
+  <!-- Glass Card -->
+  <div class="col-span-12 sm:col-span-6 lg:col-span-4 rounded-2xl border border-hairline bg-white/5 backdrop-blur-md shadow-glass p-5">
+    <div class="text-white/70 text-xs uppercase tracking-wide">Glass Card</div>
+    <div class="mt-2 text-white text-lg font-bold">Title</div>
+    <p class="mt-1 text-white/70 text-sm">Description text with subtle contrast.</p>
+  </div>
+
+  <!-- Gradient Border Card -->
+  <div class="col-span-12 sm:col-span-6 lg:col-span-4 rounded-2xl border border-hairline bg-white/5 backdrop-blur-md shadow-glass p-5 relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 opacity-40"><div class="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-accent-cyan/30 to-accent-violet/30 blur-lg"></div></div>
+    <div class="text-white/70 text-xs uppercase tracking-wide">Gradient Border</div>
+    <div class="mt-2 text-white text-lg font-bold">Title</div>
+    <p class="mt-1 text-white/70 text-sm">Gradient glow accent around.</p>
+  </div>
+
+  <!-- Lift Card -->
+  <div class="col-span-12 sm:col-span-6 lg:col-span-4 rounded-2xl border border-hairline bg-white/5 backdrop-blur-md shadow-glass p-5 transition hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(0,0,0,0.5)]">
+    <div class="flex items-center justify-between">
+      <div class="text-white text-lg font-bold">Hover Lift</div>
+      <span class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-accent-cyan/20 text-accent-cyan">✓</span>
+    </div>
+    <p class="mt-1 text-white/70 text-sm">Interactive elevation on hover.</p>
+  </div>
+</div>
