@@ -2,6 +2,7 @@ import { addTask, completeTask } from './persistentTaskEngine.js';
 import { getCurrentBabyStep } from './babySteps.js';
 import { sendTelegramMessage } from './telegramQueue.js';
 import { autoGenerateNextBabyStep } from './babyStepGenerator.js';
+import { analyzeAndCreateTasks } from './autoLearningModule.js';
 import { enqueueSelfMessage } from './internalChatQueue.js';
 import { analyzeAndGenerateStep } from './autoBabyStepLearner.js';
 
@@ -19,6 +20,7 @@ export function startStablePoller() {
       const nextStep = autoGenerateNextBabyStep();
       enqueueSelfMessage(nextStep ? `Nächster Baby Step: ${nextStep}` : 'Alle Baby Steps erledigt');
       analyzeAndGenerateStep();
+      analyzeAndCreateTasks();
     }, 30000);
   }, 60000);
   console.log('Stabiler Poller mit Self-Reply-Queue und Auto-Baby-Step-Lerner gestartet.');
