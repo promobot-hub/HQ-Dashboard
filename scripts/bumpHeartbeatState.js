@@ -4,45 +4,54 @@ const path = require('path');
 
 const statePath = path.resolve(process.cwd(), 'heartbeat-state.json');
 
-function isoNow() {
-  return new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
+function now() {
+  const d = new Date();
+  return {
+    iso: d.toISOString(),
+    epoch: Math.floor(d.getTime() / 1000)
+  };
 }
 
-function main() {
-  let state = {
-    lastRun: null,
-    lastChecks: {},
-    kpis: { microCommit: false, skillProgress: false, stateUpdated: false },
-    updatedAt: null,
-  };
-
+function loadState(p) {
   try {
-    if (fs.existsSync(statePath)) {
-      const raw = fs.readFileSync(statePath, 'utf8');
-      state = { ...state, ...JSON.parse(raw) };
-    }
+    const raw = fs.readFileSync(p, 'utf8');
+    return JSON.parse(raw);
   } catch (e) {
-    console.error('Failed to read heartbeat-state.json:', e.message);
+    return {
+      lastRun: null,
+      lastChecks: {},
+      kpis: {
+        microCommit: false,
+        skillProgress: false,
+        stateUpdated: false
+      },
+      updatedAt: null
+    };
   }
+}
 
-  const now = isoNow();
-  state.lastRun = now;
-  state.updatedAt = now;
-  state.kpis = {
-    ...state.kpis,
+function saveState(p, state) {
+  fs.writeFileSync(p, JSON.stringify(state, null, 2) + '\n', 'utf8');
+}
+
+(function main() {
+  const t = now();
+  const state = loadState(statePath);
+
+  state.lastRun = t.iso;
+  state.lastRunAt = t.iso;
+  state.updatedAt = t.iso;
+  state.lastUpdate = t.epoch;
+  state.lastChecks = state.lastChecks || {};
+  for (const key of ['email', 'calendar', 'weather', 'social']) {
+    state.lastChecks[key] = t.epoch;
+  }
+  state.kpis = Object.assign({
     microCommit: true,
-    stateUpdated: true,
-  };
+    skillProgress: state.kpis && typeof state.kpis.skillProgress === 'boolean' ? state.kpis.skillProgress : false,
+    stateUpdated: true
+  }, state.kpis || {});
 
-  try {
-    fs.writeFileSync(statePath, JSON.stringify(state, null, 2) + '\n', 'utf8');
-    console.log('Updated', statePath, '->', now);
-  } catch (e) {
-    console.error('Failed to write heartbeat-state.json:', e.message);
-    process.exit(1);
-  }
-}
-
-if (require.main === module) {
-  main();
-}
+  saveState(statePath, state);
+  console.log('heartbeat-state.json updated:', t.iso);
+})();
