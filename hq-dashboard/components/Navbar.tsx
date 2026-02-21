@@ -1,6 +1,9 @@
+"use client";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 export default function Navbar() {
+  const p = usePathname();
   return (
     <header className="fixed top-0 inset-x-0 z-40">
       <div className="mx-auto max-w-[2000px] px-4 sm:px-6 lg:px-8">
@@ -29,36 +32,27 @@ export default function Navbar() {
               className="hidden md:flex items-center gap-2"
               aria-label="Primary"
             >
-              <Link
-                className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10"
-                href="/"
-              >
-                Overview
-              </Link>
-              <Link
-                className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10"
-                href="/tasks"
-              >
-                Tasks
-              </Link>
-              <Link
-                className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10"
-                href="/skills"
-              >
-                Skills
-              </Link>
-              <Link
-                className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10"
-                href="/analytics"
-              >
-                Runs
-              </Link>
-              <Link
-                className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10"
-                href="/health"
-              >
-                Health
-              </Link>
+              {[
+                { href: "/", label: "Overview" },
+                { href: "/tasks", label: "Tasks" },
+                { href: "/skills", label: "Skills" },
+                { href: "/analytics", label: "Runs" },
+                { href: "/health", label: "Health" },
+              ].map((t) => {
+                const active = p === t.href;
+                return (
+                  <Link
+                    key={t.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`rounded-xl border border-[rgba(255,255,255,0.08)] px-3 py-1.5 text-xs hover:bg-white/10 ${
+                      active ? "bg-white/10 text-white ring-1 ring-accent-cyan/40" : "bg-white/5 text-white/80"
+                    }`}
+                    href={t.href}
+                  >
+                    {t.label}
+                  </Link>
+                );
+              })}
             </nav>
             <div id="heartbeat-slot" className="hidden md:block" />
           </div>
