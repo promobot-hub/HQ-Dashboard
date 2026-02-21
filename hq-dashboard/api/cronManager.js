@@ -1,7 +1,5 @@
 import { logEvent } from './logManager';
 
-const { logEvent } = require('./logManager');
-
 let taskQueue = [
   { id: 1, text: 'Complete Twitter login automation', done: false, errorCount: 0, retry: 0 },
   { id: 2, text: 'Deploy HQ Dashboard on Vercel', done: false, errorCount: 0, retry: 0 },
