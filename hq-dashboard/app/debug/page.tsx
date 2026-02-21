@@ -68,6 +68,13 @@ export default function DebugPage() {
             </label>
           </div>
         </div>
+        <div className="mt-4">
+          {/* Inline System Checks */}
+          {(() => {
+            const C = require('./Checks').default;
+            return <C />;
+          })()}
+        </div>
         <div className="mt-4 flex items-center gap-2">
           <div
             className="flex items-center gap-1"

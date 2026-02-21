@@ -1,0 +1,3 @@
+{"ts":"2026-02-21T22:10:00.000Z","type":"snapshot","msg":"Snapshot cycle complete (seed)","ok":true}
+{"ts":"2026-02-21T22:10:05.000Z","type":"improve","msg":"Improve trigger enqueued (seed)","ok":true}
+{"ts":"2026-02-21T22:10:10.000Z","type":"kanban","msg":"Task moved: TODO -> DOING (seed)","ok":true}
