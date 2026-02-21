@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import SkillCard, { Skill } from "../components/SkillCard";
+import SkillActivityModal from "../components/SkillActivityModal";
 
 function LevelRing({ value }: { value: number }) {
   const pct = Math.max(0, Math.min(100, value));
@@ -55,8 +56,9 @@ export default function SkillsPage() {
     } catch {}
   };
 
+  const [activeId, setActiveId] = useState<string | null>(null);
   const onView = (id: string) => {
-    window.open(`/api/logs?limit=50&skillId=${encodeURIComponent(id)}`, "_blank");
+    setActiveId(id);
   };
 
   const grid = useMemo(() => (
@@ -83,6 +85,10 @@ export default function SkillsPage() {
         <div className="text-white/60 text-sm">Loading skills…</div>
       ) : (
         grid
+      )}
+
+      {activeId && (
+        <SkillActivityModal id={activeId} onClose={() => setActiveId(null)} />
       )}
     </div>
   );
