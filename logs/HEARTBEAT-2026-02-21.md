@@ -69,3 +69,13 @@
   - Skill-Fortschritt: NO
   - State aktualisiert: YES
 - Notes: Keep shipping. Next: gh status stub.
+
+- Time: 2026-02-21T09:59:25Z
+- Actions:
+  - Added scripts/incrementRunCounters.js and executed to track runsToday/totalRuns
+  - Updated STATUS.md and CHANGELOG.md; appended HEARTBEAT-LOG entry
+- KPIs:
+  - Micro-Commit: YES
+  - Skill-Fortschritt: NO
+  - State aktualisiert: YES
+- Notes: Push blocked by GH secret-scanning (legacy secrets). Requires cleanup PR to proceed.
