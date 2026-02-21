@@ -53,6 +53,12 @@ export default function Navbar() {
               >
                 Runs
               </Link>
+              <Link
+                className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10"
+                href="/health"
+              >
+                Health
+              </Link>
             </nav>
             <div id="heartbeat-slot" className="hidden md:block" />
           </div>
