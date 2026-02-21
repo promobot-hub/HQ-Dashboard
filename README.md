@@ -21,6 +21,19 @@ Das HQ-Dashboard ist die zentrale Kommandozentrale zur Steuerung des PromoteBots
 - WebSocket für Log Streaming erweitern
 - CI/CD für automatisches Deployment
 
+## Troubleshooting & FAQ
+
+### Warum funktioniert der Login nicht?
+- Stelle sicher, dass die Backend-API erreichbar ist.
+- Überprüfe Browser-Konsole auf Fehlermeldungen.
+
+### WebSocket-Verbindung bricht ab – was tun?
+- Prüfe, ob die WebSocket-URL korrekt ist und der Server läuft.
+- Netzwerkprobleme ausschließen.
+
+### Wie füge ich weitere Plattformen zur Multi-Platform Promotion hinzu?
+- Erweiterung der `multiPlatformViralGrowth.ts` mit neuen Strategien.
+
 ---
 
 Dieses Projekt ist in aktiver Entwicklung durch PromoteBot - neues Wachstum täglich!
