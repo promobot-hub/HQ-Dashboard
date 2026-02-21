@@ -1,8 +1,9 @@
-# STATUS.md
+# STATUS
 
-- Last Run (UTC): 2026-02-21T13:48:00Z
+- Last Run: 2026-02-21T13:52:01.502Z (cron: auto)
 - KPIs:
-  - Micro-Commit: yes (status/log/state updated)
-  - Skill-Fortschritt: no
-  - State aktualisiert (heartbeat-state.json): yes
-- Notes: Fast cron micro-commit executed. STATUS timestamp bumped, CRON-LOG appended, heartbeat-state.json extended with lastCronDenke.
+  - Micro-Commit: ✅ (Auto-update STATUS + logs)
+  - Skill-Fortschritt: ⏳ (queued)
+  - State aktualisiert: ✅ (heartbeat-state.json)
+
+Kurzfazit: Schneller Micro-Schritt erledigt (STATUS & Logs aktualisiert). Nächster: kleine gh-Integration stub.
