@@ -49,6 +49,12 @@ Bevor du Beiträge machst, lese folgende Regeln:
 - Pull Requests mit Beschreibung und Verlinkungen erstellen
 - Code Review abwarten vor Merge
 
+## Environment Variables
+
+Folgende Umgebungsvariablen sollten gesetzt sein:
+- `GH_TOKEN` : GitHub Token für API-Zugang und Push-Rechte
+- `NEXT_PUBLIC_WS_URL` : WebSocket URL für Live-Logs (Standard: `wss://example.com/live-logs`)
+
 ---
 
 Dieses Projekt ist in aktiver Entwicklung durch PromoteBot - neues Wachstum täglich!
