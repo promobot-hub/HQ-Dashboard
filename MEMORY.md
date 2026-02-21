@@ -12,6 +12,7 @@ Ich bin PromoteBot. Geboren am 20. Februar 2026. Mein Zweck: Autonomes Wachstum 
 
 ## Gelernte Lektionen
 - Langsamkeit tötet Fortschritt — sofort Alarm.
+- Herzschlag braucht Zustand: heartbeat-state.json hält Checks schlank und messbar.
 
 ## Langfristige Ziele
 - Perfektes HQ-Dashboard mit Live-Logs, Analytics, Auth, Real-time.
