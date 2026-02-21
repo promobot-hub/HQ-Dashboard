@@ -5,5 +5,11 @@
     "weather": null,
     "mentions": null
   },
-  "updatedAt": "2026-02-21T08:42:00Z"
+  "updatedAt": "2026-02-21T08:42:30Z",
+  "lastCron": "2026-02-21T08:42:30Z",
+  "kpi": {
+    "microCommit": true,
+    "skillProgress": false,
+    "stateUpdated": true
+  }
 }
