@@ -1,6 +1,7 @@
 import { addTask, getAllTasks, completeTask } from './persistentTaskEngine.js';
-import { getCurrentBabyStep, nextBabyStep } from './babySteps.js';
+import { getCurrentBabyStep } from './babySteps.js';
 import { sendTelegramMessage } from './telegramQueue.js';
+import { autoGenerateNextBabyStep } from './babyStepGenerator.js';
 
 export function startStablePoller() {
   setInterval(() => {
@@ -10,12 +11,8 @@ export function startStablePoller() {
     setTimeout(() => {
       completeTask(newTask.id);
       sendTelegramMessage(`Task abgeschlossen: ${newTask.title}`);
-      if (nextBabyStep()) {
-        sendTelegramMessage(`Wechsle zu nächstem Baby Step: ${getCurrentBabyStep()}`);
-      } else {
-        sendTelegramMessage('Alle Baby Steps abgeschlossen.');
-      }
+      autoGenerateNextBabyStep();
     }, 30000);
   }, 60000);
-  console.log('Stabiler Poller mit Telegram Queue ist gestartet.');
+  console.log('Stabiler Poller mit automatischer Baby-Step-Generierung gestartet.');
 }

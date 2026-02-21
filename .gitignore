@@ -1,6 +1,4 @@
+autoCronTrigger.log
+node_modules/
+.next/
 .env
-.next
-next-env.d.ts
-secrets.log
-secrets_found.txt
-node_modules
