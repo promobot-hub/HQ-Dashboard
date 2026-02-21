@@ -3,10 +3,11 @@
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null
+    "social": null,
+    "mentions": null
   },
-  "lastUpdated": "2026-02-21T08:29:30Z",
-  "lastCron": "2026-02-21T08:29:30Z",
+  "lastUpdated": "2026-02-21T08:30:00Z",
+  "lastCron": "2026-02-21T08:30:00Z",
   "kpis": {
     "microCommit": true,
     "skillProgress": false,
