@@ -1,17 +1,6 @@
 {
   "lastChecks": {
-    "cronQuickTask": 1771682869,
-    "state": 1771682869,
-    "heartbeat": "2026-02-21T14:07:49Z"
+    "quickTask": "2026-02-21T14:08:30Z"
   },
-  "meta": {
-    "updatedBy": "PromoteBot",
-    "note": "Auto-updated by cron micro-commit (DENKE)",
-    "at": "2026-02-21T14:07:49Z"
-  },
-  "counters": {
-    "runsToday": 39,
-    "lastDay": "2026-02-21",
-    "totalRuns": 47
-  }
+  "notes": "Auto-updated by cron quick task to keep state fresh."
 }
