@@ -7,7 +7,11 @@ export const metadata = {
   description: "Live status and controls for Clawbot HQ Dashboard",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className="dark">
       <body className="min-h-screen bg-[#0a0a0a] text-[rgba(255,255,255,0.75)]">
