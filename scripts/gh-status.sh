@@ -4,7 +4,7 @@ set -euo pipefail
 # Quick GitHub status for HQ-Dashboard repo
 # Requires: gh CLI authenticated (see skills/github)
 
-REPO="openclaw/hq-dashboard"
+REPO="promobot-hub/HQ-Dashboard"
 
 echo "=== PRs (open) ==="
 gh pr list -R "$REPO" --limit 10 --state open --json number,title,headRefName,updatedAt --jq '.[] | "#\(.number) [\(.headRefName)] \(.title) — updated \(.updatedAt)"'
