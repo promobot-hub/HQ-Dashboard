@@ -1,15 +1,14 @@
 {
-  "lastRun": "2026-02-21T09:04:00Z",
   "lastChecks": {
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null
+    "social": null,
+    "repo": 1771664940
   },
-  "kpis": {
-    "microCommit": true,
-    "skillProgress": false,
-    "stateUpdated": true
-  },
-  "notes": "Cron micro-commit at 09:04 UTC: added docs/ONE-STEP-PLAYBOOK.md, bumped state/logs, and updated daily memory."
+  "lastRun": {
+    "iso": "2026-02-21T09:09:00Z",
+    "epoch": 1771664940,
+    "source": "cron:065329dc-eeff-4c85-a259-16730f4e8319"
+  }
 }
