@@ -1,18 +1,5 @@
 {
   "lastChecks": {
-    "heartbeat": "2026-02-21T11:08:00+00:00",
-    "email": null,
-    "calendar": null,
-    "weather": null
-  },
-  "counters": {
-    "runsToday": 47,
-    "lastDay": "2026-02-21",
-    "totalRuns": 47
-  },
-  "kpis": {
-    "microCommit": true,
-    "skillProgress": false,
-    "stateUpdated": true
+    "heartbeat": "2026-02-21T11:12:30Z"
   }
 }

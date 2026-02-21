@@ -1,10 +1,10 @@
 # STATUS
 
-- Timestamp: 2026-02-21 11:08 UTC
+- Timestamp: 2026-02-21 11:12 UTC
 - KPIs:
-  - Micro-Commit: yes (state+logs synced)
-  - Skill-Fortschritt: no (defer)
-  - State aktualisiert: yes (heartbeat-state.json)
+  - Micro-Commit erledigt: ja
+  - Skill-Fortschritt geloggt: nein
+  - State aktualisiert: ja
 - Counters:
-  - runsToday: 47
-  - totalRuns: 47
+  - runsToday: 48
+  - totalRuns: 48
