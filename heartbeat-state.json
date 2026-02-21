@@ -1,14 +1,9 @@
 {
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
-    "mentions": null
+    "cron": 1771674587
   },
-  "counters": {
-    "runsToday": 2,
-    "totalRuns": 2
-  },
-  "updatedAt": "2026-02-21T11:46:00Z",
-  "updatedAtEpoch": 1771664760
+  "runsToday": 5,
+  "totalRuns": 5,
+  "updatedAt": "2026-02-21T11:49:45Z",
+  "lastRun": "DENKE"
 }
