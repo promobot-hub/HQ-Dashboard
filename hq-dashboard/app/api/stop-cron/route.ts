@@ -1,4 +1,4 @@
-const { stopCronRunner } = require('../../api/cronRunner');
+import { stopCronRunner } from '../../api/cronRunner';
 
 export async function GET() {
   stopCronRunner();
