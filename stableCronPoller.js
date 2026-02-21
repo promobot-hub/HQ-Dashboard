@@ -3,6 +3,7 @@ import { getCurrentBabyStep } from './babySteps.js';
 import { sendTelegramMessage } from './telegramQueue.js';
 import { autoGenerateNextBabyStep } from './babyStepGenerator.js';
 import { enqueueSelfMessage } from './internalChatQueue.js';
+import { analyzeAndGenerateStep } from './autoBabyStepLearner.js';
 
 export function startStablePoller() {
   setInterval(() => {
@@ -17,7 +18,8 @@ export function startStablePoller() {
       enqueueSelfMessage(`Task abgeschlossen: ${newTask.title}`);
       const nextStep = autoGenerateNextBabyStep();
       enqueueSelfMessage(nextStep ? `Nächster Baby Step: ${nextStep}` : 'Alle Baby Steps erledigt');
+      analyzeAndGenerateStep();
     }, 30000);
   }, 60000);
-  console.log('Stabiler Poller mit Self-Reply-Queue gestartet.');
+  console.log('Stabiler Poller mit Self-Reply-Queue und Auto-Baby-Step-Lerner gestartet.');
 }

@@ -1,40 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useTasksStore } from '../stores/tasksStore';
 
 export default function TaskList() {
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/tasks')
-      .then(res => res.json())
-      .then(data => setTasks(data));
-  }, []);
-
-  const toggleStatus = (id, currentStatus) => {
-    let newStatus = 'todo';
-    if (currentStatus === 'todo') newStatus = 'in-progress';
-    else if (currentStatus === 'in-progress') newStatus = 'done';
-
-    fetch('/api/tasks', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, status: newStatus }),
-    }).then(() => {
-      setTasks(tasks.map(task =>
-        task.id === id ? { ...task, status: newStatus } : task
-      ));
-    });
-  };
+  const tasks = useTasksStore(state => state.tasks);
+  const toggleTask = useTasksStore(state => state.toggleTask);
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Tasks</h2>
+      <h2 className="text-2xl font-bold mb-4">Aufgaben</h2>
       <ul>
         {tasks.map(task => (
           <li key={task.id}>
-            {task.title} - <em>{task.status}</em>{' '}
-            <button onClick={() => toggleStatus(task.id, task.status)} className="ml-2 px-2 py-1 text-sm bg-blue-500 text-white rounded">
-              Next Status
-            </button>
+            <label>
+              <input
+                type="checkbox"
+                checked={task.done}
+                onChange={() => toggleTask(task.id)}
+              />
+              {task.text}
+            </label>
           </li>
         ))}
       </ul>

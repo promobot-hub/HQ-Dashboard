@@ -1,1 +1,22 @@
-{"tasks":[{"id":1,"title":"Auth Integration für Nutzerkonten","priority":"hoch","status":"erledigt"},{"id":2,"title":"WebSocket für Live-Logs erweitern","priority":"mittel","status":"offen"},{"id":3,"title":"Custom Themes hinzufügen","priority":"niedrig","status":"erledigt"},{"id":4,"title":"Multi-Platform-Promotion Skill erweitern","priority":"hoch","status":"in Arbeit"},{"id":5,"title":"README verbessern","priority":"niedrig","status":"erledigt"}]}
+[
+  {
+    "id": "task-1771642088732",
+    "title": "Baby Step: Initialisiere neues sauberes Repository",
+    "status": "done"
+  },
+  {
+    "id": "task-1771642118764",
+    "title": "Automatisch generierter Task: Entwickle minimale Task Engine",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642148759",
+    "title": "Baby Step: Entwickle minimale Task Engine",
+    "status": "done"
+  },
+  {
+    "id": "task-1771642178789",
+    "title": "Automatisch generierter Task: Baue Baby Step Verwaltung",
+    "status": "todo"
+  }
+]
