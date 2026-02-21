@@ -4,7 +4,7 @@ import { CLAWBOT_API_BASE } from "../../components/config";
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const keys = searchParams.get("keys") || "cpu,mem";
+    const keys = searchParams.get("keys") || "cpu,memory,disk,active_tasks";
     const r = await fetch(
       `${CLAWBOT_API_BASE}/api/metrics?keys=${encodeURIComponent(keys)}`,
       { cache: "no-store" }
