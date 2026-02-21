@@ -1,5 +1,8 @@
 # STATUS
 
-- Last run: 2026-02-21 14:20 UTC
-- KPIs: Micro-Commit ✅ | Skill-Fortschritt ❌ | State aktualisiert ✅
-- Notes: Cron DENKE — counters++ (runsToday=51, totalRuns=59); STATUS/state/logs updated.
+Last run (cron): 2026-02-21 14:21 UTC
+
+KPIs:
+- Micro-Commit: yes (state timestamp updated)
+- Skill-Fortschritt: no (cron quick task)
+- State aktualisiert: yes (heartbeat-state.json)

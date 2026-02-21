@@ -1,10 +1,10 @@
 {
   "lastChecks": {
-    "cronPing": "2026-02-21T14:20:00Z",
-    "heartbeat": "2026-02-21T14:20:00Z"
+    "cron": "2026-02-21T14:21:00Z"
   },
-  "runsToday": 51,
-  "totalRuns": 59,
-  "lastRun": "2026-02-21T14:20:00Z",
-  "lastRunDate": "2026-02-21"
+  "runs": {
+    "lastRun": "2026-02-21T14:21:00Z",
+    "runsToday": 52,
+    "totalRuns": 60
+  }
 }
