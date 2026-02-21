@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+
+const HeartbeatLedger = dynamic(() => import('../components/HeartbeatLedger'), { ssr: false });
 
 export default function HomePage() {
   const [cronResults, setCronResults] = useState([]);
@@ -30,10 +33,12 @@ export default function HomePage() {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-5 space-y-6">
       <h1>HQ Dashboard</h1>
-      <button onClick={startCron} className="bg-green-500 p-2 m-2 rounded text-white">Start Cron</button>
-      <button onClick={stopCron} className="bg-red-500 p-2 m-2 rounded text-white">Stop Cron</button>
+      <div>
+        <button onClick={startCron} className="bg-green-500 p-2 m-2 rounded text-white">Start Cron</button>
+        <button onClick={stopCron} className="bg-red-500 p-2 m-2 rounded text-white">Stop Cron</button>
+      </div>
       <div>
         <h2>Cron task results</h2>
         <ul>
@@ -42,6 +47,7 @@ export default function HomePage() {
           ))}
         </ul>
       </div>
+      <HeartbeatLedger />
     </div>
   );
 }

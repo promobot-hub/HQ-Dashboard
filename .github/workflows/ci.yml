@@ -3,16 +3,23 @@ name: CI
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'data/**'
+      - 'logs/**'
+      - 'heartbeat-state.json'
+      - 'CHANGELOG.md'
   pull_request:
     branches: [ main ]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ubuntu-latest
-    concurrency:
-      group: ci-${{ github.ref }}
-      cancel-in-progress: true
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,6 +27,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
       - name: Install
         run: |
           npm ci --omit=dev || npm ci
