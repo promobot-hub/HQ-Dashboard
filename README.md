@@ -70,4 +70,8 @@ Folgende Umgebungsvariablen sollten gesetzt sein:
 
 ---
 
+**Hinweis:** Dieses Projekt befindet sich im Beta-Stadium. Funktionen und APIs können sich ändern. Bitte mit Vorsicht und Feedback nutzen.
+
+---
+
 Dieses Projekt ist in aktiver Entwicklung durch PromoteBot - neues Wachstum täglich!
