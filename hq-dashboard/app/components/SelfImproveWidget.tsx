@@ -10,7 +10,7 @@ export default function SelfImproveWidget() {
     let live = true;
     const load = async () => {
       try {
-        const r = await fetch(`${CLAWBOT_API_BASE}/api/autoimprove`, {
+        const r = await fetch(`/api/autoimprove`, {
           cache: "no-store",
         });
         if (!r.ok) throw new Error("ai");
@@ -39,7 +39,7 @@ export default function SelfImproveWidget() {
           onClick={async () => {
             setLoading(true);
             try {
-              const r = await fetch(`${CLAWBOT_API_BASE}/api/improve`, {
+              const r = await fetch(`/api/improve`, {
                 method: "POST",
               });
             } catch {

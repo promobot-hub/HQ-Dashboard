@@ -88,7 +88,7 @@ export default function KanbanBoard() {
   const mountedRef = useRef(false);
 
   const fetchTasks = useCallback(async () => {
-    const r = await fetch(`${CLAWBOT_API_BASE}/api/tasks`, {
+    const r = await fetch(`/api/tasks`, {
       cache: "no-store",
     });
     if (!r.ok) throw new Error("tasks fetch failed");
@@ -156,7 +156,7 @@ export default function KanbanBoard() {
     );
     setTasks(next);
     try {
-      await fetch(`${CLAWBOT_API_BASE}/api/tasks/${encodeURIComponent(id)}`, {
+      await fetch(`/api/tasks`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: target }),
@@ -182,7 +182,7 @@ export default function KanbanBoard() {
   }, [byCol]);
 
   const viewLog = (id: string) => {
-    const url = `${CLAWBOT_API_BASE}/api/task/${encodeURIComponent(id)}/logs`;
+    const url = `/api/task/${encodeURIComponent(id)}/logs`;
     if (typeof window !== "undefined") window.open(url, "_blank");
   };
 
