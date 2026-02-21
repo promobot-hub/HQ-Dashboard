@@ -7,3 +7,4 @@
 - Chore: Added .editorconfig for consistent formatting (2-space, LF, UTF-8); prevents noisy diffs and speeds reviews.
 - Chore: Added .github/ISSUE_TEMPLATE/growth.md for standardized micro growth tasks; checked off TASKS.md.
 - Chore: Introduced .github/PULL_REQUEST_TEMPLATE.md to enforce small, growth-focused PRs with a clear checklist.
+- Docs: Added CONTRIBUTING.md with micro-PR rules, workflow, and safety constraints.
