@@ -1,6 +1,12 @@
 {
   "lastChecks": {
     "cronDenkeLast": "2026-02-21T20:26:00Z",
-    "lastQuickRun": "2026-02-21T20:26:00Z"
+    "lastQuickRun": "2026-02-21T20:26:00Z",
+    "heartbeat": "2026-02-21T20:28:54.302Z"
+  },
+  "counters": {
+    "runsToday": 1,
+    "lastDay": "2026-02-21",
+    "totalRuns": 1
   }
 }

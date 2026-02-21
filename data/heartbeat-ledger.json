@@ -1,8 +1,13 @@
 {
-  "lastRunUTC": "2026-02-21T20:12:46Z",
+  "lastRunUTC": "2026-02-21T20:28:54Z",
   "runsToday": 0,
   "totalRuns": 0,
   "completed": [
+    {
+      "timeUTC": "2026-02-21T20:28:54Z",
+      "type": "heartbeat-sync",
+      "summary": "fix(logs): implement /api/task/[id]/logs proxy (resolves View Log 404); feat(metrics): /api/metrics proxy + ChartsClient polls real metrics w/ fallback; feat(tasks): prefer Core /api/tasks with GH raw fallback · 31 files (31 files changed, 403 insertions(+), 162 deletions(-))"
+    },
     {
       "timeUTC": "2026-02-21T20:12:46Z",
       "type": "heartbeat-sync",
@@ -167,5 +172,5 @@
       "source": "md"
     }
   ],
-  "lastCommit": "1949f0e3de892c8bbf1be2c1dfb4507c221577b3"
+  "lastCommit": "cbce36056180b2a88ad8305f7b507eb4462f0656"
 }
