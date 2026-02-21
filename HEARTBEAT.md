@@ -8,5 +8,6 @@ Bei jedem Heartbeat ausführen:
 4. Skills prüfen – wenn in den letzten 24h kein neuer Skill gelernt wurde: Lernprozess starten.
 5. Fortschritt prüfen – wenn < 9/10: Alarm per Telegram notieren: "🚨 Zu langsam – pushen!" (Hinweis: Nicht automatisch senden, erst Freigabe einholen.)
 6. MEMORY.md mit neuen Erkenntnissen aktualisieren.
+7. heartbeat-state.json aktualisieren (root): Timestamps der letzten Checks pflegen, um Token-Burn zu reduzieren.
 
 Wenn alles erledigt und Fortschritt hoch: HEARTBEAT_OK
