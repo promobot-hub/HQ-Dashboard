@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import TaskCard, { TaskItem } from "./TaskCard";
+import TaskLogModal from "./TaskLogModal";
 import { CLAWBOT_API_BASE } from "./config";
 
 function Column({
@@ -181,9 +182,9 @@ export default function KanbanBoard() {
     });
   }, [byCol]);
 
+  const [logTaskId, setLogTaskId] = useState<string | null>(null);
   const viewLog = (id: string) => {
-    const url = `/api/task/${encodeURIComponent(id)}/logs`;
-    if (typeof window !== "undefined") window.open(url, "_blank");
+    setLogTaskId(id);
   };
 
   return (
@@ -232,6 +233,9 @@ export default function KanbanBoard() {
           ))}
         </Column>
       </div>
+      {logTaskId && (
+        <TaskLogModal id={logTaskId} onClose={() => setLogTaskId(null)} />
+      )}
     </div>
   );
 }
