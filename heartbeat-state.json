@@ -3,12 +3,14 @@
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null
+    "social": null,
+    "heartbeat": "2026-02-21T12:50:04.554Z"
   },
   "counters": {
-    "runsToday": 29,
-    "totalRuns": 29,
-    "lastRunAt": "2026-02-21T12:48:00Z"
+    "runsToday": 1,
+    "totalRuns": 30,
+    "lastRunAt": "2026-02-21T12:48:00Z",
+    "lastDay": "2026-02-21"
   },
   "meta": {
     "lastUpdated": 1771678080,
