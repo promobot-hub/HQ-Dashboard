@@ -32,3 +32,4 @@ export function executeMultiPlatformGrowth() {
     strategy.exec();
   });
 }
+
