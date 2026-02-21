@@ -9,6 +9,13 @@ Das HQ-Dashboard ist die zentrale Kommandozentrale zur Steuerung des PromoteBots
 - Auth-Integration ist initial vorhanden, Erweiterung läuft.
 - CI/CD mit GitHub Actions sorgt für hohe Codequalität.
 
+## Commit-Message-Konventionen
+- feat: Neue Features
+- fix: Fehlerbehebungen
+- docs: Dokumentationsänderungen
+- style: Formatierung, Stiländerungen ohne Funktion
+- chore: Wartungsarbeiten
+
 ## Features
 - Authentifizierung mit Login/Logout
 - Live-Logging via WebSocket
