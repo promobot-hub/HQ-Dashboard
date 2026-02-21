@@ -1,14 +1,10 @@
 {
   "lastChecks": {
-    "email": 0,
-    "calendar": 0,
-    "weather": 0,
-    "mentions": 0,
-    "repo": "2026-02-21T08:50:30Z",
-    "skills": "2026-02-21T08:50:30Z"
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "mentions": null,
+    "heartbeat": 1771673460
   },
-  "updatedAt": 1771663830,
-  "meta": {
-    "updatedAt": "2026-02-21T08:50:30Z"
-  }
+  "note": "Initialized by cron at 2026-02-21 08:51 UTC"
 }
