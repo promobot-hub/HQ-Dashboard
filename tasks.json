@@ -32,6 +32,26 @@
   {
     "id": "task-1771642268814",
     "title": "Baby Step: Implementiere stable Cron-Bypass Poller",
+    "status": "done"
+  },
+  {
+    "id": "task-1771642298844",
+    "title": "Automatisch generierter Task: Integriere Telegram Delivery",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642328839",
+    "title": "Baby Step: Integriere Telegram Delivery",
+    "status": "done"
+  },
+  {
+    "id": "task-1771642358910",
+    "title": "Automatisch generierter Task: Setze Commit & Push Loop auf",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642388867",
+    "title": "Baby Step: Setze Commit & Push Loop auf",
     "status": "todo"
   }
 ]
