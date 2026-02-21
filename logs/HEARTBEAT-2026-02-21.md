@@ -38,3 +38,4 @@
   - Skill-Fortschritt: NO
   - State aktualisiert: YES
 - Notes: Tiny sync to keep momentum.
+- 09:39 UTC — Footer eingebaut (index, monitor).

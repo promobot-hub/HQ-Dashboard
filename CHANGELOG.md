@@ -33,3 +33,6 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - 09:26 UTC: scripts/utils.js added; HEARTBEAT-LOG and STATUS updated; heartbeat-state.json bumped.
 - 09:30 UTC: Cron micro-commit — synced logs (HEARTBEAT-LOG), state (heartbeat-state.json), and STATUS.md.
 \n## 2026-02-21 09:31 UTC\n- Cron micro-commit: synced heartbeat-state, HEARTBEAT-LOG, STATUS.md
+
+## 2026-02-21 09:39 UTC
+- Added HQ-Dashboard Footer component showing Last updated via /api/status; wired into index and monitor pages.

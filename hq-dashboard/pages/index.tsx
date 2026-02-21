@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskList from '../components/TaskList';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <section>
         <TaskList />
       </section>
+      <Footer />
     </main>
   );
 }
