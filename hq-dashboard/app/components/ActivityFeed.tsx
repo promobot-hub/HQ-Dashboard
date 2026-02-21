@@ -1,23 +1,24 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { CLAWBOT_API_BASE } from "./config";
 
 export default function ActivityFeed() {
   const [items, setItems] = useState<Array<{ ts?: string; message?: string }>>(
     []
   );
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     let live = true;
     const load = async () => {
       try {
-        const r = await fetch(`/api/logs?limit=20`, {
-          cache: "no-store",
-        });
+        const r = await fetch(`/api/logs?limit=20`, { cache: "no-store" });
         if (!r.ok) throw new Error("logs");
         const j = await r.json();
         if (live) setItems(j?.items || j?.logs || []);
       } catch {
         /* keep old */
+      } finally {
+        if (live) setLoading(false);
       }
     };
     load();
@@ -27,13 +28,28 @@ export default function ActivityFeed() {
       clearInterval(iv);
     };
   }, []);
+
+  const Skeleton = () => (
+    <li className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 animate-pulse">
+      <div className="h-3 w-2/3 bg-white/10 rounded" />
+      <div className="mt-2 h-2 w-1/3 bg-white/10 rounded" />
+    </li>
+  );
+
   return (
     <section className="mt-6 rounded-3xl border border-[rgba(255,255,255,0.08)] bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-6">
       <div className="flex items-center justify-between">
         <h2 className="text-white text-lg font-bold">Recent Activity</h2>
       </div>
       <ol className="mt-4 space-y-2 text-sm max-h-[320px] overflow-auto pr-1">
-        {items.length === 0 && (
+        {loading && (
+          <>
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+          </>
+        )}
+        {!loading && items.length === 0 && (
           <li className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-white/60 text-sm">
             No recent activity.
           </li>
