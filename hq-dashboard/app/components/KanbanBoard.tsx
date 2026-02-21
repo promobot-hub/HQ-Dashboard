@@ -116,7 +116,7 @@ export default function KanbanBoard() {
   useEffect(() => {
     mountedRef.current = true;
     fetchTasks().catch(() => {});
-    const iv = setInterval(() => fetchTasks().catch(() => {}), 5000);
+    const iv = setInterval(() => fetchTasks().catch(() => {}), 4000);
     return () => {
       mountedRef.current = false;
       clearInterval(iv);
