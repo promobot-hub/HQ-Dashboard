@@ -1,6 +1,6 @@
 # TODO - Micro-Commit Pipeline (Always Small, Always Shippable)
 
-Updated: 2026-02-21 12:40 UTC
+Updated: 2026-02-21 13:10 UTC
 
 Priority: High → Low. Pick the top unchecked item each run.
 
@@ -10,6 +10,7 @@ Priority: High → Low. Pick the top unchecked item each run.
 - [ ] SKILLS: Add a stub SKILL.md for a future "scheduler" skill with a simple contract (create/update cron entries). No external actions.
 
 Done
+- [x] CRON-LOG: Create logs/CRON-LOG.md and append one line per cron run. (2026-02-21 13:10 UTC)
 - [x] README: Add a tiny "Cadence" badge + last-run timestamp placeholder (no external services). File-only change. (2026-02-21 12:06-12:36 UTC)
 - [x] STATUS.md: Create minimal status file with sections: KPIs, Last Run (UTC), RunsToday, TotalRuns. Keep it text-only. (2026-02-21 12:08-12:36 UTC)
 - [x] heartbeat-state.json: Initialize and keep counters/timestamps in sync each run. (2026-02-21 12:08-12:36 UTC)
