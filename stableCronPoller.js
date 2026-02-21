@@ -5,23 +5,22 @@ import { autoGenerateNextBabyStep } from './babyStepGenerator.js';
 import { enqueueSelfMessage } from './internalChatQueue.js';
 import { analyzeAndCreateTasks } from './autoLearningModule.js';
 import { detectAndRecoverFailures } from './errorRecovery.js';
+import { addPriorityTask } from './priorityTaskQueue.js';
 
 export function startStablePoller() {
   setInterval(() => {
     const babyStep = getCurrentBabyStep();
-    const newTask = addTask(`Baby Step: ${babyStep}`);
-    sendTelegramMessage(`Neuer Task hinzugefügt: ${newTask.title}`);
-    enqueueSelfMessage(`Task hinzugefügt: ${newTask.title}`);
+    addPriorityTask(`Baby Step: ${babyStep}`, 1).then(newTask => {
+      enqueueSelfMessage(`Task hinzugefügt: ${newTask.title}`);
+    });
 
     setTimeout(() => {
-      completeTask(newTask.id);
-      sendTelegramMessage(`Task abgeschlossen: ${newTask.title}`);
-      enqueueSelfMessage(`Task abgeschlossen: ${newTask.title}`);
+      // keine direkte Task-Abschlüsse hier, Queue verarbeitet
       const nextStep = autoGenerateNextBabyStep();
       enqueueSelfMessage(nextStep ? `Nächster Baby Step: ${nextStep}` : 'Alle Baby Steps erledigt');
       analyzeAndCreateTasks();
       detectAndRecoverFailures();
-    }, 30000);
+    }, 33000);
   }, 60000);
   console.log('Stabiler Poller mit Telegram Queue und automatischem Lernen gestartet.');
 }
