@@ -19,7 +19,10 @@ jobs:
   build:
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: hq-dashboard
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,13 +30,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
-      - name: Install
+          cache: 'yarn'
+      - name: Install (yarn)
         run: |
-          npm ci --omit=dev || npm ci
+          yarn install --frozen-lockfile || yarn install
       - name: Lint (best-effort)
         run: |
-          npm run -s lint || echo "lint skipped"
+          yarn -s lint || echo "lint skipped"
       - name: Build check (best-effort)
+        env:
+          NEXT_PUBLIC_CLAWBOT_API_BASE: http://localhost:8000
         run: |
-          if [ -f package.json ] && jq -e '.scripts.build' package.json >/dev/null 2>&1; then npm run -s build || true; else echo "no build script"; fi
+          if [ -f package.json ] && jq -e '.scripts.build' package.json >/dev/null 2>&1; then yarn -s build || true; else echo "no build script"; fi
