@@ -10,6 +10,8 @@ import MultiPlatformPostDemo from './MultiPlatformPostDemo';
 import AnalyticsCharts from './AnalyticsCharts';
 import AnalyticsDashboard from './AnalyticsDashboard';
 import LiveLogViewer from './LiveLogViewer';
+import { useSkillsStore } from '../stores/skillsStore';
+import SkillCard from './SkillCard';
 
 const COLORS = {
   darkBackground: "#1E293B",
@@ -38,6 +40,7 @@ const FONT_FAMILY = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
 
 export default function DarkModeAwareContent() {
   const { darkMode, toggleDarkMode } = useDarkMode();
+  const skills = useSkillsStore((state) => state.skills);
 
   const bgColor = darkMode ? COLORS.darkBackground : COLORS.lightBackground;
   const textColor = darkMode ? COLORS.darkText : COLORS.lightText;
@@ -77,7 +80,9 @@ export default function DarkModeAwareContent() {
           Skills Status
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {/* TODO: Dynamische Skill Cards hier einbauen */}
+          {skills.map((skill) => (
+            <SkillCard key={skill.name} name={skill.name} active={skill.active} progress={skill.progress} />
+          ))}
         </div>
       </section>
 
