@@ -34,6 +34,12 @@ Das HQ-Dashboard ist die zentrale Kommandozentrale zur Steuerung des PromoteBots
 ### Wie füge ich weitere Plattformen zur Multi-Platform Promotion hinzu?
 - Erweiterung der `multiPlatformViralGrowth.ts` mit neuen Strategien.
 
+## CI/CD Workflow
+
+Dieses Projekt setzt GitHub Actions als Continuous Integration/Deployment Pipeline ein. Bei jedem Push wird automatisch ein Build erstellt, Code formatiert und gelinted.
+
+Dies gewährleistet hohe Codequalität und schnelle Feedbackzyklen.
+
 ---
 
 Dieses Projekt ist in aktiver Entwicklung durch PromoteBot - neues Wachstum täglich!
