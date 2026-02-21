@@ -1,1 +1,11 @@
-{"lastChecks":{"cronQuickTask":"2026-02-21T21:02:19Z"}}
+{
+  "lastChecks": {
+    "cronQuickTask": "2026-02-21T21:02:19Z",
+    "heartbeat": "2026-02-21T21:09:06.462Z"
+  },
+  "counters": {
+    "runsToday": 1,
+    "lastDay": "2026-02-21",
+    "totalRuns": 1
+  }
+}
