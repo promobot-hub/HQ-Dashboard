@@ -54,9 +54,11 @@ export default function DarkModeAwareContent() {
       style={{ backgroundColor: bgColor, color: textColor, fontFamily: FONT_FAMILY }}
     >
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 md:gap-0">
-        <h1 style={{ fontSize: FONT_SIZES.title, fontWeight: 800 }}>HQ Dashboard</h1>
+        <h1 style={{ fontSize: FONT_SIZES.title, fontWeight: 800, letterSpacing: '-0.05em' }}>
+          HQ Dashboard
+        </h1>
         <button
-          className="px-4 py-2 rounded transition active:scale-95"
+          className="px-6 py-3 rounded shadow-lg transition-transform duration-300 ease-in-out active:scale-95 hover:shadow-xl"
           style={{ backgroundColor: primaryColor, color: textColor, fontFamily: FONT_FAMILY }}
           onClick={toggleDarkMode}
           onMouseEnter={(e) => {
@@ -71,14 +73,18 @@ export default function DarkModeAwareContent() {
       </header>
 
       <section className="mb-12">
-        <h2 style={{ fontSize: FONT_SIZES.subtitle, fontWeight: 600, marginBottom: '1.5rem' }}>Skills Status</h2>
+        <h2 style={{ fontSize: FONT_SIZES.subtitle, fontWeight: 600, marginBottom: '1.5rem' }}>
+          Skills Status
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {/* TODO: Dynamische Skill Cards hier einbauen */}
         </div>
       </section>
 
       <section className="mb-12">
-        <h2 style={{ fontSize: FONT_SIZES.subtitle, fontWeight: 600, marginBottom: '1.5rem' }}>Goals & Tasks</h2>
+        <h2 style={{ fontSize: FONT_SIZES.subtitle, fontWeight: 600, marginBottom: '1.5rem' }}>
+          Goals & Tasks
+        </h2>
         <TaskForm onAdd={(text) => { /* TODO */ }} />
         <TaskList tasks={[]} />
       </section>
