@@ -1,48 +1,42 @@
 #!/usr/bin/env node
 /**
- * updateHeartbeatState.js
- * Quick utility to update / create heartbeat-state.json timestamps.
- * Usage:
- *   node scripts/updateHeartbeatState.js [field]
- * Examples:
- *   node scripts/updateHeartbeatState.js            # updates lastRun only
- *   node scripts/updateHeartbeatState.js email      # sets lastChecks.email to now and updates lastRun
+ * Update heartbeat-state.json timestamps for one or more keys.
+ * Usage: node scripts/updateHeartbeatState.js dashboard skills email
  */
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.resolve(__dirname, '..');
-const STATE_PATH = path.join(ROOT, 'heartbeat-state.json');
+const statePath = path.resolve(__dirname, '..', 'heartbeat-state.json');
+const keys = process.argv.slice(2);
+if (keys.length === 0) {
+  console.error('Provide at least one key to update (e.g., dashboard skills)');
+  process.exit(1);
+}
 
-function loadState() {
+function loadState(p) {
   try {
-    const raw = fs.readFileSync(STATE_PATH, 'utf8');
+    const raw = fs.readFileSync(p, 'utf8');
     return JSON.parse(raw);
   } catch (e) {
-    return { lastChecks: { email: null, calendar: null, weather: null, mentions: null, dashboardRepo: null, skills: null }, lastRun: null };
+    return { lastChecks: {}, meta: {} };
   }
 }
 
-function saveState(state) {
-  fs.writeFileSync(STATE_PATH, JSON.stringify(state, null, 2) + '\n', 'utf8');
+function saveState(p, data) {
+  fs.writeFileSync(p, JSON.stringify(data, null, 2) + '\n', 'utf8');
 }
 
-function isoNow() {
-  return new Date().toISOString();
+const now = new Date().toISOString();
+const state = loadState(statePath);
+state.lastChecks = state.lastChecks || {};
+
+for (const k of keys) {
+  state.lastChecks[k] = now;
 }
 
-(function main() {
-  const arg = process.argv[2];
-  const state = loadState();
-  const now = isoNow();
+state.meta = state.meta || {};
+state.meta.updatedAt = now;
 
-  if (arg) {
-    if (!state.lastChecks) state.lastChecks = {};
-    state.lastChecks[arg] = now;
-  }
-  state.lastRun = now;
+saveState(statePath, state);
 
-  saveState(state);
-  const updated = arg ? `lastChecks.${arg}` : 'lastRun';
-  console.log(`[heartbeat] Updated ${updated} => ${now}`);
-})();
+console.log(`Updated ${keys.join(', ')} at ${now}`);
