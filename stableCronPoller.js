@@ -1,5 +1,5 @@
 import { addTask, completeTask } from './persistentTaskEngine.js';
-import * as logger from './structuredLogger.js';
+// logger entfernen, da Modul gelöscht wurde
 import { getCurrentBabyStep } from './babySteps.js';
 import { sendTelegramMessage } from './telegramQueue.js';
 import { autoGenerateNextBabyStep } from './babyStepGenerator.js';

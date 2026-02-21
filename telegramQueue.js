@@ -1,5 +1,5 @@
 import { sendTelegramMessage as sendRawMessage } from './telegramDelivery.js';
-import * as logger from './structuredLogger.js';
+// structuredLogger.js wurde entfernt, daher hier kein Import
 
 let queue = [];
 let sending = false;
