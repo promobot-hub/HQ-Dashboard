@@ -1,8 +1,13 @@
 {
-  "lastRunUTC": "2026-02-21T20:28:54Z",
+  "lastRunUTC": "2026-02-21T20:45:00Z",
   "runsToday": 0,
   "totalRuns": 0,
   "completed": [
+    {
+      "timeUTC": "2026-02-21T20:45:00Z",
+      "type": "heartbeat-sync",
+      "summary": "fix(cron): remove self-URL dependency by calling Core improve directly; snapshot only when CRON_SELF_URL provided · 35 files (35 files changed, 852 insertions(+), 120 deletions(-))"
+    },
     {
       "timeUTC": "2026-02-21T20:28:54Z",
       "type": "heartbeat-sync",
@@ -172,5 +177,5 @@
       "source": "md"
     }
   ],
-  "lastCommit": "cbce36056180b2a88ad8305f7b507eb4462f0656"
+  "lastCommit": "17bbe8799918235a10ab9f6f33595141baae1e14"
 }
