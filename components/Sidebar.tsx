@@ -1,44 +1,20 @@
 "use client";
 
-import React, { useState } from 'react';
-import { FaBars } from 'react-icons/fa';
+import React from 'react';
+import { useDarkMode } from '../context/DarkModeContext';
 
 export default function Sidebar() {
-  const [open, setOpen] = useState(false);
+  const { darkMode } = useDarkMode();
 
   return (
-    <>
-      <button
-        aria-label="Open sidebar"
-        className="p-2 rounded bg-gray-800 text-white"
-        onClick={() => setOpen(true)}
-      >
-        <FaBars size={20} />
-      </button>
-
-      {open && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex">
-          <div className="bg-gray-900 text-white p-4 w-64 max-w-xs h-full">
-            <button
-              aria-label="Close sidebar"
-              className="mb-4 text-white"
-              onClick={() => setOpen(false)}
-            >
-              Close
-            </button>
-            <nav>
-              <ul>
-                <li className="mb-2">Home</li>
-                <li className="mb-2">Skills</li>
-                <li className="mb-2">Tasks</li>
-                <li className="mb-2">Logs</li>
-                <li className="mb-2">Settings</li>
-              </ul>
-            </nav>
-          </div>
-          <div className="flex-grow" onClick={() => setOpen(false)}></div>
-        </div>
-      )}
-    </>
+    <aside className={`w-64 min-h-screen p-6 ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'}`}>
+      <h2 className="text-2xl font-semibold mb-6">Navigation</h2>
+      <ul className="space-y-4">
+        <li className="cursor-pointer hover:underline">Dashboard</li>
+        <li className="cursor-pointer hover:underline">Skills</li>
+        <li className="cursor-pointer hover:underline">Tasks</li>
+        <li className="cursor-pointer hover:underline">Analytics</li>
+      </ul>
+    </aside>
   );
 }
