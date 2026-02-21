@@ -25,6 +25,9 @@ export default function Monitor() {
         <h2 className="text-xl font-semibold">Aktueller Baby Step</h2>
         <BabyStep />
       </section>
+      <section className="mt-6">
+        <TaskTimeline tasks={tasks} />
+      </section>
     </main>
   );
 }
