@@ -2,7 +2,9 @@
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "weather": null
+    "weather": null,
+    "heartbeat": "2026-02-21T09:55:00Z"
   },
-  "lastRun": "2026-02-21T09:51:00Z"
+  "lastRun": "2026-02-21T09:55:00Z",
+  "updatedAt": "2026-02-21T09:55:00Z"
 }
