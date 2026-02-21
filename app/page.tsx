@@ -1,7 +1,8 @@
+"use client";
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
-const HeartbeatLedger = dynamic(() => import('../components/HeartbeatLedger'), { ssr: false });
+const HeartbeatLedger = dynamic(() => import('../components/HeartbeatLedger'));
 
 export default function HomePage() {
   const [cronResults, setCronResults] = useState([]);
