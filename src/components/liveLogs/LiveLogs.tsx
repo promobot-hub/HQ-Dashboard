@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 export default function LiveLogs() {
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-    const ws = new WebSocket('wss://example.com/live-logs');
-    ws.onmessage = (event) => {
-      setLogs(prevLogs => [...prevLogs, event.data]);
+    let ws;
+    const connectWebSocket = () => {
+      ws = new WebSocket("wss://example.com/live-logs");
+      ws.onmessage = (event) => {
+        setLogs((prevLogs) => [...prevLogs, event.data]);
+      };
+      ws.onerror = () => {
+        console.error("WebSocket error");
+        ws.close();
+        setTimeout(() => {
+          connectWebSocket();
+        }, 5000);
+      };
     };
-    ws.onerror = () => {
-      console.error('WebSocket error');
-      ws.close();
-    };
+    connectWebSocket();
     return () => ws.close();
   }, []);
 
