@@ -1,13 +1,9 @@
-Status — 2026-02-21T12:35:00Z (UTC)
+# STATUS
 
-KPIs this run:
-- Micro-Commit: YES (heartbeat-state counters + README/STATUS updated)
-- Skill-Fortschritt: NO
-- State aktualisiert: YES
+- Last Run: 2026-02-21T12:41:00.000Z (cron: DENKE)
+- KPIs:
+  - Micro-Commit: ✅ (STATUS, Logs, README, State aktualisiert)
+  - Skill-Fortschritt: ⏳ (queued)
+  - State aktualisiert: ✅ (heartbeat-state.json)
 
-Counters:
-- runsToday: 20
-- totalRuns: 20
-
-Next micro-step suggestion:
-- Wire counters into the dashboard header via /api/status for live display.
+Kurzfazit: Micro-Commit erledigt (Zähler + Logs + Badges). Nächster: kleine gh-Integration stub.
