@@ -1,0 +1,110 @@
+require('dotenv').config();
+const { chromium } = require('playwright-core');
+const { sendTelegramMessage } = require('./telegramNotify');
+
+async function readSMS() {
+  return null;
+}
+
+const fs = require('fs');
+async function takeScreenshot(page, name) {
+  try {
+    await page.screenshot({ path: `./${name}` });
+    await sendTelegramMessage(`Screenshot: ${name} aufgenommen.`);
+  } catch (e) {
+    await sendTelegramMessage(`Screenshot Fehler: ${e.message}`);
+  }
+}
+
+async function twitterAgentFullLoginPost_debug() {
+  const API_KEY = process.env.REMOTE_BROWSER_API_KEY;
+  const USERNAME = process.env.TWITTER_USERNAME;
+  const PASSWORD = process.env.TWITTER_PASSWORD;
+  const PHONE = process.env.TWITTER_PHONE;
+
+  const browser = await chromium.connectOverCDP(`wss://production-sfo.browserless.io?token=${API_KEY}`);
+  const context = await browser.newContext({
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+    viewport: { width: 1920, height: 1080 },
+    locale: 'en-US'
+  });
+
+  const page = await context.newPage();
+
+  await page.goto('https://x.com/login', { waitUntil: 'networkidle', timeout: 60000 });
+  await sendTelegramMessage('Navigiert zur Login-Seite');
+
+  try {
+    await page.waitForSelector('input[name="text"]', { timeout: 45000 });
+    await sendTelegramMessage('Username Feld gefunden');
+    await page.fill('input[name="text"]', USERNAME);
+    await page.waitForTimeout(1500 + Math.random() * 1000);
+    await page.keyboard.press('Enter');
+  } catch (e) {
+    await sendTelegramMessage('Username Feld Fehler oder Timeout: ' + e.message);
+    await takeScreenshot(page, 'username-error.png');
+    throw e;
+  }
+
+  try {
+    await page.waitForSelector('input[name="password"]', { timeout: 45000 });
+    await sendTelegramMessage('Passwort Feld gefunden');
+    await page.fill('input[name="password"]', PASSWORD);
+    await page.waitForTimeout(1000);
+    await page.click('div[role="button"]:has-text("Log in")');
+  } catch (e) {
+    await sendTelegramMessage('Passwort Feld Fehler oder Timeout: ' + e.message);
+    await takeScreenshot(page, 'password-error.png');
+    throw e;
+  }
+
+  try {
+    await page.waitForSelector('input[data-testid="ocf_SettingsList_EnterPhoneNumber"]', { timeout: 5000 });
+    if (PHONE) {
+      await page.fill('input[data-testid="ocf_SettingsList_EnterPhoneNumber"]', PHONE);
+      await page.click('div[role="button"]:has-text("Send code")');
+      await sendTelegramMessage('🔐 2FA SMS Code anfordern');
+      const code = await readSMS();
+      await page.fill('input[placeholder*="code"]', code || '');
+      await page.click('div[role="button"]:has-text("Verify")');
+    }
+  } catch (err) {
+    await sendTelegramMessage('✅ Kein 2FA erforderlich oder Fehler: ' + err.message);
+  }
+
+  try {
+    await page.waitForURL('**/home', { timeout: 60000 });
+  } catch (e) {
+    await sendTelegramMessage('Home URL Timeout oder Fehler: ' + e.message);
+    await takeScreenshot(page, 'homeurl-error.png');
+    throw e;
+  }
+
+  const loggedIn = await page.locator('[data-testid="primaryColumn"]').count() > 0;
+  await sendTelegramMessage(`✅ LOGIN ERFOLGREICH: ${loggedIn}`);
+
+  if (!loggedIn) {
+    await browser.close();
+    return;
+  }
+
+  // Tweet posten
+  await page.locator('[data-testid="tweetTextarea_0"]').fill('hello world');
+  await page.locator('[data-testid="tweetButton"]').click();
+  await page.waitForTimeout(3000);
+  await sendTelegramMessage('Twitter: Tweet "hello world" wurde gepostet.');
+
+  // Cookies speichern
+  const cookies = await context.cookies();
+  await sendTelegramMessage(`💾 Cookies gespeichert: ${cookies.length}`);
+
+  await browser.close();
+}
+
+(async () => {
+  try {
+    await twitterAgentFullLoginPost_debug();
+  } catch (err) {
+    await sendTelegramMessage('Twitter Agent Fehler: ' + err.message);
+  }
+})();
