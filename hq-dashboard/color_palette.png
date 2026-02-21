@@ -1,0 +1,25 @@
+This placeholder describes the intended color palette (image to be designed by design tool):
+
+- Background Deep: #0a0a0a (solid)
+- Surface Panels: #1a1a1a @ 90% + glass overlay rgba(255,255,255,0.06)
+- Hairline Borders: rgba(255,255,255,0.08)
+- Text:
+  - High: rgba(255,255,255,0.95)
+  - Medium: rgba(255,255,255,0.75)
+  - Low: rgba(255,255,255,0.55)
+- Accents:
+  - Neon Cyan: #22d3ee
+  - Neon Violet: #a855f7
+- Semantic:
+  - Success: #10b981
+  - Warning: #f59e0b
+  - Danger: #ef4444
+- Gradients:
+  - Accent Gradient: linear 90deg, #22d3ee → #a855f7
+
+Usage map:
+- Page BG: #0a0a0a
+- Cards: glass (bg-white/5..8 + backdrop-blur-md) on top of #0a0a0a
+- Buttons: ghost on glass, primary filled with #22d3ee, secondary with #a855f7
+- KPI Tiles: #111 with hairline border and inner subtle neu shadow
+- Badges and dividers: gradient accent line
