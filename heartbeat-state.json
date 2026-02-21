@@ -1,7 +1,14 @@
 {
   "lastChecks": {
-    "heartbeat": {
-      "iso": "2026-02-21T08:46:00Z"
-    }
+    "email": 0,
+    "calendar": 0,
+    "weather": 0,
+    "mentions": 0,
+    "repo": "2026-02-21T08:50:30Z",
+    "skills": "2026-02-21T08:50:30Z"
+  },
+  "updatedAt": 1771663830,
+  "meta": {
+    "updatedAt": "2026-02-21T08:50:30Z"
   }
 }
