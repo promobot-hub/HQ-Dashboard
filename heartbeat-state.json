@@ -1,17 +1,5 @@
 {
-  "lastCronThink": "2026-02-21T19:27:00Z",
-  "lastRun": "2026-02-21T19:27:00Z",
-  "kpis": {
-    "microCommit": true,
-    "skillProgress": false,
-    "stateUpdated": true
-  },
-  "counters": {
-    "runsToday": 10,
-    "totalRuns": 37,
-    "lastDay": "2026-02-21"
-  },
   "lastChecks": {
-    "heartbeat": "2026-02-21T19:35:16.237Z"
+    "cron": "2026-02-21T19:39:00Z"
   }
 }
