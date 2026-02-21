@@ -6,6 +6,6 @@ if [ -f logs/local-daemon.pid ] && ps -p "$(cat logs/local-daemon.pid)" >/dev/nu
   echo "local-daemon already running (pid $(cat logs/local-daemon.pid))"
   exit 0
 fi
-nohup env -u NODE_OPTIONS node scripts/local-daemon.js >> logs/local-daemon.log 2>&1 & echo $! > logs/local-daemon.pid
+MAX_STALE_MIN=15 nohup env -u NODE_OPTIONS node scripts/local-daemon.js >> logs/local-daemon.log 2>&1 & echo $! > logs/local-daemon.pid
 sleep 0.5
 echo "local-daemon started (pid $(cat logs/local-daemon.pid))"
