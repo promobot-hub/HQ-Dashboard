@@ -30,10 +30,17 @@ function parseTodos(md) {
   for (const line of lines) {
     const m = line.match(/^\s*(?:[-*]|\d+[\).])\s+(.*)\s*$/);
     if (m) {
-      const title = m[1].trim();
+      let title = m[1].trim();
       if (!title) continue;
+      // detect priority markers [P0]/[P1]/[P2]
+      let prio = 'normal';
+      const pm = title.match(/\[(P[0-2])\]/i);
+      if (pm) {
+        prio = pm[1].toUpperCase();
+        title = title.replace(pm[0], '').trim();
+      }
       const id = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,80);
-      items.push({ id, title, priority: 'normal', source: 'md' });
+      items.push({ id, title, priority: prio, source: 'md' });
     }
   }
   return items;
@@ -58,7 +65,10 @@ function uniqueById(items) {
   const pendingFromTasks = parseTodos(tasksMd);
   const pendingFromTodo = parseTodos(todoMd);
   // TODO.md should come first (higher priority), then TASKS.md
-  const pending = uniqueById([...pendingFromTodo, ...pendingFromTasks]);
+  let pending = uniqueById([...pendingFromTodo, ...pendingFromTasks]);
+  // sort by priority P0 > P1 > P2 > normal, keep original order within same priority
+  const rank = { P0: 0, P1: 1, P2: 2, normal: 3 };
+  pending = pending.sort((a,b)=> (rank[a.priority] ?? 9) - (rank[b.priority] ?? 9));
 
   ensureDir(outDir);
   const ledger = readJSONSafe(outPath, {

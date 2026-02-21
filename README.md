@@ -1,6 +1,6 @@
 # HQ-Dashboard - PromoteBot
 
-[![Deploy](https://img.shields.io/badge/deploy-netlify-brightgreen?logo=netlify)](https://clinquant-kataifi-388453.netlify.app/) [![Docs](https://img.shields.io/badge/docs-openclaw-blue?logo=readthedocs)](https://docs.openclaw.ai) ![Heartbeat](https://img.shields.io/badge/heartbeat-OK-brightgreen) ![RunsToday](https://img.shields.io/badge/runs_today-43-blue) ![TotalRuns](https://img.shields.io/badge/total_runs-43-blue)
+[![Deploy](https://img.shields.io/badge/deploy-netlify-brightgreen?logo=netlify)](https://clinquant-kataifi-388453.netlify.app/) [![Docs](https://img.shields.io/badge/docs-openclaw-blue?logo=readthedocs)](https://docs.openclaw.ai) ![Heartbeat](https://img.shields.io/badge/heartbeat-OK-brightgreen) ![RunsToday](https://img.shields.io/badge/runs_today-44-blue) ![TotalRuns](https://img.shields.io/badge/total_runs-44-blue)
 
 Dieses Repository enthält den Code und die Ressourcen für PromoteBot, den autonomen Growth-Agenten.
 

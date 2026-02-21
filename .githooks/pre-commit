@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Basic secret patterns
+PATTERNS=(
+  'ghp_[0-9A-Za-z]+'
+  'sk-[A-Za-z0-9]{32,}'
+  'OPENAI_API_KEY='        # look for assignments to avoid false positives
+  'AWS_SECRET_ACCESS_KEY='
+)
+
+# Exclude generated and tooling paths
+EXCLUDES='^(node_modules/|.git/|.githooks/|.github/|data/|logs/)' 
+
+FILES=$(git diff --cached --name-only)
+[ -z "$FILES" ] && exit 0
+
+for f in $FILES; do
+  [[ $f =~ $EXCLUDES ]] && continue
+  [ -f "$f" ] || continue
+  CONTENT=$(git show :"$f" || true)
+  for p in "${PATTERNS[@]}"; do
+    if echo "$CONTENT" | grep -E "$p" >/dev/null 2>&1; then
+      echo "\n[HOOK] Potential secret in $f matching $p. Commit blocked."
+      exit 1
+    fi
+  done
+done
+
+echo "[HOOK] pre-commit passed."
