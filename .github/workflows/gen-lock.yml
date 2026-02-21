@@ -1,0 +1,36 @@
+name: generate yarn.lock for hq-dashboard
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  genlock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+          cache-dependency-path: hq-dashboard/yarn.lock
+      - name: Install and generate lockfile
+        working-directory: hq-dashboard
+        run: |
+          yarn --version
+          yarn install || yarn install
+      - name: Commit yarn.lock if changed
+        run: |
+          if ! git diff --quiet -- hq-dashboard/yarn.lock; then
+            git config user.name "promobot-bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add hq-dashboard/yarn.lock
+            git commit -m "chore(hq): add/update yarn.lock for deterministic Render builds [skip ci]"
+            git push
+          else
+            echo "No changes to yarn.lock"
+          fi
