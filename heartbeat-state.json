@@ -1,1 +1,13 @@
-{"lastChecks":{"cronQuickTask":"2026-02-21T22:02:00Z"}}
+{
+  "lastCronRun": "2026-02-21T22:07:00Z",
+  "lastChecks": {
+    "email": null,
+    "calendar": null,
+    "weather": null
+  },
+  "kpis": {
+    "microCommit": true,
+    "skillProgress": false,
+    "stateUpdated": true
+  }
+}
