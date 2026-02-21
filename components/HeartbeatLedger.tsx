@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Card from './Card';
 
 type PendingItem = { id: string; title: string; priority?: string; source?: string };
 
@@ -10,6 +11,19 @@ type Ledger = {
   completed?: { timeUTC: string; type?: string; summary?: string }[];
   pending?: PendingItem[];
 };
+
+const Pill = ({ children, color='gray' }: { children: React.ReactNode, color?: 'green'|'blue'|'yellow'|'red'|'gray' }) => (
+  <span className={`px-2 py-0.5 rounded-full text-xs bg-${color}-600/20 text-${color}-400 border border-${color}-600/30`}>{children}</span>
+);
+
+function prioColor(p?: string): any {
+  switch(p){
+    case 'P0': return 'red';
+    case 'P1': return 'yellow';
+    case 'P2': return 'blue';
+    default: return 'gray';
+  }
+}
 
 export default function HeartbeatLedger() {
   const [data, setData] = React.useState<Ledger | null>(null);
@@ -24,39 +38,47 @@ export default function HeartbeatLedger() {
     return () => { alive = false; };
   }, []);
 
-  if (error) return <div className="p-4 border rounded">Ledger error: {error}</div>;
-  if (!data) return <div className="p-4 border rounded">Loading ledger…</div>;
+  if (error) return <Card title="Heartbeat Ledger"><div>Ledger error: {error}</div></Card>;
+  if (!data) return <Card title="Heartbeat Ledger"><div>Loading ledger…</div></Card>;
 
   const completed = data.completed?.slice(0, 5) || [];
   const pending = data.pending?.slice(0, 8) || [];
 
   return (
-    <div className="p-4 border rounded space-y-3">
-      <div className="flex items-center justify-between">
-        <h3 className="font-semibold">Heartbeat Ledger</h3>
-        <div className="text-sm text-gray-500">Last Run: {data.lastRunUTC || '—'}</div>
-      </div>
-      <div className="text-sm">Runs Today: {data.runsToday ?? 0} · Total: {data.totalRuns ?? 0}</div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <h4 className="font-medium mb-2">Next up</h4>
-          <ul className="list-disc ml-5 space-y-1">
-            {pending.map((p) => (
-              <li key={p.id}><span className="text-xs uppercase mr-1 opacity-70">{p.priority || 'N'}</span>{p.title}</li>
-            ))}
-            {pending.length === 0 && <li>Nothing pending</li>}
-          </ul>
+    <Card title="Heartbeat Ledger">
+      <div className="space-y-3">
+        <div className="flex flex-wrap items-center gap-2 text-sm">
+          <Pill color="green">Last Run: {data.lastRunUTC || '—'}</Pill>
+          <Pill color="blue">Runs Today: {data.runsToday ?? 0}</Pill>
+          <Pill color="yellow">Total: {data.totalRuns ?? 0}</Pill>
         </div>
-        <div>
-          <h4 className="font-medium mb-2">Recently completed</h4>
-          <ul className="list-disc ml-5 space-y-1">
-            {completed.map((c, i) => (
-              <li key={i}><span className="text-xs opacity-70 mr-1">{c.timeUTC}</span>{c.summary || c.type || 'heartbeat'}</li>
-            ))}
-            {completed.length === 0 && <li>No recent items</li>}
-          </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 className="font-medium mb-2">Next up</h4>
+            <ul className="space-y-1">
+              {pending.map((p) => (
+                <li key={p.id} className="flex items-start gap-2">
+                  <Pill color={prioColor(p.priority)}>{p.priority || 'N'}</Pill>
+                  <span>{p.title}</span>
+                </li>
+              ))}
+              {pending.length === 0 && <li className="opacity-70">Nothing pending</li>}
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-medium mb-2">Recently completed</h4>
+            <ul className="space-y-1">
+              {completed.map((c, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <Pill color="green">{c.timeUTC}</Pill>
+                  <span>{c.summary || c.type || 'heartbeat'}</span>
+                </li>
+              ))}
+              {completed.length === 0 && <li className="opacity-70">No recent items</li>}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
