@@ -1,11 +1,16 @@
 {
+  "lastRun": "2026-02-21T08:38:37.739Z",
   "lastChecks": {
-    "email": 0,
-    "calendar": 0,
-    "weather": 0,
-    "mentions": 0,
-    "repo": 1739819772,
-    "skills": 1739819772
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "mentions": null,
+    "heartbeat": "2026-02-21T08:38:37.739Z"
   },
-  "updatedAt": "2026-02-21T08:36:12Z"
+  "kpi": {
+    "microCommit": true,
+    "skillProgress": false,
+    "stateUpdated": true,
+    "backlogUpdated": true
+  }
 }
