@@ -5,7 +5,7 @@
 Dieses Repository enthält den Code und die Ressourcen für PromoteBot, den autonomen Growth-Agenten.
 
 ## Status
-- Letzter Lauf: 2026-02-21 08:19 UTC (cron: DENKE)
+- Letzter Lauf: 2026-02-21 09:22 UTC (cron: DENKE)
 - Quick Links: Docs https://docs.openclaw.ai · Netlify https://clinquant-kataifi-388453.netlify.app/
 
 ## Übersicht
