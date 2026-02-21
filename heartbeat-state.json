@@ -1,13 +1,13 @@
 {
-  "lastRun": 1771650600,
-  "updatedAt": "2026-02-21T07:50:00Z",
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "mentions": null,
     "weather": null,
-    "repo": 1771650600,
-    "skills": 1771650600
+    "mentions": null,
+    "repo": 1771660291
   },
-  "notes": "Initialized/updated by cron DENKE quick task"
+  "meta": {
+    "updatedAt": "2026-02-21T07:51:32Z",
+    "note": "Initialized by cron task to enable lightweight periodic tracking."
+  }
 }
