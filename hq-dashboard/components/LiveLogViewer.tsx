@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from "react";
 
 interface LogEntry {
   id: number;
@@ -13,7 +13,7 @@ export default function LiveLogViewer() {
   const ws = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    ws.current = new WebSocket('wss://your-bot-websocket-endpoint'); // Aktualisiere auf echten Endpunkt
+    ws.current = new WebSocket("wss://your-bot-websocket-endpoint"); // Aktualisiere auf echten Endpunkt
 
     ws.current.onmessage = (event) => {
       const newLog: LogEntry = JSON.parse(event.data);
@@ -21,7 +21,7 @@ export default function LiveLogViewer() {
     };
 
     ws.current.onerror = (error) => {
-      console.error('WebSocket error:', error);
+      console.error("WebSocket error:", error);
     };
 
     return () => {

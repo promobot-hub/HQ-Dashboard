@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { EventEmitter } from 'events';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { EventEmitter } from "events";
 
 interface Log {
   id: number;
@@ -30,14 +30,14 @@ export const useLogsStore = create<LogsStore>()(
         addLog: (log) => {
           set((state) => {
             const updatedLogs = [...state.logs, log];
-            emitter.emit('log', log);
+            emitter.emit("log", log);
             return { logs: updatedLogs };
           });
         },
         addErrorLog: (log) => {
           set((state) => {
             const updatedErrors = [...state.errorLogs, log];
-            emitter.emit('errorLog', log);
+            emitter.emit("errorLog", log);
             return { errorLogs: updatedErrors };
           });
         },
@@ -45,7 +45,7 @@ export const useLogsStore = create<LogsStore>()(
         clearErrorLogs: () => set({ errorLogs: [] }),
       };
     },
-    { name: 'logs-storage' }
+    { name: "logs-storage" }
   )
 );
 

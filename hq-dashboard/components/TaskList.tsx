@@ -1,6 +1,6 @@
 "use client";
-import React from 'react';
-import { useTasksStore, Task } from '../stores/tasksStore';
+import React from "react";
+import { useTasksStore, Task } from "../stores/tasksStore";
 
 interface TaskListProps {
   tasks?: Task[];
@@ -8,7 +8,11 @@ interface TaskListProps {
   onDelete?: (id: string) => void;
 }
 
-export default function TaskList({ tasks: tasksProp, onToggle, onDelete }: TaskListProps) {
+export default function TaskList({
+  tasks: tasksProp,
+  onToggle,
+  onDelete,
+}: TaskListProps) {
   const storeTasks = useTasksStore((s) => s.tasks);
   const storeToggle = useTasksStore((s) => s.toggleTask);
   const storeDelete = useTasksStore((s) => s.deleteTask);

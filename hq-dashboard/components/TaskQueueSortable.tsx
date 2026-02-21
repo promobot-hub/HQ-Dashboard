@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   DndContext,
   closestCenter,
@@ -8,17 +8,17 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
-} from '@dnd-kit/core';
+} from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
   useSortable,
-} from '@dnd-kit/sortable';
-import type { DragEndEvent } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
-import TaskItem from './TaskItem';
+} from "@dnd-kit/sortable";
+import type { DragEndEvent } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
+import TaskItem from "./TaskItem";
 
 interface SortableTaskProps {
   id: string;
@@ -28,7 +28,8 @@ interface SortableTaskProps {
 }
 
 function SortableTask({ id, text, done, onToggle }: SortableTaskProps) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -43,9 +44,9 @@ function SortableTask({ id, text, done, onToggle }: SortableTaskProps) {
 
 export default function TaskQueueSortable() {
   const [tasks, setTasks] = useState([
-    { id: '1', text: 'Task 1: Complete login automation', done: false },
-    { id: '2', text: 'Task 2: Deploy HQ Dashboard', done: false },
-    { id: '3', text: 'Task 3: Integrate GitHub Skill', done: true },
+    { id: "1", text: "Task 1: Complete login automation", done: false },
+    { id: "2", text: "Task 2: Deploy HQ Dashboard", done: false },
+    { id: "3", text: "Task 3: Integrate GitHub Skill", done: true },
   ]);
 
   const sensors = useSensors(
@@ -60,8 +61,12 @@ export default function TaskQueueSortable() {
     if (!over || active.id === over.id) {
       return;
     }
-    const oldIndex = tasks.findIndex((task) => String(task.id) === String(active.id));
-    const newIndex = tasks.findIndex((task) => String(task.id) === String(over.id));
+    const oldIndex = tasks.findIndex(
+      (task) => String(task.id) === String(active.id)
+    );
+    const newIndex = tasks.findIndex(
+      (task) => String(task.id) === String(over.id)
+    );
     if (oldIndex !== -1 && newIndex !== -1) {
       setTasks((items) => arrayMove(items, oldIndex, newIndex));
     }
@@ -75,7 +80,13 @@ export default function TaskQueueSortable() {
     >
       <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
         {tasks.map(({ id, text, done }) => (
-          <SortableTask key={id} id={id} text={text} done={done} onToggle={() => {}} />
+          <SortableTask
+            key={id}
+            id={id}
+            text={text}
+            done={done}
+            onToggle={() => {}}
+          />
         ))}
       </SortableContext>
     </DndContext>

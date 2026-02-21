@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 
 interface SkillDetailsProps {
   name: string;
@@ -9,7 +9,12 @@ interface SkillDetailsProps {
   errorCount: number;
 }
 
-export default function SkillDetails({ name, status, lastRun, errorCount }: SkillDetailsProps) {
+export default function SkillDetails({
+  name,
+  status,
+  lastRun,
+  errorCount,
+}: SkillDetailsProps) {
   return (
     <div className="border rounded p-4 bg-gray-800">
       <h3 className="text-xl font-bold mb-2">{name}</h3>

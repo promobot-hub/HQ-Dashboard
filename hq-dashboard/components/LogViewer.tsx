@@ -1,13 +1,13 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 export default function LogViewer() {
   const [logs, setLogs] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('/api/logs')
-      .then(res => res.json())
-      .then(data => setLogs(data));
+    fetch("/api/logs")
+      .then((res) => res.json())
+      .then((data) => setLogs(data));
   }, []);
 
   return (

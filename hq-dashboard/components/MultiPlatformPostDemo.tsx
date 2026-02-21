@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function MultiPlatformPostDemo() {
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState("");
 
   const postToPlatforms = async () => {
-    setStatus('Posting to Twitter, LinkedIn, and Email...');
+    setStatus("Posting to Twitter, LinkedIn, and Email...");
     // Hier würdest du API calls anstoßen
     setTimeout(() => {
-      setStatus('Posting succeeded on all platforms!');
+      setStatus("Posting succeeded on all platforms!");
     }, 2000);
   };
 

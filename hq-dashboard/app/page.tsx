@@ -1,6 +1,6 @@
-import React from 'react';
-import TaskList from '../components/TaskList';
-import LogViewer from '../components/LogViewer';
+import React from "react";
+import TaskList from "../components/TaskList";
+import LogViewer from "../components/LogViewer";
 
 export default function Home() {
   return (
