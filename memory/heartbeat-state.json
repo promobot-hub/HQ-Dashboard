@@ -4,8 +4,8 @@
     "calendar": null,
     "mentions": null,
     "weather": null,
-    "repos": null,
-    "skills": null
+    "skills": null,
+    "dashboard": 1771659060
   },
-  "updatedAt": 1771659000
+  "updatedAt": 1771659060
 }
