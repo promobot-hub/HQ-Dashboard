@@ -73,23 +73,38 @@ function uniqueById(items) {
   ensureDir(outDir);
   const ledger = readJSONSafe(outPath, {
     lastRunUTC: null,
+    lastCommit: null,
     runsToday: 0,
     totalRuns: 0,
     completed: [],
     pending: []
   });
 
+  // build a smarter completed summary using git metadata
+  let headSha = null;
+  let delta = null;
+  try {
+    const cp = require('child_process');
+    headSha = cp.execSync('git rev-parse HEAD', { cwd: ROOT }).toString().trim();
+    const since = ledger.lastCommit ? `${ledger.lastCommit}..${headSha}` : `${headSha}~1..${headSha}`;
+    const changed = cp.execSync(`git diff --name-only ${since}`, { cwd: ROOT }).toString().trim().split(/\r?\n/).filter(Boolean);
+    const stat = cp.execSync(`git diff --shortstat ${since}`, { cwd: ROOT }).toString().trim();
+    const subject = cp.execSync(`git log --pretty=%s -n 1 ${headSha}`, { cwd: ROOT }).toString().trim();
+    delta = { files: changed.length, stat, subject };
+  } catch {}
+
   // append completed heartbeat action
   ledger.completed = ledger.completed || [];
   ledger.completed.unshift({
     timeUTC: now,
     type: 'heartbeat-sync',
-    summary: 'Auto-update state/logs/badges',
+    summary: delta ? `${delta.subject} · ${delta.files} files (${delta.stat || 'no diff'})` : 'Auto-update state/logs/badges',
   });
   // cap history
   if (ledger.completed.length > 200) ledger.completed = ledger.completed.slice(0,200);
 
   ledger.lastRunUTC = now;
+  ledger.lastCommit = headSha || ledger.lastCommit || null;
   ledger.runsToday = runsToday;
   ledger.totalRuns = totalRuns;
   ledger.pending = pending;
