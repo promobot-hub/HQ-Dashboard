@@ -38,7 +38,8 @@
     </style>
   </head>
   <body class="min-h-screen bg-base text-text-med antialiased">
-    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8 relative">
       <header class="mb-6 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="relative">
@@ -58,6 +59,7 @@
       </div>
     </div>
 
+    <script src="./js/particles.js"></script>
     <script>
       // Data model (TypeDoc):
       // Task = { id: string, title: string, status: 'pending'|'progress'|'done', progress: number (0..100), created_at: string (ISO), updated_at: string (ISO), log_link: string }

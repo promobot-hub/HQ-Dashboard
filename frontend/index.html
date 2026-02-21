@@ -66,7 +66,8 @@
     </style>
   </head>
   <body class="h-full bg-base text-text-med antialiased selection:bg-accent-cyan/30 selection:text-white">
-    <div class="min-h-screen bg-[#0a0a0a]" aria-live="polite">
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <div class="min-h-screen bg-[#0a0a0a] relative" aria-live="polite">
 
       <!-- Navbar (from components/navbar.html, inlined) -->
       <header class="fixed top-0 inset-x-0 z-50" role="navigation" aria-label="Top Navigation">
@@ -250,6 +251,7 @@
     <script src="./components/charts.js" defer></script>
     <script src="./js/kanban.js" defer></script>
     <script src="./js/live.js" defer></script>
+    <script src="./js/particles.js" defer></script>
     <script>
       // Init charts when ready
       window.addEventListener('DOMContentLoaded', ()=>{
