@@ -1,14 +1,19 @@
 # TODO - Micro-Commit Pipeline (Always Small, Always Shippable)
 
-Updated: 2026-02-21 12:34 UTC
+Updated: 2026-02-21 12:40 UTC
 
 Priority: High → Low. Pick the top unchecked item each run.
 
-- [ ] README: Add a tiny "Cadence" badge + last-run timestamp placeholder (no external services). File-only change.
-- [ ] STATUS.md: Create minimal status file with sections: KPIs, Last Run (UTC), RunsToday, TotalRuns. Keep it text-only.
-- [ ] heartbeat-state.json: Initialize with { "lastChecks": { "email": null, "calendar": null, "weather": null }, "counters": { "runsToday": 0, "totalRuns": 0 }, "lastUpdated": ISO8601 }.
-- [ ] logs/HEARTBEAT-LOG.md: Create and append one line per run: "YYYY-MM-DDTHH:MM:SSZ | micro-commit: <short> | KPIs: mc=<0/1>, skill=<0/1>, state=<0/1>".
+- [x] API: Expose /api/status that serves heartbeat-state.json (runsToday, totalRuns, lastRunAt) for dashboard consumption. (2026-02-21 12:40 UTC)
+- [ ] Dashboard: Read /api/status and display counters in the header (text-only placeholder).
+- [ ] README: Add a short "How status works" section linking to /api/status once available.
 - [ ] SKILLS: Add a stub SKILL.md for a future "scheduler" skill with a simple contract (create/update cron entries). No external actions.
+
+Done
+- [x] README: Add a tiny "Cadence" badge + last-run timestamp placeholder (no external services). File-only change. (2026-02-21 12:06-12:36 UTC)
+- [x] STATUS.md: Create minimal status file with sections: KPIs, Last Run (UTC), RunsToday, TotalRuns. Keep it text-only. (2026-02-21 12:08-12:36 UTC)
+- [x] heartbeat-state.json: Initialize and keep counters/timestamps in sync each run. (2026-02-21 12:08-12:36 UTC)
+- [x] logs/HEARTBEAT-LOG.md: Create and append one line per run. (2026-02-21 12:08-12:36 UTC)
 
 Notes
 - Keep every change local-only until Boss authorizes external pushes/posts.

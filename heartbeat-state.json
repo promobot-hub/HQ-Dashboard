@@ -6,13 +6,13 @@
     "social": null
   },
   "counters": {
-    "runsToday": 24,
-    "totalRuns": 24,
-    "lastRunAt": "2026-02-21T12:41:00Z"
+    "runsToday": 26,
+    "totalRuns": 26,
+    "lastRunAt": "2026-02-21T12:43:00Z"
   },
   "meta": {
-    "lastUpdated": 1771677660,
-    "lastUpdatedIso": "2026-02-21T12:41:00Z",
-    "notes": "Cron DENKE: quick micro-commit — counters bumped."
+    "lastUpdated": 1771677780,
+    "lastUpdatedIso": "2026-02-21T12:43:00Z",
+    "notes": "Cron DENKE: micro-commit — .nvmrc added; README note appended; counters bumped."
   }
 }
