@@ -1,15 +1,14 @@
 {
   "lastChecks": {
-    "cron": 1771674027,
-    "heartbeat": "2026-02-21T11:42:00.000Z"
-  },
-  "meta": {
-    "updatedAt": "2026-02-21 11:42 UTC",
-    "note": "Auto-updated by cron micro-commit (DENKE)"
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "mentions": null
   },
   "counters": {
     "runsToday": 2,
-    "lastDay": "2026-02-21",
     "totalRuns": 2
-  }
+  },
+  "updatedAt": "2026-02-21T11:46:00Z",
+  "updatedAtEpoch": 1771664760
 }
