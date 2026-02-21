@@ -52,6 +52,51 @@
   {
     "id": "task-1771642388867",
     "title": "Baby Step: Setze Commit & Push Loop auf",
+    "status": "done"
+  },
+  {
+    "id": "task-1771642418895",
+    "title": "Automatisch generierter Task: Führe Healthchecks und Recovery ein",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642448895",
+    "title": "Baby Step: Führe Healthchecks und Recovery ein",
+    "status": "done"
+  },
+  {
+    "id": "task-1771642478927",
+    "title": "Automatisch generierter Task: Automatisiere neue Baby Step Generierung",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642494692",
+    "title": "Baby Step Task: Task-Generator implementieren",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642494692",
+    "title": "Baby Step Task: Task-Executor implementieren",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642494693",
+    "title": "Baby Step Task: Telegram Integration implementieren",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642494693",
+    "title": "Baby Step Task: Automatischen Commit-Push Loop starten",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642494694",
+    "title": "Baby Step Task: Monitoring Dashboard bauen",
+    "status": "todo"
+  },
+  {
+    "id": "task-1771642494694",
+    "title": "Baby Step Task: Health-Check Modul aktivieren",
     "status": "todo"
   }
 ]
