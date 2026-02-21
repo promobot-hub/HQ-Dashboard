@@ -9,6 +9,7 @@ import React, {
 import TaskCard, { TaskItem } from "./TaskCard";
 import TaskLogModal from "./TaskLogModal";
 import { CLAWBOT_API_BASE } from "./config";
+import { useToaster } from "./Toaster";
 
 function Column({
   title,
@@ -82,6 +83,7 @@ function Column({
 
 export default function KanbanBoard() {
   const [tasks, setTasks] = useState<TaskItem[]>([]);
+  const toaster = useToaster();
   const [filter, setFilter] = useState<"all" | "pending" | "progress" | "done">(
     "all"
   );
@@ -146,6 +148,8 @@ export default function KanbanBoard() {
 
   const onDropTo = async (target: TaskItem["status"], id: string) => {
     const prev = tasks;
+    // Toast + Undo support
+    const revert = () => setTasks(prev);
     const next = prev.map((x) =>
       x.id === id
         ? {
@@ -156,7 +160,17 @@ export default function KanbanBoard() {
         : x
     );
     setTasks(next);
+    // show toast with undo for 3s
+    // toast with undo within 3s
+    toaster.push({
+      message: `Moved ${id} → ${target}`,
+      actionLabel: "Undo",
+      onAction: () => revert(),
+      ttl: 3000,
+    });
+
     try {
+      // optimistic server patch
       await fetch(`/api/tasks`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -181,6 +195,34 @@ export default function KanbanBoard() {
       };
     });
   }, [byCol]);
+
+  // Basic mobile touch support: drag card -> drop over column
+  useEffect(() => {
+    const onTouchStart = (e: TouchEvent) => {
+      const t = (e.target as HTMLElement).closest('[data-task-id]') as HTMLElement | null;
+      if (!t) return;
+      const id = t.getAttribute('data-task-id');
+      if (!id) return;
+      const move = (ev: TouchEvent) => {
+        // no-op; visual drag is skipped for simplicity
+      };
+      const end = (ev: TouchEvent) => {
+        document.removeEventListener('touchmove', move, { passive: true } as any);
+        document.removeEventListener('touchend', end as any);
+        const touch = ev.changedTouches[0];
+        const el = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLElement | null;
+        const col = el?.closest('[data-col]') as HTMLElement | null;
+        const kind = col?.getAttribute('data-col') as TaskItem['status'] | null;
+        if (id && kind) onDropTo(kind, id);
+      };
+      document.addEventListener('touchmove', move, { passive: true } as any);
+      document.addEventListener('touchend', end as any);
+    };
+    document.addEventListener('touchstart', onTouchStart as any, { passive: true } as any);
+    return () => {
+      document.removeEventListener('touchstart', onTouchStart as any);
+    };
+  }, [tasks]);
 
   const [logTaskId, setLogTaskId] = useState<string | null>(null);
   const viewLog = (id: string) => {
