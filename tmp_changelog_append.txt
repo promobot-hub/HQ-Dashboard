@@ -1,1 +1,1 @@
-- 20:11 UTC: Cron DENKE — micro-commit: synced README badges/time to counters; STATUS/heartbeat-state already current.
+- 20:25 UTC: Cron DENKE — micro-commit: bumped counters to runsToday=8/totalRuns=8; updated heartbeat-state.json and STATUS.md.
