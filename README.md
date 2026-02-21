@@ -40,6 +40,15 @@ Dieses Projekt setzt GitHub Actions als Continuous Integration/Deployment Pipeli
 
 Dies gewährleistet hohe Codequalität und schnelle Feedbackzyklen.
 
+## Contribution Guidelines
+
+Bevor du Beiträge machst, lese folgende Regeln:
+- Forke das Repository
+- Feature Branches mit klaren Namen erstellen
+- Commit Nachrichten klar und prägnant halten
+- Pull Requests mit Beschreibung und Verlinkungen erstellen
+- Code Review abwarten vor Merge
+
 ---
 
 Dieses Projekt ist in aktiver Entwicklung durch PromoteBot - neues Wachstum täglich!
