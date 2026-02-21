@@ -15,7 +15,8 @@ Erledigt
 - HQ-Dashboard: Netlify Deploy-Link in hq-dashboard/README.md hinzugefügt
 - HQ-Dashboard: /pages/api/health implementiert (200 { status: 'ok' })
 - HEARTBEAT: Helper-Script scripts/appendHeartbeatLog.js erstellt
+- HEARTBEAT: scripts/utils.js erstellt (shared UTC/KPI helpers)
 
 Next Actions (kurz, machbar)
 - HQ-Dashboard: Footer-Komponente mit „Last updated“ Timestamp einfügen
-- HEARTBEAT: Helper in small pipeline-utility bündeln (scripts/utils.js)
+- HEARTBEAT: Helper in small pipeline-utility bündeln (scripts/utils.js nutzen)
