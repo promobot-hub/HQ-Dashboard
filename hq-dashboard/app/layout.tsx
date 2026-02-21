@@ -24,7 +24,9 @@ export default function RootLayout({
           <Navbar />
           <div className="flex pt-[88px]">
             <Sidebar />
-            <main className="flex-1 p-6 md:p-8 overflow-auto pb-20 md:pb-0">{children}</main>
+            <main className="flex-1 p-6 md:p-8 overflow-auto pb-20 md:pb-0">
+              {children}
+            </main>
           </div>
           <MobileTabBar />
         </ToasterProvider>

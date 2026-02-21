@@ -199,28 +199,39 @@ export default function KanbanBoard() {
   // Basic mobile touch support: drag card -> drop over column
   useEffect(() => {
     const onTouchStart = (e: TouchEvent) => {
-      const t = (e.target as HTMLElement).closest('[data-task-id]') as HTMLElement | null;
+      const t = (e.target as HTMLElement).closest(
+        "[data-task-id]"
+      ) as HTMLElement | null;
       if (!t) return;
-      const id = t.getAttribute('data-task-id');
+      const id = t.getAttribute("data-task-id");
       if (!id) return;
       const move = (ev: TouchEvent) => {
         // no-op; visual drag is skipped for simplicity
       };
       const end = (ev: TouchEvent) => {
-        document.removeEventListener('touchmove', move, { passive: true } as any);
-        document.removeEventListener('touchend', end as any);
+        document.removeEventListener("touchmove", move, {
+          passive: true,
+        } as any);
+        document.removeEventListener("touchend", end as any);
         const touch = ev.changedTouches[0];
-        const el = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLElement | null;
-        const col = el?.closest('[data-col]') as HTMLElement | null;
-        const kind = col?.getAttribute('data-col') as TaskItem['status'] | null;
+        const el = document.elementFromPoint(
+          touch.clientX,
+          touch.clientY
+        ) as HTMLElement | null;
+        const col = el?.closest("[data-col]") as HTMLElement | null;
+        const kind = col?.getAttribute("data-col") as TaskItem["status"] | null;
         if (id && kind) onDropTo(kind, id);
       };
-      document.addEventListener('touchmove', move, { passive: true } as any);
-      document.addEventListener('touchend', end as any);
+      document.addEventListener("touchmove", move, { passive: true } as any);
+      document.addEventListener("touchend", end as any);
     };
-    document.addEventListener('touchstart', onTouchStart as any, { passive: true } as any);
+    document.addEventListener(
+      "touchstart",
+      onTouchStart as any,
+      { passive: true } as any
+    );
     return () => {
-      document.removeEventListener('touchstart', onTouchStart as any);
+      document.removeEventListener("touchstart", onTouchStart as any);
     };
   }, [tasks]);
 

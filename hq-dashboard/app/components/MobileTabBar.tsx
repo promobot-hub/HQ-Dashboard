@@ -25,7 +25,12 @@ export default function MobileTabBar() {
                   {active && (
                     <div className="absolute -top-1 left-1/2 -translate-x-1/2 h-1 w-10 rounded-full bg-gradient-to-r from-[#22d3ee] to-[#a855f7]" />
                   )}
-                  <Link href={t.href} className={`flex items-center justify-center py-3 ${active ? "text-white" : "text-white/70"}`}>
+                  <Link
+                    href={t.href}
+                    className={`flex items-center justify-center py-3 ${
+                      active ? "text-white" : "text-white/70"
+                    }`}
+                  >
                     {t.label}
                   </Link>
                 </li>

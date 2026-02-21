@@ -45,7 +45,9 @@ export default function Navbar() {
                     key={t.href}
                     aria-current={active ? "page" : undefined}
                     className={`rounded-xl border border-[rgba(255,255,255,0.08)] px-3 py-1.5 text-xs hover:bg-white/10 ${
-                      active ? "bg-white/10 text-white ring-1 ring-accent-cyan/40" : "bg-white/5 text-white/80"
+                      active
+                        ? "bg-white/10 text-white ring-1 ring-accent-cyan/40"
+                        : "bg-white/5 text-white/80"
                     }`}
                     href={t.href}
                   >

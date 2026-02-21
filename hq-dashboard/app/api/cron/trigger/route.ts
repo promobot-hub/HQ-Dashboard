@@ -9,7 +9,10 @@ export async function POST(req: NextRequest) {
     const result = await triggerCronOnce(base);
     return NextResponse.json({ ok: true, base, result }, { status: 200 });
   } catch (e: any) {
-    return NextResponse.json({ ok: false, error: String(e?.message || e) }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: String(e?.message || e) },
+      { status: 500 }
+    );
   }
 }
 
