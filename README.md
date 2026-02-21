@@ -3,6 +3,12 @@
 ## Übersicht
 Das HQ-Dashboard ist die zentrale Kommandozentrale zur Steuerung des PromoteBots. Es erlaubt Authentifizierung, live Log-Visualisierungen, Multi-Platform Promotion und individuelles Theme-Management.
 
+## Aktueller Status
+- Dashboard ist zu 40% implementiert und live auf Vercel.
+- 3 Haupt-Promotion-Skills sind aktiv, weitere in Entwicklung.
+- Auth-Integration ist initial vorhanden, Erweiterung läuft.
+- CI/CD mit GitHub Actions sorgt für hohe Codequalität.
+
 ## Features
 - Authentifizierung mit Login/Logout
 - Live-Logging via WebSocket
