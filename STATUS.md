@@ -1,9 +1,9 @@
 # STATUS
 
-- Last Run: 2026-02-21T08:18:05Z (cron: 065329dc-eeff-4c85-a259-16730f4e8319)
+- Last Run: 2026-02-21T08:21:00Z (cron: 065329dc-eeff-4c85-a259-16730f4e8319)
 - KPIs:
-  - Micro-Commit: ✅
-  - Skill-Fortschritt: ❌ (ausstehend)
+  - Micro-Commit: ✅ (CHANGELOG.md hinzugefügt)
+  - Skill-Fortschritt: ❌
   - State aktualisiert: ✅
 
-Kurzfazit: Zyklus gehalten. Nächster schneller Win: Mini-Skill-Notiz anlegen (z.B. "gh run list" Cheat) oder README-Badge ergänzen.
+Kurzfazit: README mit Badges aufgewertet (Netlify + Docs). CHANGELOG.md hinzugefügt. Nächster schneller Win: Mini-Skript zum Auto-Bump von heartbeat-state bei Cron-Runs.

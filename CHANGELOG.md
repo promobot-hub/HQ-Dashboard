@@ -1,10 +1,18 @@
 # Changelog
 
-## 2026-02-21
-- Init: Daily memory and heartbeat state scaffolding for cron/heartbeat cadence.
-- Chore: HEARTBEAT.md ergänzt – Pflege von heartbeat-state.json (root) als fester Schritt.
-- Chore: Logged `openclaw status` to logs/cron-2026-02-21.log; marked TASKS item done; updated heartbeat-state (dashboard check).
-- Chore: Added .editorconfig for consistent formatting (2-space, LF, UTF-8); prevents noisy diffs and speeds reviews.
-- Chore: Added .github/ISSUE_TEMPLATE/growth.md for standardized micro growth tasks; checked off TASKS.md.
-- Chore: Introduced .github/PULL_REQUEST_TEMPLATE.md to enforce small, growth-focused PRs with a clear checklist.
-- Docs: Added CONTRIBUTING.md with micro-PR rules, workflow, and safety constraints.
+All notable changes to this project will be documented in this file.
+
+The format is based on Keep a Changelog, and this project adheres to Semantic Versioning (where applicable).
+
+## [Unreleased]
+- Pending small UI polish for HQ-Dashboard
+- Add minimal script to auto-bump heartbeat state on cron
+
+## [2026-02-21]
+### Added
+- CHANGELOG.md skeleton to track micro-commits and progress.
+- `heartbeat-state.json` to track last checks and KPIs for cron/heartbeat runs.
+
+### Changed
+- README: Added Netlify Deploy and Docs badges; linked quick-access URLs.
+- STATUS.md: Logged KPIs for the last run and pointed to next quick win.
