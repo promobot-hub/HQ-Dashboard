@@ -13,7 +13,7 @@ export default function HeartbeatWidget() {
     let live = true;
     const load = async () => {
       try {
-        const r = await fetch(`${CLAWBOT_API_BASE}/api/heartbeat`, {
+        const r = await fetch(`/api/heartbeat`, {
           cache: "no-store",
         });
         if (!r.ok) throw new Error("hb");

@@ -10,7 +10,7 @@ export default function ActivityFeed() {
     let live = true;
     const load = async () => {
       try {
-        const r = await fetch(`${CLAWBOT_API_BASE}/api/logs?limit=20`, {
+        const r = await fetch(`/api/logs?limit=20`, {
           cache: "no-store",
         });
         if (!r.ok) throw new Error("logs");
