@@ -11,16 +11,48 @@ import AnalyticsCharts from './AnalyticsCharts';
 import AnalyticsDashboard from './AnalyticsDashboard';
 import LiveLogViewer from './LiveLogViewer';
 
+const COLORS = {
+  darkBackground: "#1E293B",
+  lightBackground: "#F1F5F9",
+  darkText: "#F8FAFC",
+  lightText: "#0F172A",
+  primary: "#3B82F6",
+  primaryHover: "#2563EB",
+  errorBg: "#B91C1C",
+  errorText: "#FEE2E2",
+  logBg: "#334155",
+  logText: "#F1F5F9"
+};
+
 export default function DarkModeAwareContent() {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
+  const bgColor = darkMode ? COLORS.darkBackground : COLORS.lightBackground;
+  const textColor = darkMode ? COLORS.darkText : COLORS.lightText;
+  const primaryColor = COLORS.primary;
+  const primaryHoverColor = COLORS.primaryHover;
+  const errorBgColor = COLORS.errorBg;
+  const errorTextColor = COLORS.errorText;
+  const logBgColor = darkMode ? COLORS.logBg : COLORS.lightBackground;
+  const logTextColor = darkMode ? COLORS.logText : COLORS.lightText;
+
   return (
-    <div className={`${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"} min-h-screen p-8 font-sans max-w-7xl mx-auto`}>
+    <div
+      className="min-h-screen p-8 font-sans max-w-7xl mx-auto"
+      style={{ backgroundColor: bgColor, color: textColor }}
+    >
       <header className="flex justify-between items-center mb-8">
         <h1 className="text-5xl font-extrabold">HQ Dashboard</h1>
         <button
-          className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 transition active:scale-95"
+          className="px-4 py-2 rounded transition active:scale-95"
+          style={{ backgroundColor: primaryColor, color: textColor }}
           onClick={toggleDarkMode}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = primaryHoverColor;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = primaryColor;
+          }}
         >
           {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
         </button>
@@ -60,12 +92,18 @@ export default function DarkModeAwareContent() {
       </section>
 
       <section className="grid grid-cols-2 gap-8">
-        <div className="bg-red-800 p-6 rounded overflow-y-auto max-h-96">
+        <div
+          style={{ backgroundColor: errorBgColor, color: errorTextColor }}
+          className="p-6 rounded overflow-y-auto max-h-96"
+        >
           <h3 className="text-2xl font-semibold mb-4">Error Log</h3>
           <LiveLogViewer />
         </div>
 
-        <div className="bg-gray-800 p-6 rounded overflow-y-auto max-h-96">
+        <div
+          style={{ backgroundColor: logBgColor, color: logTextColor }}
+          className="p-6 rounded overflow-y-auto max-h-96"
+        >
           <h3 className="text-2xl font-semibold mb-4">Full Log</h3>
           <LiveLogViewer />
         </div>
