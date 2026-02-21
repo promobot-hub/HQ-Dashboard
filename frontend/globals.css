@@ -95,3 +95,18 @@ html, body { background: var(--color-base); color: var(--color-text-med); }
 
 /* Focus states */
 :focus-visible { outline: 2px solid rgba(34,211,238,0.5); outline-offset: 2px; border-radius: 6px; }
+
+/* Micro-animations and helpers */
+.transition-soft { transition: all .18s ease; }
+@keyframes glowPulse { 0%,100%{ box-shadow: 0 0 0 2px rgba(34,211,238,0.0), 0 0 20px rgba(168,85,247,0.15);} 50%{ box-shadow: 0 0 0 2px rgba(34,211,238,0.25), 0 0 36px rgba(168,85,247,0.35);} }
+.animate-glow { animation: glowPulse 2.2s ease-in-out infinite; }
+@keyframes liftUp { 0%{ transform: translateY(0) } 100%{ transform: translateY(-2px) } }
+.hover\:animate-lift:hover { animation: liftUp .18s ease forwards; }
+
+/* Mobile: Sidebar to Bottom Bar (<768px) */
+@media (max-width: 767px) {
+  #sidebar { position: fixed !important; bottom: 10px; left: 10px; right: 10px; width: auto !important; z-index: 45; max-height: none !important; overflow: visible !important; }
+  #sidebar nav ul { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 6px; }
+  #sidebar nav a { justify-content: center; padding-top: .6rem; padding-bottom: .6rem; }
+  #sidebar .text-xs.uppercase, #sidebar .flex.flex-col.leading-tight, #sidebar .grid, #sidebar .border-t { display: none !important; }
+}
