@@ -8,9 +8,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: heartbeat-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   heartbeat:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,6 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
 
       - name: Install minimal deps
         run: |
