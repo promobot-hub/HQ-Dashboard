@@ -1,12 +1,12 @@
 {
   "lastChecks": {
-    "cronThink": 1776983220,
-    "state": 1776983220,
-    "logs": 1776983220
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "mentions": null
   },
-  "lastRun": "2026-02-21T14:27:00Z",
-  "counters": {
-    "runsToday": 58,
-    "totalRuns": 66
+  "meta": {
+    "updatedAt": "2026-02-21T14:31:00Z",
+    "version": 1
   }
 }
