@@ -1,11 +1,17 @@
 {
+  "lastRunAt": "2026-02-21T08:02:43Z",
   "lastChecks": {
-    "email": 1771651200,
-    "calendar": 1771651200,
-    "mentions": 1771651200,
-    "dashboard": 1771651200,
-    "skills": 1771651200
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "mentions": null,
+    "repo": "2026-02-21T08:02:43Z",
+    "skills": "2026-02-21T08:02:43Z"
   },
-  "lastUpdated": 1771651200,
-  "notes": "Initialized by cron to bootstrap heartbeat tracking. Times are Unix UTC."
+  "microWins": [
+    {
+      "date": "2026-02-21",
+      "note": "Logged daily micro-win file"
+    }
+  ]
 }
