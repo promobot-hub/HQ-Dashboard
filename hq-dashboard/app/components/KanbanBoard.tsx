@@ -160,7 +160,7 @@ export default function KanbanBoard() {
       await fetch(`/api/tasks`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: target }),
+        body: JSON.stringify({ id, status: target }),
       });
     } catch {
       setTasks(prev);
