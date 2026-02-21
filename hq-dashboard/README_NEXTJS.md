@@ -3,18 +3,21 @@
 Production-Ready UI, live verbunden mit dem Clawbot Python Core.
 
 Quick Start
+
 - Install: `cd hq-dashboard && npm i`
 - Dev: `npm run dev`
 - Build: `npm run build`
 - Start (prod): `npm start`
 
 Env
+
 - NEXT_PUBLIC_CLAWBOT_API_BASE (optional; default: http://localhost:8000)
 - INGEST_SECRET (für HMAC-Signaturen)
 - GH_TOKEN (optional, nur Server): GitHub Token für Snapshots & Ingest-Commits
-- GH_REPO  (optional, nur Server): z. B. promobot-hub/HQ-Dashboard
+- GH_REPO (optional, nur Server): z. B. promobot-hub/HQ-Dashboard
 
 Architektur
+
 - App Router unter `app/`
   - `app/layout.tsx` – Root-Layout (Dark Theme, Navbar/Sidebar)
   - `app/page.tsx` – Landing (Hero + Heartbeat + Kanban + Improve + Activity)
@@ -23,6 +26,7 @@ Architektur
   - `app/api/ingest/*` – HMAC-signierte Ingest-Endpoints (Core → UI) mit optionalen GitHub-Commits
 
 API-Proxies (Server)
+
 - GET /api/tasks → ${CLAWBOT_API_BASE}/api/tasks
 - POST /api/tasks (body: { id, status }) → PATCH /api/tasks/{id} (fallback POST /api/tasks)
 - GET /api/heartbeat → ${CLAWBOT_API_BASE}/api/heartbeat
@@ -30,12 +34,14 @@ API-Proxies (Server)
 - POST /api/improve → ${CLAWBOT_API_BASE}/api/improve
 
 Ingest Webhooks (Server)
+
 - Alle erwarten Header: X-Timestamp (ms), X-Signature (sha256=<hex>) mit HMAC(INGEST_SECRET, `${timestamp}:${rawBody}`)
-- POST /api/ingest/tasks   body: { tasks: [...] } → schreibt data/tasks.json + snapshot
+- POST /api/ingest/tasks body: { tasks: [...] } → schreibt data/tasks.json + snapshot
 - POST /api/ingest/heartbeat body: { ... } → schreibt data/heartbeat.json + snapshot
-- POST /api/ingest/logs    body: NDJSON-String → hängt an data/logs.ndjson
+- POST /api/ingest/logs body: NDJSON-String → hängt an data/logs.ndjson
 
 Python-Client (Beispiel)
+
 ```python
 import time, hmac, hashlib, requests
 INGEST_SECRET = "<same-as-env>"
@@ -53,13 +59,18 @@ requests.post(f"{BASE}/api/ingest/tasks", data=raw, headers=headers)
 ```
 
 Live-UI
+
 - HeartbeatWidget: Poll 4s (Fallback /api/status)
 - KanbanBoard: Poll 4s; HTML5 Drag & Drop; Optimistic Updates
 - SelfImproveWidget: Trigger + „Clawbot is thinking…“ Loading-State
 - ActivityFeed: Poll 4s; Auto-Scroll-Bereich
 
 Deploy-Hinweise
+
 - Setze `NEXT_PUBLIC_CLAWBOT_API_BASE` (Core-URL) und `INGEST_SECRET`
 - Optional: `GH_TOKEN` + `GH_REPO` für Repo-Snapshots/Commits
 - Node 22 empfohlen; Tailwind v4 ist konfiguriert
+
+```
+
 ```

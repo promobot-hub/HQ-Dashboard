@@ -6,10 +6,18 @@ export async function POST(req: NextRequest) {
     const raw = await req.text();
     const ts = req.headers.get("x-timestamp");
     const sig = req.headers.get("x-signature");
-    if (!verifySignature(raw, ts, sig)) return NextResponse.json({ ok:false, error:"unauthorized" }, { status: 401 });
+    if (!verifySignature(raw, ts, sig))
+      return NextResponse.json(
+        { ok: false, error: "unauthorized" },
+        { status: 401 }
+      );
 
     const { repo, token } = getRepo();
-    if (!repo || !token) return NextResponse.json({ ok:true, warning:"GH env not set; accepted but not persisted" }, { status: 200 });
+    if (!repo || !token)
+      return NextResponse.json(
+        { ok: true, warning: "GH env not set; accepted but not persisted" },
+        { status: 200 }
+      );
 
     const tsid = new Date().toISOString().replace(/[:.]/g, "-");
     const path = `data/logs.ndjson`;
@@ -19,9 +27,17 @@ export async function POST(req: NextRequest) {
       old = Buffer.from(existing.content, "base64").toString("utf8");
     }
     const next = (old ? old + "\n" : "") + raw.trim();
-    const put = await ghPutContent(repo, path, next, `chore(ingest): logs append @ ${tsid}`);
+    const put = await ghPutContent(
+      repo,
+      path,
+      next,
+      `chore(ingest): logs append @ ${tsid}`
+    );
     return NextResponse.json({ ok: put.ok }, { status: 200 });
-  } catch (e:any) {
-    return NextResponse.json({ ok:false, error:String(e?.message||e) }, { status: 500 });
+  } catch (e: any) {
+    return NextResponse.json(
+      { ok: false, error: String(e?.message || e) },
+      { status: 500 }
+    );
   }
 }

@@ -18,13 +18,20 @@ export async function ghRequest(path: string, init: RequestInit = {}) {
 }
 
 export async function ghGetContent(repo: string, filepath: string) {
-  const r = await ghRequest(`/repos/${repo}/contents/${encodeURIComponent(filepath)}`);
+  const r = await ghRequest(
+    `/repos/${repo}/contents/${encodeURIComponent(filepath)}`
+  );
   if (!r.ok) return null;
   const j = await r.json();
   return j as { sha?: string; content?: string; encoding?: string } | null;
 }
 
-export async function ghPutContent(repo: string, filepath: string, content: string, message: string) {
+export async function ghPutContent(
+  repo: string,
+  filepath: string,
+  content: string,
+  message: string
+) {
   const existing = await ghGetContent(repo, filepath);
   const body = {
     message,
@@ -32,26 +39,38 @@ export async function ghPutContent(repo: string, filepath: string, content: stri
     branch: "main",
     ...(existing?.sha ? { sha: existing.sha } : {}),
   } as any;
-  const r = await ghRequest(`/repos/${repo}/contents/${encodeURIComponent(filepath)}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
+  const r = await ghRequest(
+    `/repos/${repo}/contents/${encodeURIComponent(filepath)}`,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }
+  );
   const text = await r.text();
   return { ok: r.ok, status: r.status || 500, text };
 }
 
 export async function readJson(req: NextRequest) {
-  try { return await req.json(); } catch { return null; }
+  try {
+    return await req.json();
+  } catch {
+    return null;
+  }
 }
 
-export function verifySignature(rawBody: string, timestamp: string | null, signature: string | null) {
+export function verifySignature(
+  rawBody: string,
+  timestamp: string | null,
+  signature: string | null
+) {
   const secret = process.env.INGEST_SECRET || "";
   if (!secret) return false;
   if (!timestamp || !signature) return false;
   // Optional: replay window 5 minutes
   const ts = Number(timestamp);
-  if (!Number.isFinite(ts) || Math.abs(Date.now() - ts) > 5 * 60 * 1000) return false;
+  if (!Number.isFinite(ts) || Math.abs(Date.now() - ts) > 5 * 60 * 1000)
+    return false;
   const encoder = new TextEncoder();
   const data = encoder.encode(timestamp + ":" + rawBody);
   const key = encoder.encode(secret);
@@ -59,7 +78,9 @@ export function verifySignature(rawBody: string, timestamp: string | null, signa
   // In Node 18+, crypto.subtle is present; to keep it simple here, accept signature as 'plain' match of hex(hmac)
   // We compute via Node crypto if available
   // @ts-ignore
-  const nodeCrypto = (global as any).require ? (global as any).require("crypto") : null;
+  const nodeCrypto = (global as any).require
+    ? (global as any).require("crypto")
+    : null;
   if (nodeCrypto) {
     const h = nodeCrypto.createHmac("sha256", key).update(data).digest("hex");
     return signature.replace(/^sha256=/, "") === h;
