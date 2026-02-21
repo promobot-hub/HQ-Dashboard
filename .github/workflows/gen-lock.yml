@@ -16,12 +16,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'yarn'
       - name: Install and generate lockfile
         working-directory: hq-dashboard
         run: |
           yarn --version
-          yarn install || yarn install
+          yarn install --no-progress --non-interactive || yarn install
+          test -f yarn.lock && echo "yarn.lock generated"
       - name: Commit yarn.lock if changed
         run: |
           if ! git diff --quiet -- hq-dashboard/yarn.lock; then
