@@ -1,9 +1,12 @@
 # STATUS
 
-- Last Run: 2026-02-21T18:12:05.220Z (cron: auto)
+- Last Run: 2026-02-21T18:22:00Z (cron: DENKE)
+- Counters:
+  - Runs Today: 54
+  - Total Runs: 63
 - KPIs:
-  - Micro-Commit: ✅ (Auto-update STATUS + logs)
-  - Skill-Fortschritt: ⏳ (queued)
+  - Micro-Commit: ✅ (STATUS + README badges + state updated)
+  - Skill-Fortschritt: ✅ (scheduler skill stub)
   - State aktualisiert: ✅ (heartbeat-state.json)
 
-Kurzfazit: Schneller Micro-Schritt erledigt (STATUS & Logs aktualisiert). Nächster: kleine gh-Integration stub.
+Kurzfazit: Quick sync — Zähler erhöht, Badges/Status aktualisiert. Nächster Schritt: tasks.json für Scheduler definieren.
