@@ -1,8 +1,9 @@
 import { sendTelegramMessage as sendRawMessage } from './telegramDelivery.js';
-// structuredLogger.js wurde entfernt, daher hier kein Import
 
 let queue = [];
 let sending = false;
+let lastSent = 0;
+const minInterval = 1000; // minimal 1 sek Abstände
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -14,11 +15,16 @@ async function processQueue() {
 
   while(queue.length > 0) {
     const message = queue.shift();
+    const now = Date.now();
+    const elapsed = now - lastSent;
+    if (elapsed < minInterval) {
+      await delay(minInterval - elapsed);
+    }
     try {
       await sendRawMessage(message);
-      logger.info(`Telegram message sent: ${message}`);
+      lastSent = Date.now();
     } catch (e) {
-      logger.warn(`Telegram send failed, retrying in 10s: ${e.message}`);
+      // Fehler ignorieren, erneut anfügen
       queue.unshift(message);
       await delay(10000);
     }
