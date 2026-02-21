@@ -1,0 +1,54 @@
+name: Heartbeat Micro-Commit
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # every 10 minutes
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install minimal deps
+        run: |
+          npm ci --omit=dev || npm ci
+
+      - name: Run heartbeat updates
+        run: |
+          node scripts/incrementRunCounters.js || true
+          node scripts/updateHeartbeatState.js || true
+          node scripts/updateStatusAndLog.js || true
+          node scripts/appendHeartbeatLog.js || true
+
+      - name: Update README badges (optional)
+        run: |
+          node -e "const fs=require('fs'); let r=fs.readFileSync('README.md','utf8'); const s=require('./heartbeat-state.json'); const runs=s.runsToday||0, total=s.totalRuns||0; r=r.replace(/runs_today-[0-9]+-blue/, 'runs_today-'+runs+'-blue').replace(/total_runs-[0-9]+-blue/,'total_runs-'+total+'-blue'); fs.writeFileSync('README.md', r)" || true
+
+      - name: Commit if changes
+        run: |
+          git config user.name "promobot-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(heartbeat): auto-update state/logs/badges [skip ci]"
+          else
+            echo "No changes to commit"
+          fi
+
+      - name: Push
+        if: ${{ success() }}
+        run: |
+          git push
