@@ -1,12 +1,5 @@
 {
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
-    "mentions": null
-  },
-  "meta": {
-    "updatedAt": "2026-02-21T14:31:00Z",
-    "version": 1
+    "quickCronTask": "2026-02-21T14:31:00Z"
   }
 }
