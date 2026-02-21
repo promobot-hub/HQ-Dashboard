@@ -97,6 +97,11 @@
   {
     "id": "task-1771642809063",
     "title": "Baby Step: Automatisiere neue Baby Step Generierung",
+    "status": "done"
+  },
+  {
+    "id": "task-1771642869091",
+    "title": "Baby Step: Automatisiere neue Baby Step Generierung",
     "status": "todo"
   }
 ]
