@@ -1,0 +1,3 @@
+{"ts":"2026-02-21T22:12:00.000Z","kind":"seed","url":"seed:init","ok":true,"status":200,"durationMs":1,"message":"seed debug online"}
+{"ts":"2026-02-21T22:13:00.000Z","kind":"fetch","url":"/api/heartbeat","ok":true,"status":200,"durationMs":42}
+{"ts":"2026-02-21T22:13:05.000Z","kind":"fetch","url":"/api/logs?limit=5","ok":false,"status":404,"durationMs":17,"error":"not found (seed)"}
