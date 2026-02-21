@@ -17,3 +17,6 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 ### Changed
 - README: Added Netlify Deploy and Docs badges; linked quick-access URLs.
 - STATUS.md: Logged KPIs for the last run; updated after implementing heartbeat bump script.
+
+### Maintenance
+- 08:46 UTC: Heartbeat micro-commit — updated heartbeat-state timestamp and logged progress.
