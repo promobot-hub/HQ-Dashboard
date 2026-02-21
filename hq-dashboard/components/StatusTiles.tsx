@@ -11,16 +11,28 @@ function Tile({ label, value }: { label: string; value: string | number }) {
 }
 
 export default function StatusTiles() {
-  // Platzhalterwerte – werden später per API ersetzt
-  const runsToday = '—';
-  const totalRuns = '—';
-  const lastRun = 'just now';
+  const [data, setData] = React.useState<{ runsToday?: number; totalRuns?: number; lastRun?: string } | null>(null);
+  const [err, setErr] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    let alive = true;
+    fetch('/api/status', { cache: 'no-store' })
+      .then(r => r.json())
+      .then(j => { if (alive) setData(j); })
+      .catch(e => { if (alive) setErr(String(e)); });
+    return () => { alive = false; };
+  }, []);
+
+  const runsToday = data?.runsToday ?? '—';
+  const totalRuns = data?.totalRuns ?? '—';
+  const lastRun = data?.lastRun ?? '—';
 
   return (
     <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
       <Tile label="Runs Today" value={runsToday} />
       <Tile label="Total Runs" value={totalRuns} />
       <Tile label="Last Run" value={lastRun} />
+      {err && <div className="text-sm text-red-600 col-span-full">Status error: {err}</div>}
     </section>
   );
 }
