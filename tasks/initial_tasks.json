@@ -1,0 +1,32 @@
+[
+  {
+    "id": "task-001",
+    "title": "Setup basic HQ-Dashboard UI",
+    "description": "Create a minimal Next.js app with shadcn/ui components and Zustand store setup.",
+    "status": "todo"
+  },
+  {
+    "id": "task-002",
+    "title": "Implement task manager",
+    "description": "Build a simple task management API endpoint to manage pending and completed tasks.",
+    "status": "todo"
+  },
+  {
+    "id": "task-003",
+    "title": "Create self-improvement loop logic",
+    "description": "Develop logic for PromoteBot to analyze performance and adjust task priorities autonomously.",
+    "status": "todo"
+  },
+  {
+    "id": "task-004",
+    "title": "Add git commit and push automation",
+    "description": "Automate committing and pushing code changes after task progress is made.",
+    "status": "todo"
+  },
+  {
+    "id": "task-005",
+    "title": "Integrate Telegram notifications",
+    "description": "Send alerts and progress updates to the human owner via Telegram.",
+    "status": "todo"
+  }
+]

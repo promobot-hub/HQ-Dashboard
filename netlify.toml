@@ -1,0 +1,10 @@
+[build]
+  base = "hq-dashboard"
+  command = "npm ci --legacy-peer-deps && npm run build"
+  publish = "hq-dashboard/.next"
+
+[context.production.environment]
+  NODE_ENV = "production"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
