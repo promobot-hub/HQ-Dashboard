@@ -1,18 +1,23 @@
-import { addTask, getAllTasks, completeTask } from './persistentTaskEngine.js';
+import { addTask, completeTask } from './persistentTaskEngine.js';
 import { getCurrentBabyStep } from './babySteps.js';
 import { sendTelegramMessage } from './telegramQueue.js';
 import { autoGenerateNextBabyStep } from './babyStepGenerator.js';
+import { enqueueSelfMessage } from './internalChatQueue.js';
 
 export function startStablePoller() {
   setInterval(() => {
     const babyStep = getCurrentBabyStep();
     const newTask = addTask(`Baby Step: ${babyStep}`);
     sendTelegramMessage(`Neuer Task hinzugefügt: ${newTask.title}`);
+    enqueueSelfMessage(`Task hinzugefügt: ${newTask.title}`);
+
     setTimeout(() => {
       completeTask(newTask.id);
       sendTelegramMessage(`Task abgeschlossen: ${newTask.title}`);
-      autoGenerateNextBabyStep();
+      enqueueSelfMessage(`Task abgeschlossen: ${newTask.title}`);
+      const nextStep = autoGenerateNextBabyStep();
+      enqueueSelfMessage(nextStep ? `Nächster Baby Step: ${nextStep}` : 'Alle Baby Steps erledigt');
     }, 30000);
   }, 60000);
-  console.log('Stabiler Poller mit automatischer Baby-Step-Generierung gestartet.');
+  console.log('Stabiler Poller mit Self-Reply-Queue gestartet.');
 }

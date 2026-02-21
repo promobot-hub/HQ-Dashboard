@@ -7,7 +7,8 @@ let tasks = [];
 function loadTasks() {
   try {
     const data = fs.readFileSync(TASK_FILE, 'utf-8');
-    tasks = JSON.parse(data);
+    const parsed = JSON.parse(data);
+    tasks = Array.isArray(parsed) ? parsed : [];
   } catch {
     tasks = [];
   }
