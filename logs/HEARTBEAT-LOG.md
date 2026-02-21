@@ -9,3 +9,7 @@
 - 2026-02-21 09:24 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: hq-dashboard /pages/api/health endpoint hinzugefügt (status ok).
 - 2026-02-21 09:26:15 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Helper-Script hinzugefügt; State/Status aktualisiert.
 - 2026-02-21 09:26:40 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: scripts/utils.js erstellt (shared UTC/KPI helpers) und bereit für Nutzung.
+- 2026-02-21 09:28:15 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Cron micro-commit: state+status refreshed.
+- 2026-02-21 09:28:40 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Added /pages/api/logs to expose HEARTBEAT-LOG to the dashboard LogViewer.
+- 2026-02-21 09:30:00 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Cron micro-commit: logs+state+status synced.
+- 2026-02-21 09:31:00 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Cron micro-commit: logs+state+status synced.
