@@ -44,6 +44,12 @@ export default function TaskCard({
         ev.dataTransfer.setDragImage(g, 0, 0);
         setTimeout(() => g.remove(), 0);
       }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onViewLog?.(task.id);
+        }
+      }}
       className={`rounded-xl border border-white/10 bg-white/5 p-3 text-sm text-white/90 hover:bg-white/10 transition-all duration-200 translate-y-0 opacity-100${pulse}${doneGlow}`}
       role="button"
       tabIndex={0}
