@@ -3,7 +3,9 @@ import { sendTelegramMessage as sendRawMessage } from './telegramDelivery.js';
 let queue = [];
 let sending = false;
 let lastSent = 0;
-const minInterval = 1000; // minimal 1 sek Abstände
+let minInterval = 1000; // Start 1 sec
+let failureCount = 0;
+const maxFailures = 3;
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -23,7 +25,14 @@ async function processQueue() {
     try {
       await sendRawMessage(message);
       lastSent = Date.now();
+      failureCount = 0;
+      // Nach Erfolg minimales Intervall reduzieren
+      if (minInterval > 1000) minInterval -= 200;
     } catch (e) {
+      failureCount++;
+      if (failureCount >= maxFailures) {
+        minInterval = Math.min(minInterval * 2, 10000); // Exponentiell bis 10s
+      }
       // Fehler ignorieren, erneut anfügen
       queue.unshift(message);
       await delay(10000);
