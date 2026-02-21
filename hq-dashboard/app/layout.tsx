@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import ToasterProvider from "./components/Toaster";
+import MobileTabBar from "./components/MobileTabBar";
 
 export const metadata: Metadata = {
   title: "Clawbot HQ – Premium Dark",
@@ -23,8 +24,9 @@ export default function RootLayout({
           <Navbar />
           <div className="flex pt-[88px]">
             <Sidebar />
-            <main className="flex-1 p-6 md:p-8 overflow-auto">{children}</main>
+            <main className="flex-1 p-6 md:p-8 overflow-auto pb-20 md:pb-0">{children}</main>
           </div>
+          <MobileTabBar />
         </ToasterProvider>
       </body>
     </html>
