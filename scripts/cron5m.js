@@ -37,9 +37,12 @@ function post(pathname) {
 }
 
 async function cycle() {
+  log('cycle: executing scheduler');
+  const r1 = await post('/api/scheduler/execute');
+  log(`execute result status=${r1.status} body=${(r1.body||'').slice(0,200)}`);
   log('cycle: triggering /api/cron/trigger');
-  const r = await post('/api/cron/trigger');
-  log(`trigger result status=${r.status} body=${(r.body||'').slice(0,200)}`);
+  const r2 = await post('/api/cron/trigger');
+  log(`trigger result status=${r2.status} body=${(r2.body||'').slice(0,200)}`);
 }
 
 async function main() {

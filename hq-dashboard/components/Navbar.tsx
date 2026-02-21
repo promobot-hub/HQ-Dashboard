@@ -38,6 +38,7 @@ export default function Navbar() {
                 { href: "/skills", label: "Skills" },
                 { href: "/analytics", label: "Runs" },
                 { href: "/health", label: "Health" },
+                { href: "/scheduler", label: "Scheduler" },
               ].map((t) => {
                 const active = p === t.href;
                 return (
