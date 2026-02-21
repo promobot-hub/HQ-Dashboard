@@ -55,6 +55,7 @@ export default function Navbar() {
                 Runs
               </Link>
             </nav>
+            <div id="heartbeat-slot" className="hidden md:block" />
           </div>
         </div>
       </div>
