@@ -1,5 +1,15 @@
 {
   "lastChecks": {
-    "cron": "2026-02-21T08:32:00Z"
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "repo": 1771662840,
+    "skills": 1771662840
+  },
+  "lastRun": "2026-02-21T08:34:00Z",
+  "kpis": {
+    "microCommit": true,
+    "skillProgress": true,
+    "stateUpdated": true
   }
 }
