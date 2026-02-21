@@ -13,3 +13,18 @@ services:
     buildCommand: yarn install && yarn build
     startCommand: yarn start
     healthCheckPath: /
+  - type: worker
+    name: hq-worker
+    env: node
+    rootDir: .
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: GH_OWNER
+        value: promobot-hub
+      - key: GH_REPO
+        value: HQ-Dashboard
+      # Set GH_TOKEN, IMAP_USER, IMAP_PASS, IMAP_HOST in Render dashboard (secrets)
+    startCommand: node worker/runner.js
