@@ -1,18 +1,14 @@
 {
+  "lastRun": {
+    "type": "cron-denke",
+    "id": "065329dc-eeff-4c85-a259-16730f4e8319",
+    "timestamp": "2026-02-21T14:16:00Z",
+    "epoch": 1771673760
+  },
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "social": null,
-    "weather": null
-  },
-  "kpis": {
-    "microCommit": true,
-    "skillProgressLogged": false,
-    "stateUpdated": true
-  },
-  "counters": {
-    "runsToday": 46,
-    "totalRuns": 54
-  },
-  "lastRunUtc": "2026-02-21T14:15:58Z"
+    "weather": null,
+    "social": null
+  }
 }
