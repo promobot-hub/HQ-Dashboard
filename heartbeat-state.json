@@ -1,11 +1,11 @@
 {
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "mentions": null,
-    "weather": null,
-    "dashboard": null,
-    "skills": null
+    "email": 1771651200,
+    "calendar": 1771651200,
+    "mentions": 1771651200,
+    "dashboard": 1771651200,
+    "skills": 1771651200
   },
-  "lastRun": 1771660612
+  "lastUpdated": 1771651200,
+  "notes": "Initialized by cron to bootstrap heartbeat tracking. Times are Unix UTC."
 }
