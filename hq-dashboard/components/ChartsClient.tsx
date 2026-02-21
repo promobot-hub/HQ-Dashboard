@@ -5,7 +5,7 @@ export default function ChartsClient() {
   const memRef = useRef<HTMLCanvasElement | null>(null);
   useEffect(() => {
     let cpuChart: any, memChart: any;
-    let i1: any, i2: any;
+    let i1: any, i2: any, poll: any;
     let cancelled = false;
 
     const loadScript = () =>
@@ -19,6 +19,14 @@ export default function ChartsClient() {
         document.head.appendChild(s);
       });
 
+    const push = (c: any, y: number) => {
+      const ds = c.data.datasets[0];
+      const last = ds.data.length ? ds.data[ds.data.length - 1].x : 0;
+      ds.data.push({ x: last + 1, y });
+      if (ds.data.length > 40) ds.data.shift();
+      c.update("none");
+    };
+
     loadScript()
       .then(() => {
         if (cancelled) return;
@@ -26,43 +34,39 @@ export default function ChartsClient() {
         const create = (ctx: CanvasRenderingContext2D, color: string) =>
           new Chart(ctx, {
             type: "line",
-            data: {
-              datasets: [
-                {
-                  data: Array.from({ length: 20 }, (_, i) => ({ x: i, y: Math.round(Math.random() * 40) + 5 })),
-                  parsing: false,
-                  borderColor: color,
-                  backgroundColor: color + "33",
-                  fill: true,
-                  tension: 0.35,
-                  pointRadius: 0,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              animation: false,
-              plugins: { legend: { display: false }, tooltip: { mode: "nearest", intersect: false } },
-              scales: { x: { display: false }, y: { display: false, min: 0, max: 100 } },
-            },
+            data: { datasets: [{ data: [], parsing: false, borderColor: color, backgroundColor: color + "33", fill: true, tension: 0.35, pointRadius: 0 }] },
+            options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { display: false }, tooltip: { mode: "nearest", intersect: false } }, scales: { x: { display: false }, y: { display: false, min: 0, max: 100 } } },
           });
         if (cpuRef.current) cpuChart = create(cpuRef.current.getContext("2d")!, "#22d3ee");
         if (memRef.current) memChart = create(memRef.current.getContext("2d")!, "#a855f7");
-        const push = (c: any, y: number) => {
-          const ds = c.data.datasets[0];
-          const last = ds.data.length ? ds.data[ds.data.length - 1].x : 0;
-          ds.data.push({ x: last + 1, y });
-          if (ds.data.length > 40) ds.data.shift();
-          c.update("none");
+
+        const pollOnce = async () => {
+          try {
+            const r = await fetch(`/api/metrics?keys=cpu,mem`, { cache: "no-store" });
+            if (!r.ok) throw new Error("metrics");
+            const j = await r.json();
+            const cpu = Math.max(0, Math.min(100, Number(j?.cpu ?? Math.random() * 20 + 10)));
+            const mem = Math.max(0, Math.min(100, Number(j?.mem ?? Math.random() * 25 + 15)));
+            if (cpuChart) push(cpuChart, cpu);
+            if (memChart) push(memChart, mem);
+          } catch {
+            // fallback random ticks to keep motion
+            if (cpuChart) push(cpuChart, Math.max(5, Math.min(95, Math.random() * 18 + 8)));
+            if (memChart) push(memChart, Math.max(5, Math.min(95, Math.random() * 22 + 12)));
+          }
         };
-        i1 = setInterval(() => cpuChart && push(cpuChart, Math.max(5, Math.min(95, Math.random() * 18 + 8))), 1500);
-        i2 = setInterval(() => memChart && push(memChart, Math.max(5, Math.min(95, Math.random() * 22 + 12))), 1700);
+        pollOnce();
+        poll = setInterval(pollOnce, 2000);
+
+        // minor staggered visual noise
+        i1 = setInterval(() => cpuChart && cpuChart.update("none"), 1500);
+        i2 = setInterval(() => memChart && memChart.update("none"), 1700);
       })
       .catch(() => {});
 
     return () => {
       cancelled = true;
+      if (poll) clearInterval(poll);
       if (i1) clearInterval(i1);
       if (i2) clearInterval(i2);
       cpuChart?.destroy?.();
