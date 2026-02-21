@@ -193,6 +193,26 @@
 
             <!-- Content -->
             <main class="col-span-12 md:col-span-9 lg:col-span-10" id="content">
+              <!-- Kanban Controls -->
+              <section class="mt-6" aria-labelledby="kanbanTitle">
+                <div class="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <h2 id="kanbanTitle" class="text-white text-lg font-bold">Kanban</h2>
+                  <div class="flex flex-col sm:flex-row gap-2">
+                    <div class="flex items-center gap-1" role="group" aria-label="Filter tasks">
+                      <button class="rounded-md border border-hairline bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10" data-filter="all" aria-pressed="true">All</button>
+                      <button class="rounded-md border border-hairline bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10" data-filter="pending">Pending</button>
+                      <button class="rounded-md border border-hairline bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10" data-filter="progress">Progress</button>
+                      <button class="rounded-md border border-hairline bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10" data-filter="done">Done</button>
+                    </div>
+                    <div class="relative">
+                      <input id="kanbanSearch" type="search" placeholder="Search tasks... (F to focus)" class="w-full sm:w-64 rounded-xl border border-hairline bg-white/5 pl-3 pr-3 py-1.5 text-xs text-white/90 placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-cyan/40" aria-label="Search tasks" />
+                    </div>
+                    <div class="flex items-center gap-1" aria-label="Sound">
+                      <button id="soundToggle" class="rounded-md border border-hairline bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10" aria-pressed="false">Sound: Off</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
               <!-- Hero Status Card -->
               <section class="rounded-3xl border border-hairline bg-white/5 backdrop-blur-md shadow-glass border-gradient p-6 md:p-8 card-hover" aria-labelledby="heroTitle">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
