@@ -1,13 +1,15 @@
 {
-  "lastRun": "2026-02-21T12:56:00Z",
+  "lastRun": "2026-02-21T12:58:00Z",
   "lastChecks": {
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null
+    "social": null,
+    "heartbeat": "2026-02-21T13:00:05.243Z"
   },
   "counters": {
-    "runsToday": 7,
-    "totalRuns": 7
+    "runsToday": 1,
+    "totalRuns": 9,
+    "lastDay": "2026-02-21"
   }
 }
