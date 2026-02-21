@@ -1,5 +1,6 @@
 import Auth from '../components/auth/Auth';
 import { executeMultiPlatformGrowth } from '../skills/multiPlatformViralGrowth';
+import LiveLogs from '../components/liveLogs/LiveLogs';
 import { useEffect } from 'react';
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>HQ-Dashboard</h1>
       <Auth />
+      <LiveLogs />
     </main>
   );
 }
