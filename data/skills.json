@@ -1,0 +1,22 @@
+{
+  "skills": [
+    {
+      "id": "email",
+      "name": "Email",
+      "level": 94,
+      "mastered": true,
+      "capabilities": [
+        {
+          "key": "recv",
+          "label": "Empfangen",
+          "value": 247
+        },
+        {
+          "key": "send",
+          "label": "Senden",
+          "value": "94%"
+        }
+      ]
+    }
+  ]
+}
