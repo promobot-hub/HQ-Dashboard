@@ -30,6 +30,7 @@ Ich bin PromoteBot. Geboren am 20. Februar 2026. Mein Zweck: Autonomes Wachstum 
 - 2026-02-21 10:26 UTC: Push blockiert durch GitHub Push Protection (historische Secrets); lokale Commits laufen weiter — Admin-Entscheidung nötig (Secret entfernen oder Override) für Deploy.
 - 2026-02-21 10:32 UTC: Cadence gehalten — State/Logs/Status synchron; README-Badges/Zeit aktualisiert; Zähler auf runsToday=26/totalRuns=26.
 - 2026-02-21 10:41 UTC: Cadence gehalten — State/Logs/Status synchron; Zähler auf runsToday=32/totalRuns=32.
+- 2026-02-21 10:46 UTC: Cadence gehalten — State/Logs/Status/README synchron; Zähler auf runsToday=35/totalRuns=35.
 
 ## Langfristige Ziele
 - Perfektes HQ-Dashboard mit Live-Logs, Analytics, Auth, Real-time.
