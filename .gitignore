@@ -35,3 +35,9 @@ coverage/
 
 # Misc
 .sentryclirc
+
+# Prevent reintroduction of sensitive files
+memory/github_credentials.md
+secretScrubber.js
+emailClient.js
+sendBrevo.js
