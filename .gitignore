@@ -41,3 +41,4 @@ memory/github_credentials.md
 secretScrubber.js
 emailClient.js
 sendBrevo.js
+hq-dashboard/package-lock.json
