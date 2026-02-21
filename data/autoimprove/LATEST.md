@@ -1,15 +1,15 @@
-=== AutoImproveBot Run @ 2026-02-21T22:55:19Z ===
+=== AutoImproveBot Run @ 2026-02-21T23:45:04Z ===
 
-Commit: 2c9667d
+Commit: 3bd6ae8
 
 Recent commits:
 
 ```
+3bd6ae8 chore(heartbeat): auto-update state/logs/badges [skip ci]
+8bcef9f chore(heartbeat): auto-update state/logs/badges [skip ci]
+15ae0e8 chore(heartbeat): auto-update state/logs/badges [skip ci]
+fa3d8d0 chore(autoimprove): update report [skip ci]
 2c9667d chore(heartbeat): auto-update state/logs/badges [skip ci]
-c58b4ee chore(heartbeat): auto-update state/logs/badges [skip ci]
-e87a2f3 chore(heartbeat): auto-update state/logs/badges [skip ci]
-abd3fb1 chore(heartbeat): sync hq-dashboard subtree [skip ci]
-ad7458f feat(debug): add flat /debug route (UI) and point Navbar there; ensure website debug visible; prepare deploy/cache-break
 ```
 
 Open PRs:
