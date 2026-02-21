@@ -26,13 +26,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
-      - name: Install minimal deps
-        run: |
-          npm ci --omit=dev || npm ci
-
-      - name: Run heartbeat updates
+      - name: Run heartbeat updates (no install needed)
         run: |
           node scripts/incrementRunCounters.js || true
           node scripts/updateHeartbeatState.js || true
