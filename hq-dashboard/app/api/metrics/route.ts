@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const RAW = "https://raw.githubusercontent.com/promobot-hub/HQ-Dashboard/main/data/metrics.json";
+const RAW =
+  "https://raw.githubusercontent.com/promobot-hub/HQ-Dashboard/main/data/metrics.json";
 
 export async function GET(_req: NextRequest) {
   try {
