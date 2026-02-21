@@ -1,9 +1,9 @@
 import React from "react";
 import ChartsClient from "../components/ChartsClient";
-import HeartbeatWidget from "../components/HeartbeatWidget";
-import SelfImproveWidget from "../components/SelfImproveWidget";
-import KanbanBoard from "../components/KanbanBoard";
-import ActivityFeed from "../components/ActivityFeed";
+import HeartbeatWidget from "./components/HeartbeatWidget";
+import SelfImproveWidget from "./components/SelfImproveWidget";
+import KanbanBoard from "./components/KanbanBoard";
+import ActivityFeed from "./components/ActivityFeed";
 
 export default function Home() {
   return (
