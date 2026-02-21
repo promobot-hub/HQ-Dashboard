@@ -19,7 +19,14 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import TaskItem from './TaskItem';
 
-function SortableTask({ id, text, done, onToggle }: any) {
+interface SortableTaskProps {
+  id: string;
+  text: string;
+  done: boolean;
+  onToggle: () => void;
+}
+
+function SortableTask({ id, text, done, onToggle }: SortableTaskProps) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -47,10 +54,10 @@ export default function TaskQueueSortable() {
     })
   );
 
-  const handleDragEnd = (event: any) => {
+  const handleDragEnd = (event: { active: { id: string }; over: { id: string } | null }) => {
     const { active, over } = event;
 
-    if (active.id !== over.id) {
+    if (over && active.id !== over.id) {
       const oldIndex = tasks.findIndex((task) => task.id === active.id);
       const newIndex = tasks.findIndex((task) => task.id === over.id);
 

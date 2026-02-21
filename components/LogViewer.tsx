@@ -19,7 +19,11 @@ export default function LogViewer() {
   useEffect(() => {
     const sourceLogs = selectedIndex === 0 ? logs : errorLogs;
     const filtered = sourceLogs.filter((log) => log.message.toLowerCase().includes(filterText.toLowerCase()));
-    setDisplayedLogs(filtered);
+    // Use timeout to defer setState and avoid sync state update in effect
+    const timeoutId = setTimeout(() => {
+      setDisplayedLogs(filtered);
+    }, 0);
+    return () => clearTimeout(timeoutId);
   }, [logs, errorLogs, selectedIndex, filterText]);
 
   const clearLogs = () => {
