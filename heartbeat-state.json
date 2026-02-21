@@ -1,13 +1,14 @@
 {
   "lastChecks": {
+    "cron": "2026-02-21T08:07:00Z",
     "email": null,
     "calendar": null,
     "weather": null,
     "mentions": null,
     "github": null,
-    "skills": null,
-    "progress": null
+    "dashboard": null
   },
-  "lastRun": 1771651440,
-  "notes": "Initialized by PromoteBot cron to support lightweight heartbeats and reduce token burn."
+  "updatedAt": "2026-02-21T08:07:00Z",
+  "notes": "Initialized extended schema for periodic checks. Fill fields as checks run to cut token burn.",
+  "lastRun": "2026-02-21T08:08:52.932Z"
 }
