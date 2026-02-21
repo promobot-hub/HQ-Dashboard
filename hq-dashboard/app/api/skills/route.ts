@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
-import { CLAWBOT_API_BASE } from "../../components/config";
+
+const RAW = "https://raw.githubusercontent.com/promobot-hub/HQ-Dashboard/main/data/skills.json";
 
 export async function GET() {
   try {
-    const r = await fetch(`${CLAWBOT_API_BASE}/api/skills`, {
-      cache: "no-store",
-    });
-    const json = await r.json().catch(() => ({}));
-    return NextResponse.json(json, { status: r.status || 200 });
+    const r = await fetch(RAW, { cache: "no-store" });
+    const json = r.ok ? await r.json().catch(() => ({ skills: [] })) : { skills: [] };
+    return NextResponse.json(json, { status: 200 });
   } catch (e) {
     return NextResponse.json({ skills: [] }, { status: 200 });
   }
