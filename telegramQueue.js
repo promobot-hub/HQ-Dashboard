@@ -1,4 +1,5 @@
 import { sendTelegramMessage as sendRawMessage } from './telegramDelivery.js';
+import * as logger from './structuredLogger.js';
 
 let queue = [];
 let sending = false;
@@ -15,8 +16,9 @@ async function processQueue() {
     const message = queue.shift();
     try {
       await sendRawMessage(message);
+      logger.info(`Telegram message sent: ${message}`);
     } catch (e) {
-      console.error('Telegram send failed, retrying in 10s', e);
+      logger.warn(`Telegram send failed, retrying in 10s: ${e.message}`);
       queue.unshift(message);
       await delay(10000);
     }
