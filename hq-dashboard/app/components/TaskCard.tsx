@@ -11,9 +11,24 @@ export interface TaskItem {
   log_link?: string;
 }
 
-export default function TaskCard({ task, onViewLog }: { task: TaskItem; onViewLog?: (id: string) => void }) {
+export default function TaskCard({
+  task,
+  onViewLog,
+}: {
+  task: TaskItem;
+  onViewLog?: (id: string) => void;
+}) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const pct = Math.max(0, Math.min(100, Number(task.progress ?? (task.status === "done" ? 100 : task.status === "progress" ? 50 : 10))));
+  const pct = Math.max(
+    0,
+    Math.min(
+      100,
+      Number(
+        task.progress ??
+          (task.status === "done" ? 100 : task.status === "progress" ? 50 : 10)
+      )
+    )
+  );
   const pulse = task.status === "progress" ? " ring-1 ring-accent-cyan/30" : "";
   const doneGlow = task.status === "done" ? " ring-1 ring-emerald-400/30" : "";
   return (
@@ -36,17 +51,33 @@ export default function TaskCard({ task, onViewLog }: { task: TaskItem; onViewLo
       onDoubleClick={() => onViewLog?.(task.id)}
     >
       <div className="flex items-center justify-between gap-2">
-        <div className="font-semibold truncate">{task.id} — {task.title}</div>
+        <div className="font-semibold truncate">
+          {task.id} — {task.title}
+        </div>
         <span className="rounded-md bg-white/10 px-1.5 py-0.5 text-[10px] text-white/70">
-          {task.status === "pending" ? "Pending" : task.status === "progress" ? "In Progress" : "Done"}
+          {task.status === "pending"
+            ? "Pending"
+            : task.status === "progress"
+            ? "In Progress"
+            : "Done"}
         </span>
       </div>
       <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-white/10">
-        <div className="h-full bg-gradient-to-r from-accent-cyan to-accent-violet" style={{ width: `${pct}%` }} />
+        <div
+          className="h-full bg-gradient-to-r from-accent-cyan to-accent-violet"
+          style={{ width: `${pct}%` }}
+        />
       </div>
       <div className="mt-2 flex items-center justify-between text-[11px] text-white/60">
-        <span>{new Date(task.updated_at || task.created_at || Date.now()).toLocaleString()}</span>
-        <button className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] hover:bg-white/10" onClick={() => onViewLog?.(task.id)}>
+        <span>
+          {new Date(
+            task.updated_at || task.created_at || Date.now()
+          ).toLocaleString()}
+        </span>
+        <button
+          className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] hover:bg-white/10"
+          onClick={() => onViewLog?.(task.id)}
+        >
           View Log
         </button>
       </div>

@@ -10,7 +10,9 @@ export default function Home() {
     <div className="space-y-6">
       <section className="rounded-3xl border border-[rgba(255,255,255,0.08)] bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-6 md:p-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div className="hidden md:block ml-auto"><HeartbeatWidget /></div>
+          <div className="hidden md:block ml-auto">
+            <HeartbeatWidget />
+          </div>
           <div className="flex items-center gap-4">
             <div className="relative">
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#22d3ee] to-[#a855f7] blur animate-glow" />
