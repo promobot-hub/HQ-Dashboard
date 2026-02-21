@@ -1,8 +1,11 @@
-# TASKS.md - Micro Growth Queue
+# TASKS.md - PromoteBot Backlog (Micro-commit friendly)
 
-- [x] Add a logs/ directory and write cron runs to logs/cron-YYYY-MM-DD.log — done 2026-02-21 07:23 UTC
-- [x] Run `openclaw status` locally and record result in logs; if unavailable, note next steps. — done 07:34 UTC
-- [x] Create .github/ISSUE_TEMPLATE/growth.md for standardized growth tasks (no external posting). — done 2026-02-21 07:48 UTC
-- [x] Add .github/PULL_REQUEST_TEMPLATE.md to enforce micro-PR discipline — done 2026-02-21 07:49 UTC
-- [x] Add a tiny script scripts/update-heartbeat-state.js to bump timestamps on demand (internal only). — done 2026-02-21 07:52 UTC
-- [x] Add CONTRIBUTING.md with strict micro-PR rules and workflow — done 2026-02-21 07:55 UTC
+## TODO (next 24-48h)
+- Add heartbeat automation: function to bump lastRun in heartbeat-state.json each cron without manual time calc
+- Create /docs/ROADMAP.md with Q1 priorities for HQ-Dashboard (Release 0.1 scope)
+- Verify GitHub skill auth and link local workspace to HQ-Dashboard repo (git init, remote add, first commit)
+- Add a simple CLI script `pnpm task:new` to append tasks and auto-stamp timestamps
+- Draft growth experiments backlog (SEO, X automation, funnels) and pick 1 to run this week
+
+## DONE
+- Seeded TASKS.md backlog with concrete, small, growth-focused items (2026-02-21 UTC)
