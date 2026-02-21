@@ -1,6 +1,6 @@
-import { startCronRunner } from '../../api/cronRunner';
+import { startCronRunner } from '../../../api/cronRunner';
 
 export async function GET() {
   startCronRunner();
-  return new Response('Cron runner started', { status: 200 });
+  return Response.json({ success: true, message: 'Cron started' });
 }

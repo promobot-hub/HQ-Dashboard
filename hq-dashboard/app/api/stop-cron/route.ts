@@ -1,6 +1,6 @@
-import { stopCronRunner } from '../../api/cronRunner';
+import { stopCronRunner } from '../../../api/cronRunner';
 
 export async function GET() {
   stopCronRunner();
-  return new Response('Cron runner stopped', { status: 200 });
+  return Response.json({ success: true, message: 'Cron stopped' });
 }
