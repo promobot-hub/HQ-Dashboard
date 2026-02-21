@@ -1,17 +1,11 @@
 {
-  "lastRunAt": "2026-02-21T08:02:43Z",
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "weather": null,
     "mentions": null,
-    "repo": "2026-02-21T08:02:43Z",
-    "skills": "2026-02-21T08:02:43Z"
+    "weather": null,
+    "dashboardRepo": null,
+    "skills": null
   },
-  "microWins": [
-    {
-      "date": "2026-02-21",
-      "note": "Logged daily micro-win file"
-    }
-  ]
+  "updatedAt": 1739827383
 }
