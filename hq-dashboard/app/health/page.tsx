@@ -90,24 +90,36 @@ export default function HealthPage() {
         </div>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3">
-            <div className="text-xs uppercase tracking-wide text-white/60">Heartbeat (Direct)</div>
+            <div className="text-xs uppercase tracking-wide text-white/60">
+              Heartbeat (Direct)
+            </div>
             <div className="mt-2 flex items-center gap-2">
               {badge(!!data?.checks?.heartbeatDirect?.ok)}
-              <span className="text-white/60 text-xs">{data?.checks?.heartbeatDirect?.ms ?? 0} ms</span>
+              <span className="text-white/60 text-xs">
+                {data?.checks?.heartbeatDirect?.ms ?? 0} ms
+              </span>
             </div>
           </div>
           <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3">
-            <div className="text-xs uppercase tracking-wide text-white/60">Status (GitHub Fallback)</div>
+            <div className="text-xs uppercase tracking-wide text-white/60">
+              Status (GitHub Fallback)
+            </div>
             <div className="mt-2 flex items-center gap-2">
               {badge(!!data?.checks?.statusFallback?.ok)}
-              <span className="text-white/60 text-xs">{data?.checks?.statusFallback?.ms ?? 0} ms</span>
+              <span className="text-white/60 text-xs">
+                {data?.checks?.statusFallback?.ms ?? 0} ms
+              </span>
             </div>
           </div>
           <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3">
-            <div className="text-xs uppercase tracking-wide text-white/60">Logs Proxy</div>
+            <div className="text-xs uppercase tracking-wide text-white/60">
+              Logs Proxy
+            </div>
             <div className="mt-2 flex items-center gap-2">
               {badge(!!data?.checks?.logsProxy?.ok)}
-              <span className="text-white/60 text-xs">{data?.checks?.logsProxy?.ms ?? 0} ms</span>
+              <span className="text-white/60 text-xs">
+                {data?.checks?.logsProxy?.ms ?? 0} ms
+              </span>
             </div>
           </div>
         </div>

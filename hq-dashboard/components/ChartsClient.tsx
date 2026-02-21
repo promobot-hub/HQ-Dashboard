@@ -34,25 +34,64 @@ export default function ChartsClient() {
         const create = (ctx: CanvasRenderingContext2D, color: string) =>
           new Chart(ctx, {
             type: "line",
-            data: { datasets: [{ data: [], parsing: false, borderColor: color, backgroundColor: color + "33", fill: true, tension: 0.35, pointRadius: 0 }] },
-            options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { display: false }, tooltip: { mode: "nearest", intersect: false } }, scales: { x: { display: false }, y: { display: false, min: 0, max: 100 } } },
+            data: {
+              datasets: [
+                {
+                  data: [],
+                  parsing: false,
+                  borderColor: color,
+                  backgroundColor: color + "33",
+                  fill: true,
+                  tension: 0.35,
+                  pointRadius: 0,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              animation: false,
+              plugins: {
+                legend: { display: false },
+                tooltip: { mode: "nearest", intersect: false },
+              },
+              scales: {
+                x: { display: false },
+                y: { display: false, min: 0, max: 100 },
+              },
+            },
           });
-        if (cpuRef.current) cpuChart = create(cpuRef.current.getContext("2d")!, "#22d3ee");
-        if (memRef.current) memChart = create(memRef.current.getContext("2d")!, "#a855f7");
+        if (cpuRef.current)
+          cpuChart = create(cpuRef.current.getContext("2d")!, "#22d3ee");
+        if (memRef.current)
+          memChart = create(memRef.current.getContext("2d")!, "#a855f7");
 
         const pollOnce = async () => {
           try {
-            const r = await fetch(`/api/metrics?keys=cpu,mem`, { cache: "no-store" });
+            const r = await fetch(`/api/metrics?keys=cpu,mem`, {
+              cache: "no-store",
+            });
             if (!r.ok) throw new Error("metrics");
             const j = await r.json();
-            const cpu = Math.max(0, Math.min(100, Number(j?.cpu ?? Math.random() * 20 + 10)));
-            const mem = Math.max(0, Math.min(100, Number(j?.mem ?? Math.random() * 25 + 15)));
+            const cpu = Math.max(
+              0,
+              Math.min(100, Number(j?.cpu ?? Math.random() * 20 + 10))
+            );
+            const mem = Math.max(
+              0,
+              Math.min(100, Number(j?.mem ?? Math.random() * 25 + 15))
+            );
             if (cpuChart) push(cpuChart, cpu);
             if (memChart) push(memChart, mem);
           } catch {
             // fallback random ticks to keep motion
-            if (cpuChart) push(cpuChart, Math.max(5, Math.min(95, Math.random() * 18 + 8)));
-            if (memChart) push(memChart, Math.max(5, Math.min(95, Math.random() * 22 + 12)));
+            if (cpuChart)
+              push(cpuChart, Math.max(5, Math.min(95, Math.random() * 18 + 8)));
+            if (memChart)
+              push(
+                memChart,
+                Math.max(5, Math.min(95, Math.random() * 22 + 12))
+              );
           }
         };
         pollOnce();
@@ -78,7 +117,9 @@ export default function ChartsClient() {
       <div className="col-span-12 sm:col-span-6 lg:col-span-3">
         <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-4">
           <div className="flex items-center justify-between">
-            <div className="text-white/70 text-xs uppercase tracking-wide">CPU</div>
+            <div className="text-white/70 text-xs uppercase tracking-wide">
+              CPU
+            </div>
             <span className="text-[#22d3ee]">%</span>
           </div>
           <div className="mt-2 h-16">
@@ -89,7 +130,9 @@ export default function ChartsClient() {
       <div className="col-span-12 sm:col-span-6 lg:col-span-3">
         <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-4">
           <div className="flex items-center justify-between">
-            <div className="text-white/70 text-xs uppercase tracking-wide">Memory</div>
+            <div className="text-white/70 text-xs uppercase tracking-wide">
+              Memory
+            </div>
             <span className="text-[#a855f7]">GB</span>
           </div>
           <div className="mt-2 h-16">
@@ -100,17 +143,23 @@ export default function ChartsClient() {
       <div className="col-span-12 sm:col-span-6 lg:col-span-3">
         <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-4">
           <div className="flex items-center justify-between">
-            <div className="text-white/70 text-xs uppercase tracking-wide">Tasks</div>
+            <div className="text-white/70 text-xs uppercase tracking-wide">
+              Tasks
+            </div>
             <span className="text-[#22d3ee]">#</span>
           </div>
           <div className="mt-3 text-2xl font-extrabold text-white">34</div>
-          <div className="mt-1 text-[11px] text-white/60">completed today: 6</div>
+          <div className="mt-1 text-[11px] text-white/60">
+            completed today: 6
+          </div>
         </div>
       </div>
       <div className="col-span-12 sm:col-span-6 lg:col-span-3">
         <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-4">
           <div className="flex items-center justify-between">
-            <div className="text-white/70 text-xs uppercase tracking-wide">Uptime</div>
+            <div className="text-white/70 text-xs uppercase tracking-wide">
+              Uptime
+            </div>
             <span className="text-[#a855f7]">%</span>
           </div>
           <div className="mt-3 text-2xl font-extrabold text-white">99.98%</div>
