@@ -1,5 +1,6 @@
 import React from "react";
 import ChartsClient from "../components/ChartsClient";
+import Kanban from "../components/Kanban";
 
 export default function Home() {
   return (
@@ -55,6 +56,9 @@ export default function Home() {
         </div>
       </section>
       <ChartsClient />
+      <section className="mt-6">
+        <Kanban />
+      </section>
     </div>
   );
 }
