@@ -1,16 +1,9 @@
 {
-  "lastRun": "2026-02-21T08:39:00.000Z",
   "lastChecks": {
     "email": null,
     "calendar": null,
     "weather": null,
-    "mentions": null,
-    "heartbeat": "2026-02-21T08:39:00.000Z"
+    "mentions": null
   },
-  "kpi": {
-    "microCommit": true,
-    "skillProgress": true,
-    "stateUpdated": true,
-    "backlogUpdated": true
-  }
+  "updatedAt": "2026-02-21T08:42:00Z"
 }
