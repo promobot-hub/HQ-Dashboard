@@ -14,6 +14,7 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - `scripts/bumpHeartbeatState.js` to auto-bump timestamps and KPIs on cron.
 - `scripts/logKPI.js` and seeded `kpis/2026-02-21.json` for lightweight KPI logging.
 - `docs/MICRO-COMMITS.md`, `docs/QUICK-WINS.md`, `docs/ONE-STEP-TASKS.md`, and `docs/CRON-ONE-LINERS.md` to accelerate micro-commit cadence.
+- `scripts/utils.js` with shared UTC/KPI helpers for heartbeat tooling.
 
 ### Changed
 - README: Added Netlify Deploy and Docs badges; linked quick-access URLs.
@@ -29,3 +30,4 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - 09:09 UTC: Synced STATUS.md, bumped heartbeat-state.json, appended HEARTBEAT-LOG entry.
 - 09:11 UTC: Auto-bumped heartbeat-state via script; updated STATUS.md; appended HEARTBEAT logs.
 - 09:23 UTC: hq-dashboard/README.md updated (Netlify Deploy link); STATUS/HEARTBEAT-LOG updated; heartbeat-state.json bumped.
+- 09:26 UTC: scripts/utils.js added; HEARTBEAT-LOG and STATUS updated; heartbeat-state.json bumped.
