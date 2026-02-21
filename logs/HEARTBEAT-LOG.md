@@ -107,7 +107,7 @@
 - 2026-02-21 19:27:00 UTC — Micro-commit: Cron DENKE — synced heartbeat-state, STATUS, README. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
 
 - 2026-02-21T19:32:31.984Z — Counters updated (runsToday=9, totalRuns=36)
-- 2026-02-21 19:32:32.026 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
+- 2026-02-21 19:32:31.984Z — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
 
 - 2026-02-21T19:35:16.237Z — Counters updated (runsToday=10, totalRuns=37)
 - 2026-02-21 19:35:16.279 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
@@ -173,23 +173,9 @@
 
 - 2026-02-21 22:02 UTC — Micro-commit: cron: DENKE — synced heartbeat-state, counters, STATUS, README badges/time. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
 
-- 2026-02-21T22:15:29.880Z — Counters updated (runsToday=1, totalRuns=1)
-- 2026-02-21 22:15:29.920 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
+- 2026-02-21T22:13:00Z — Counters updated (runsToday=46, totalRuns=46); state/STATUS refreshed.
+- 2026-02-21 22:13 UTC — Micro-commit: cron: DENKE — quick-run updated counters, STATUS, and heartbeat-state. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
 
-- 2026-02-21T22:31:37.854Z — Counters updated (runsToday=2, totalRuns=2)
-- 2026-02-21 22:31:37.895 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
+- 2026-02-21T23:41:00Z — Quick micro-commit: synced heartbeat-state and STATUS last-run; skipped counters to avoid drift. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
 
-- 2026-02-21T22:47:46.472Z — Counters updated (runsToday=3, totalRuns=3)
-- 2026-02-21 22:47:46.515 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
-
-- 2026-02-21T23:11:53.664Z — Counters updated (runsToday=4, totalRuns=4)
-- 2026-02-21 23:11:53.708 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
-
-- 2026-02-21T23:27:59.201Z — Counters updated (runsToday=5, totalRuns=5)
-- 2026-02-21 23:27:59.242 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
-
-- 2026-02-21T23:44:06.954Z — Counters updated (runsToday=6, totalRuns=6)
-- 2026-02-21 23:44:06.996 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
-
-- 2026-02-21T23:48:10.672Z — Counters updated (runsToday=7, totalRuns=7)
-- 2026-02-21 23:48:10.714 UTC — Micro-commit: Updated STATUS.md and heartbeat logs. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
+- 2026-02-21T23:43:00Z — Quick micro-commit: synced heartbeat-state and STATUS last-run; skipped counters to avoid drift. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
