@@ -39,6 +39,7 @@ export default function Navbar() {
                 { href: "/analytics", label: "Runs" },
                 { href: "/health", label: "Health" },
                 { href: "/scheduler", label: "Scheduler" },
+                { href: "/logs/debug", label: "Debug" },
               ].map((t) => {
                 const active = p === t.href;
                 return (
