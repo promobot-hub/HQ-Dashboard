@@ -19,7 +19,8 @@ export default function TaskTimeline({ tasks }: TaskTimelineProps) {
       <ul className="list-disc list-inside">
         {tasks.map((task) => (
           <li key={task.id}>
-            {(task.title || task.text || 'Untitled')} — Status: {task.status ?? (task.done ? 'done' : 'open')}
+            {task.title || task.text || "Untitled"} — Status:{" "}
+            {task.status ?? (task.done ? "done" : "open")}
           </li>
         ))}
       </ul>
