@@ -1,6 +1,6 @@
 # STATUS
 
-Last Run: 2026-02-21 09:35 UTC
+Last Run: 2026-02-21 09:37 UTC
 
 KPIs
 - Micro-Commit: YES
@@ -18,6 +18,7 @@ Erledigt
 - HQ-Dashboard: /pages/api/status implementiert (liest heartbeat-state.json & KPIs aus STATUS.md)
 - HEARTBEAT: Helper-Script scripts/appendHeartbeatLog.js erstellt
 - HEARTBEAT: scripts/utils.js erstellt (shared UTC/KPI helpers)
+- Cron micro-commit: logs+state+status synced (09:37 UTC)
 
 Next Actions (kurz, machbar)
 - HQ-Dashboard: Footer-Komponente mit „Last updated“ Timestamp einfügen
