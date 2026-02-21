@@ -36,6 +36,10 @@ jobs:
           node scripts/checkRenderInbox.js || true
           node scripts/updateTaskLedger.js || true
 
+      - name: (optional) format hq-dashboard with Prettier
+        run: |
+          npx --yes prettier@2.8.8 --write "hq-dashboard/**/*.{js,jsx,ts,tsx,css,md,json}" || true
+
       - name: Update README badges (optional)
         run: |
           node -e "const fs=require('fs'); let r=fs.readFileSync('README.md','utf8'); const s=require('./heartbeat-state.json'); const runs=s.runsToday||0, total=s.totalRuns||0; r=r.replace(/runs_today-[0-9]+-blue/, 'runs_today-'+runs+'-blue').replace(/total_runs-[0-9]+-blue/,'total_runs-'+total+'-blue'); fs.writeFileSync('README.md', r)" || true

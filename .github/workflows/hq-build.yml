@@ -1,0 +1,30 @@
+name: hq-dashboard build-only
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 2 * * *' # nightly 02:00 UTC
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+      - name: Install (hq-dashboard)
+        working-directory: hq-dashboard
+        run: |
+          yarn install --frozen-lockfile || yarn install
+      - name: Build (hq-dashboard)
+        working-directory: hq-dashboard
+        run: |
+          yarn build
