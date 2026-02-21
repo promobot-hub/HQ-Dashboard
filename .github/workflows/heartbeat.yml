@@ -29,6 +29,7 @@ jobs:
 
       - name: Run heartbeat updates (no install needed)
         run: |
+          node scripts/repoHygiene.js || true
           node scripts/incrementRunCounters.js || true
           node scripts/updateHeartbeatState.js || true
           node scripts/updateStatusAndLog.js || true
