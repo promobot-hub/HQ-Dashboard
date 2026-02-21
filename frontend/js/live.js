@@ -8,8 +8,8 @@
   const state = { online: true, lastOkAt: null };
   const DEBUG = false;
 
-  // Concurrency limiter (max 3 parallel fetches)
-  const MAX_CONCURRENT = 3; let active = 0; const queue = [];
+  // Concurrency limiter (max 2 parallel fetches)
+  const MAX_CONCURRENT = 2; let active = 0; const queue = [];
   function limitedFetch(url, init){
     return new Promise((resolve, reject)=>{
       const run = ()=>{ active++; fetch(url, init).then(resolve, reject).finally(()=>{ active--; const n=queue.shift(); n && n(); }); };
