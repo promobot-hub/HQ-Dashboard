@@ -1,9 +1,9 @@
 # STATUS
 
-- Last Run: 2026-02-21T20:12:46.377Z (cron: auto)
+- Last Run: 2026-02-21T20:13:00Z (cron: DENKE)
 - KPIs:
-  - Micro-Commit: ✅ (Auto-update STATUS + logs)
+  - Micro-Commit: ✅ (README-Badges + STATUS + Logs)
   - Skill-Fortschritt: ⏳ (queued)
-  - State aktualisiert: ✅ (heartbeat-state.json)
+  - State aktualisiert: ✅ (heartbeat-state.json, counters.json)
 
-Kurzfazit: Schneller Micro-Schritt erledigt (STATUS & Logs aktualisiert). Nächster: kleine gh-Integration stub.
+Kurzfazit: Micro-Commit erledigt (Badges/Status/State aktualisiert). Nächster: kleiner gh-Integration-Stub vorbereiten.
