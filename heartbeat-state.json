@@ -1,22 +1,11 @@
 {
   "lastChecks": {
-    "heartbeat": {
-      "iso": "2026-02-21T09:10:00Z",
-      "epoch": 1771665000
-    },
-    "microCommit": {
-      "iso": "2026-02-21T09:10:00Z",
-      "epoch": 1771665000
-    },
-    "email": 1771665106,
-    "calendar": 1771665106,
-    "weather": 1771665106,
-    "social": 1771665106
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "social": null
   },
-  "lastRun": "2026-02-21T09:11:46.909Z",
-  "lastRunAt": "2026-02-21T09:11:46.909Z",
-  "updatedAt": "2026-02-21T09:11:46.909Z",
-  "lastUpdate": 1771665106,
+  "lastRun": "2026-02-21T09:15:00Z",
   "kpis": {
     "microCommit": true,
     "skillProgress": false,
