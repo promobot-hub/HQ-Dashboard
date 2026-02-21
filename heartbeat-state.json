@@ -2,10 +2,12 @@
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "mentions": null,
     "weather": null,
-    "dashboardRepo": null,
-    "skills": null
+    "mentions": null,
+    "github": null,
+    "skills": null,
+    "progress": null
   },
-  "updatedAt": 1739827383
+  "lastRun": 1771651440,
+  "notes": "Initialized by PromoteBot cron to support lightweight heartbeats and reduce token burn."
 }
