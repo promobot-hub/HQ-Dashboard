@@ -27,15 +27,22 @@ async function ghJson(path: string) {
 
 export async function GET() {
   try {
-    // Heartbeat direct from Core
-    const hb = await timedFetch(`${CLAWBOT_API_BASE}/api/heartbeat`, {
-      cache: "no-store",
-    });
+    const [hb, logs] = await Promise.all([
+      timedFetch(`${CLAWBOT_API_BASE}/api/heartbeat`, { cache: "no-store" }),
+      timedFetch(`${CLAWBOT_API_BASE}/api/logs?limit=1`, { cache: "no-store" }),
+    ]);
+
     const hbJson = hb.res ? await hb.res.json().catch(() => ({})) : {};
     const lastRunAt: string | null = hbJson?.lastRunAt ?? null;
     const ageMs = lastRunAt
       ? Math.max(0, Date.now() - Date.parse(lastRunAt))
       : null;
+
+    // Status fallback via GitHub raw (same as /api/status behavior)
+    const rawStatus = await timedFetch(
+      "https://raw.githubusercontent.com/promobot-hub/HQ-Dashboard/main/heartbeat-state.json",
+      { cache: "no-store" }
+    );
 
     // Optional: latest snapshot time from GitHub (if env present)
     let lastSnapshot: string | null = null;
@@ -45,7 +52,6 @@ export async function GET() {
         `/repos/${repo}/contents/${encodeURIComponent("data/snapshots")}`
       );
       if (Array.isArray(items) && items.length) {
-        // Filenames are ISO-ish; pick max by name
         const names = items
           .map((x: any) => x?.name)
           .filter(Boolean) as string[];
@@ -59,7 +65,12 @@ export async function GET() {
       lastRunAt,
       heartbeatAgeMs: ageMs,
       lastSnapshot,
-    };
+      checks: {
+        heartbeatDirect: { ok: hb.ok, ms: hb.ms },
+        statusFallback: { ok: rawStatus.ok, ms: rawStatus.ms },
+        logsProxy: { ok: logs.ok, ms: logs.ms },
+      },
+    } as const;
     return NextResponse.json(status, { status: 200 });
   } catch (e) {
     return NextResponse.json({ ok: false }, { status: 200 });
