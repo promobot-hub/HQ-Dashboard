@@ -1,5 +1,9 @@
 # STATUS
 
-- Last run: 2026-02-21 17:39 UTC
-- KPIs: Micro-Commit ✅ | Skill-Fortschritt ❌ | State aktualisiert ✅
-- Notes: Cron DENKE — counters++ (runsToday=50, totalRuns=58); STATUS/state/README/logs updated.
+- Last Run: 2026-02-21T17:47:54.192Z (cron: auto)
+- KPIs:
+  - Micro-Commit: ✅ (Auto-update STATUS + logs)
+  - Skill-Fortschritt: ⏳ (queued)
+  - State aktualisiert: ✅ (heartbeat-state.json)
+
+Kurzfazit: Schneller Micro-Schritt erledigt (STATUS & Logs aktualisiert). Nächster: kleine gh-Integration stub.

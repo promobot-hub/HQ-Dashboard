@@ -1,11 +1,12 @@
 {
   "lastChecks": {
-    "heartbeat": 1771705140
+    "heartbeat": "2026-02-21T17:47:54.147Z"
   },
   "counters": {
-    "runsToday": 50,
-    "totalRuns": 58,
-    "lastRunDate": "2026-02-21"
+    "runsToday": 1,
+    "totalRuns": 59,
+    "lastRunDate": "2026-02-21",
+    "lastDay": "2026-02-21"
   },
   "kpis": {
     "microCommit": true,
