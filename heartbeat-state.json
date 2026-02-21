@@ -1,24 +1,13 @@
 {
-  "lastRun": "2026-02-21T07:41:00Z",
-  "lastTasks": [
-    {
-      "timestamp": "2026-02-21T07:40:00Z",
-      "action": "Initialized heartbeat-state.json to track periodic checks and reduce token burn."
-    },
-    {
-      "timestamp": "2026-02-21T07:41:00Z",
-      "action": "Cron quick-pass: state updated to confirm liveness and enable lean heartbeats."
-    },
-    {
-      "timestamp": "2026-02-21T07:41:30Z",
-      "action": "Added .editorconfig for consistent formatting; updated CHANGELOG.md; committed to main."
-    }
-  ],
+  "lastRun": 1771650600,
+  "updatedAt": "2026-02-21T07:50:00Z",
   "lastChecks": {
     "email": null,
     "calendar": null,
+    "mentions": null,
     "weather": null,
-    "social": null,
-    "repo": "2026-02-21T07:41:30Z"
-  }
+    "repo": 1771650600,
+    "skills": 1771650600
+  },
+  "notes": "Initialized/updated by cron DENKE quick task"
 }
