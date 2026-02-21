@@ -1,5 +1,9 @@
 # STATUS
 
-- Last run: 2026-02-21 14:01 UTC
-- KPIs: Micro-Commit ✅ | Skill-Fortschritt ❌ | State aktualisiert ✅
-- Notes: Lightweight cron task executed to maintain cadence.
+- Last Run: 2026-02-21T14:18:10.966Z (cron: auto)
+- KPIs:
+  - Micro-Commit: ✅ (Auto-update STATUS + logs)
+  - Skill-Fortschritt: ⏳ (queued)
+  - State aktualisiert: ✅ (heartbeat-state.json)
+
+Kurzfazit: Schneller Micro-Schritt erledigt (STATUS & Logs aktualisiert). Nächster: kleine gh-Integration stub.

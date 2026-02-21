@@ -1,10 +1,16 @@
 {
   "lastChecks": {
     "cronQuickTask": 1771682460,
-    "state": 1771682460
+    "state": 1771682460,
+    "heartbeat": "2026-02-21T14:18:10.924Z"
   },
   "meta": {
     "updatedBy": "PromoteBot",
     "note": "Auto-updated by cron micro-commit"
+  },
+  "counters": {
+    "runsToday": 1,
+    "lastDay": "2026-02-21",
+    "totalRuns": 1
   }
 }
