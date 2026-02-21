@@ -1,1 +1,12 @@
-{"lastChecks":{"heartbeat":1771678980,"denkeIso":"2026-02-21T18:25:00Z"},"updatedAt":"2026-02-21T18:25:00Z"}
+{
+  "lastChecks": {
+    "heartbeat": "2026-02-21T18:28:07.183Z",
+    "denkeIso": "2026-02-21T18:25:00Z"
+  },
+  "updatedAt": "2026-02-21T18:25:00Z",
+  "counters": {
+    "runsToday": 1,
+    "lastDay": "2026-02-21",
+    "totalRuns": 1
+  }
+}
