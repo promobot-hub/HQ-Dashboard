@@ -1,1 +1,21 @@
-2026-02-21T07:23:00Z | cron micro-run | snapshot: {"lastChecks":{"email":null,"calendar":null,"social":null,"weather":null},"lastHeartbeat":1771658580}
+[07:34 UTC] openclaw status snapshot:
+OpenClaw status
+
+Overview
+- Dashboard: http://127.0.0.1:8080/
+- OS: linux 6.18.5+deb13-cloud-amd64 (x64) · node 22.22.0
+- Tailscale: off
+- Channel: dev (config)
+- Update: available · pnpm · npm update 2026.2.19-2
+- Gateway: local · ws://127.0.0.1:8080 (local loopback) · reachable 11ms · auth token · 83a579900bbe (10.161.41.119) app 1.0.0 linux 6.18.5+deb13-cloud-amd64
+- Gateway service: systemd not installed
+- Node service: systemd not installed
+- Agents: 1 · 1 bootstrapping · sessions 8 · default main active just now
+- Memory: 0 files · 0 chunks · dirty · sources memory · plugin memory-core · vector ready · fts ready · cache on (0)
+- Probes: skipped (use --deep)
+- Events: none
+- Heartbeat: 30m (main)
+- Sessions: 8 active · default gpt-5 (200k ctx) · ~/.openclaw/agents/main/sessions/sessions.json
+
+Security audit summary: 1 critical · 2 warn · 1 info (see `openclaw security audit`)
+Channels: Telegram ON · OK
