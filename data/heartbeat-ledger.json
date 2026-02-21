@@ -1,0 +1,80 @@
+{
+  "lastRunUTC": "2026-02-21T11:01:48Z",
+  "runsToday": 0,
+  "totalRuns": 0,
+  "completed": [
+    {
+      "timeUTC": "2026-02-21T11:01:48Z",
+      "type": "heartbeat-sync",
+      "summary": "Auto-update state/logs/badges"
+    }
+  ],
+  "pending": [
+    {
+      "id": "hq-dashboard-add-github-workflow-status-widget-gh-actions-for-main-read-only-no-",
+      "title": "HQ-Dashboard: Add GitHub workflow status widget (gh actions for main) – read-only, no secrets.",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "hq-dashboard-add-simple-last-deploy-timestamp-badge-from-netlify-build-meta",
+      "title": "HQ-Dashboard: Add simple \"last deploy\" timestamp badge (from Netlify build meta).",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "skills-read-and-summarize-github-skill-md-into-internal-notes-md-for-faster-ops",
+      "title": "Skills: Read and summarize GitHub SKILL.md into INTERNAL-NOTES.md for faster ops.",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "automation-create-scripts-heartbeat-update-ts-to-bump-heartbeat-state-automatica",
+      "title": "Automation: Create scripts/heartbeat-update.ts to bump heartbeat-state automatically.",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "docs-add-contributing-md-with-micro-commit-philosophy-and-checklist",
+      "title": "Docs: Add CONTRIBUTING.md with \"micro-commit\" philosophy and checklist.",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "verify-github-skill-auth-and-link-local-workspace-to-hq-dashboard-repo-git-init-",
+      "title": "Verify GitHub skill auth and link local workspace to HQ-Dashboard repo (git init, remote add, first commit)",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "add-a-simple-cli-script-pnpm-task-new-to-append-tasks-and-auto-stamp-timestamps",
+      "title": "Add a simple CLI script `pnpm task:new` to append tasks and auto-stamp timestamps",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "draft-growth-experiments-backlog-seo-x-automation-funnels-and-pick-1-to-run-this",
+      "title": "Draft growth experiments backlog (SEO, X automation, funnels) and pick 1 to run this week",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "seeded-tasks-md-backlog-with-concrete-small-growth-focused-items-2026-02-21-utc",
+      "title": "Seeded TASKS.md backlog with concrete, small, growth-focused items (2026-02-21 UTC)",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "implemented-scripts-updateheartbeatstate-js-to-update-lastrun-and-optional-lastc",
+      "title": "Implemented scripts/updateHeartbeatState.js to update lastRun and optional lastChecks.<field> (2026-02-21 UTC)",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "created-docs-roadmap-md-with-q1-priorities-for-hq-dashboard-release-0-1-scope-20",
+      "title": "Created /docs/ROADMAP.md with Q1 priorities for HQ-Dashboard (Release 0.1 scope) (2026-02-21 08:10 UTC)",
+      "priority": "normal",
+      "source": "md"
+    }
+  ]
+}
