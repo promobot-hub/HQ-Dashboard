@@ -1,0 +1,26 @@
+name: PR Build (hq-dashboard)
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+          cache-dependency-path: hq-dashboard/yarn.lock
+      - name: Install (hq-dashboard)
+        working-directory: hq-dashboard
+        run: |
+          yarn install --frozen-lockfile || yarn install
+      - name: Build (hq-dashboard)
+        working-directory: hq-dashboard
+        run: |
+          yarn build
