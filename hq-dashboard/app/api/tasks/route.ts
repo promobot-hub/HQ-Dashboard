@@ -26,11 +26,14 @@ export async function PATCH(req: NextRequest) {
     const { id, status, ...rest } = body || {};
     // Prefer Core PATCH /api/tasks/{id}
     if (id) {
-      const r = await fetch(`${CLAWBOT_API_BASE}/api/tasks/${encodeURIComponent(String(id))}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status, ...rest }),
-      }).catch(() => null);
+      const r = await fetch(
+        `${CLAWBOT_API_BASE}/api/tasks/${encodeURIComponent(String(id))}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status, ...rest }),
+        }
+      ).catch(() => null);
       if (r && r.ok) {
         const j = await r.json().catch(() => ({}));
         return NextResponse.json(j, { status: r.status || 200 });
