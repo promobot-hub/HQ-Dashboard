@@ -1,19 +1,15 @@
 {
-  "lastRun": "2026-02-21T11:39:14Z",
-  "runs": {
-    "runsToday": 71,
-    "totalRuns": 71,
-    "lastUpdated": "2026-02-21T11:39:14Z"
-  },
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
-    "social": null
+    "cron": 1771674027,
+    "heartbeat": "2026-02-21T11:42:00.000Z"
   },
-  "kpis": {
-    "microCommit": true,
-    "skillProgress": false,
-    "stateUpdated": true
+  "meta": {
+    "updatedAt": "2026-02-21 11:42 UTC",
+    "note": "Auto-updated by cron micro-commit (DENKE)"
+  },
+  "counters": {
+    "runsToday": 2,
+    "lastDay": "2026-02-21",
+    "totalRuns": 2
   }
 }
