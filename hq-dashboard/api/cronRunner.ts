@@ -16,11 +16,14 @@ async function runCycle() {
   const state = g.__HQ_CRON__;
   state.lastRunAt = new Date().toISOString();
   try {
-    const base = process.env.CRON_SELF_URL || "http://localhost:3000";
-    // Trigger the evolution engine prompt via existing improve endpoint (server proxy → Core)
-    await fetch(`${base}/api/improve`, { method: "POST" }).catch(() => null);
-    // Optional: snapshot for audit
-    await fetch(`${base}/api/snapshot`, { method: "POST" }).catch(() => null);
+    // Prefer direct Core call for the prompt to avoid needing self URL
+    const coreBase = process.env.NEXT_PUBLIC_CLAWBOT_API_BASE || "http://localhost:8000";
+    await fetch(`${coreBase}/api/improve`, { method: "POST" }).catch(() => null);
+    // Optional: also hit our own snapshot endpoint when base known
+    const selfBase = process.env.CRON_SELF_URL;
+    if (selfBase) {
+      await fetch(`${selfBase}/api/snapshot`, { method: "POST" }).catch(() => null);
+    }
   } catch (e) {
     // swallow errors; next cycle will try again
   } finally {
@@ -32,16 +35,19 @@ async function runCycle() {
 export async function triggerCronOnce(baseOverride?: string) {
   const state = g.__HQ_CRON__;
   state.lastRunAt = new Date().toISOString();
-  const base = baseOverride || process.env.CRON_SELF_URL || "http://localhost:3000";
+  const coreBase = process.env.NEXT_PUBLIC_CLAWBOT_API_BASE || "http://localhost:8000";
+  const selfBase = baseOverride || process.env.CRON_SELF_URL;
   let improveOk = false, snapshotOk = false;
   try {
-    const r1 = await fetch(`${base}/api/improve`, { method: "POST" }).catch(() => null);
+    const r1 = await fetch(`${coreBase}/api/improve`, { method: "POST" }).catch(() => null);
     improveOk = !!(r1 && r1.ok);
   } catch {}
-  try {
-    const r2 = await fetch(`${base}/api/snapshot`, { method: "POST" }).catch(() => null);
-    snapshotOk = !!(r2 && r2.ok);
-  } catch {}
+  if (selfBase) {
+    try {
+      const r2 = await fetch(`${selfBase}/api/snapshot`, { method: "POST" }).catch(() => null);
+      snapshotOk = !!(r2 && r2.ok);
+    } catch {}
+  }
   const next = new Date(Date.now() + g.__HQ_CRON__.cadenceMs);
   state.nextRunAt = next.toISOString();
   return { ok: improveOk || snapshotOk, improveOk, snapshotOk, lastRunAt: state.lastRunAt, nextRunAt: state.nextRunAt } as const;
