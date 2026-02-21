@@ -1,20 +1,16 @@
 {
   "lastChecks": {
-    "heartbeat": 1771705140
+    "cronQuickTask": "2026-02-21T17:48:00.000Z",
+    "state": "2026-02-21T17:48:00.000Z",
+    "heartbeat": "2026-02-21T17:48:00.000Z"
+  },
+  "meta": {
+    "updatedBy": "PromoteBot",
+    "note": "Auto-updated by cron micro-commit"
   },
   "counters": {
-    "runsToday": 50,
-    "totalRuns": 58,
-    "lastRunDate": "2026-02-21"
-  },
-  "kpis": {
-    "microCommit": true,
-    "skillProgress": false,
-    "stateUpdated": true
-  },
-  "lastRun": {
-    "iso": "2026-02-21T17:39:00Z",
-    "note": "Cron DENKE — counters incremented; state/logs/STATUS/README refreshed"
-  },
-  "version": 2
+    "runsToday": 5,
+    "lastDay": "2026-02-21",
+    "totalRuns": 5
+  }
 }
