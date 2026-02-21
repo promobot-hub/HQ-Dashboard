@@ -1,15 +1,15 @@
-=== AutoImproveBot Run @ 2026-02-21T19:58:29Z ===
+=== AutoImproveBot Run @ 2026-02-21T20:51:32Z ===
 
-Commit: 9ff1cae
+Commit: c177165
 
 Recent commits:
 
 ```
-9ff1cae chore(heartbeat): auto-update state/logs/badges [skip ci]
-57110d8 chore(heartbeat): auto-update state/logs/badges [skip ci]
-290c2c0 chore(heartbeat): sync hq-dashboard subtree [skip ci]
-ae8891e chore: restore local changes after merge window
-8dc02e2 feat(ingest): add HMAC-signed ingest endpoints (tasks/heartbeat/logs) with optional GitHub commit persistence
+c177165 feat(cron prompt): forward prompt body through /api/improve; embed new Evolution prompt in cron cycle to drive concrete features each run
+142cc0d cron(DENKE): micro-commit @ 20:45 UTC — bump counters, update README/STATUS, heartbeat-state; log changelog
+7050591 chore(render): add NEXT_PUBLIC_CLAWBOT_API_BASE (secret) and CRON_SELF_URL to web service to enable cron + core proxy; trigger redeploy
+68d6b53 chore(heartbeat): auto-update state/logs/badges [skip ci]
+ff7ef91 chore(heartbeat): sync hq-dashboard subtree [skip ci]
 ```
 
 Open PRs:
