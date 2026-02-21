@@ -1,52 +1,13 @@
 @import "tailwindcss";
-:root {
-  --color-base: #0a0a0a;
-  --color-text-high: rgba(255, 255, 255, 0.95);
-  --color-text-med: rgba(255, 255, 255, 0.75);
-  --color-text-low: rgba(255, 255, 255, 0.55);
-  --color-accent-cyan: #22d3ee;
-  --color-accent-violet: #a855f7;
-  --color-glass: rgba(255, 255, 255, 0.06);
-  --color-hairline: rgba(255, 255, 255, 0.08);
-  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.35);
-  --shadow-glow: 0 0 0 2px rgba(34, 211, 238, 0.2),
-    0 0 40px rgba(168, 85, 247, 0.25);
-}
-html {
-  scroll-behavior: smooth;
-}
-body {
-  background: var(--color-base);
-  color: var(--color-text-med);
-  font-family: Inter, Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI,
-    Roboto, Helvetica Neue, Arial;
-}
-.glass {
-  background: var(--color-glass);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--color-hairline);
-  box-shadow: var(--shadow-glass);
-}
-.hairline {
-  border: 1px solid var(--color-hairline);
-}
-.glow {
-  box-shadow: var(--shadow-glow);
-}
-.transition-soft {
-  transition: all 0.18s ease;
-}
-@keyframes glowPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0),
-      0 0 20px rgba(168, 85, 247, 0.15);
-  }
-  50% {
-    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.25),
-      0 0 36px rgba(168, 85, 247, 0.35);
-  }
-}
-.animate-glow {
-  animation: glowPulse 2.2s ease-in-out infinite;
-}
+/* Premium Dark Globals (Next.js app) */
+:root{--color-base:#0a0a0a;--color-text-high:rgba(255,255,255,.96);--color-text-med:rgba(255,255,255,.78);--color-text-low:rgba(255,255,255,.58);--color-accent-cyan:#22d3ee;--color-accent-violet:#a855f7;--color-glass:rgba(255,255,255,.08);--color-hairline:rgba(255,255,255,.12);--shadow-glass:0 14px 44px rgba(0,0,0,.5);--shadow-glow:0 0 0 2px rgba(34,211,238,.28),0 0 52px rgba(168,85,247,.32)}
+html{scroll-behavior:smooth}
+body{background:var(--color-base);color:var(--color-text-med);font-family:Inter,Satoshi,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial}
+.glass{background:var(--color-glass);backdrop-filter:blur(16px) saturate(120%);border:1px solid var(--color-hairline);box-shadow:var(--shadow-glass)}
+.glow{box-shadow:var(--shadow-glow)}
+.hairline{border:1px solid var(--color-hairline)}
+.card{transition:transform .18s ease,box-shadow .18s ease,background .18s ease;will-change:transform,box-shadow}
+.card:hover{transform:translateY(-2px);box-shadow:0 18px 54px rgba(0,0,0,.6);background:rgba(255,255,255,.09)}
+:focus-visible{outline:2px solid rgba(34,211,238,.6);outline-offset:2px;border-radius:6px}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 0 2px rgba(34,211,238,0),0 0 28px rgba(168,85,247,.18)}50%{box-shadow:0 0 0 2px rgba(34,211,238,.28),0 0 48px rgba(168,85,247,.4)}}
+.animate-glow{animation:glowPulse 2.2s ease-in-out infinite}
