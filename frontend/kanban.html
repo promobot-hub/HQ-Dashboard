@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" class="dark h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clawbot HQ – Kanban</title>
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Tailwind (CDN) + inline theme (v4-compatible) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              base: { DEFAULT: '#0a0a0a', 100:'#111111', 200:'#1a1a1a', 300:'#222222' },
+              text: { high:'rgba(255,255,255,.95)', med:'rgba(255,255,255,.75)', low:'rgba(255,255,255,.55)' },
+              accent: { cyan:'#22d3ee', violet:'#a855f7' },
+              success:'#10b981', warning:'#f59e0b', danger:'#ef4444',
+              glass:'rgba(255,255,255,.06)', hairline:'rgba(255,255,255,.08)'
+            },
+            boxShadow: {
+              glass: '0 8px 32px rgba(0,0,0,.35)',
+              glow: '0 0 0 2px rgba(34,211,238,.2),0 0 40px rgba(168,85,247,.25)'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="./globals.css" />
+    <style>
+      @keyframes pulseCyan { 0%,100%{ box-shadow:0 0 0 0 rgba(34,211,238,.35)} 50%{ box-shadow:0 0 0 6px rgba(34,211,238,.08)} }
+      .pulse-cyan { animation: pulseCyan 2.2s ease-in-out infinite; }
+      @keyframes checkGlow { 0%,100%{ box-shadow:0 0 0 0 rgba(16,185,129,.35)} 50%{ box-shadow:0 0 0 6px rgba(16,185,129,.1)} }
+      .check-glow { animation: checkGlow 2.2s ease-in-out infinite; }
+    </style>
+  </head>
+  <body class="min-h-screen bg-base text-text-med antialiased">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8">
+      <header class="mb-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-violet blur"></div>
+            <div class="relative flex h-9 w-9 items-center justify-center rounded-xl bg-[#0f0f10] text-white shadow-glow text-xs font-extrabold">CB</div>
+          </div>
+          <h1 class="text-white text-2xl font-extrabold tracking-tight">Kanban – Clawbot Tasks</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="rounded-xl border border-hairline bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10" id="refreshBtn">Refresh</button>
+        </div>
+      </header>
+
+      <!-- Placeholder container for live data rendering -->
+      <div id="kanban-container" class="grid grid-cols-12 gap-4" aria-live="polite">
+        <!-- Columns will be injected by JS renderKanban() -->
+      </div>
+    </div>
+
+    <script>
+      // Data model (TypeDoc):
+      // Task = { id: string, title: string, status: 'pending'|'progress'|'done', progress: number (0..100), created_at: string (ISO), updated_at: string (ISO), log_link: string }
+
+      function iconMarkup(name, cls='h-4 w-4'){ // minimal lucide-like inline icons
+        const paths = {
+          clock: '<path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/>',
+          activity: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',
+          check: '<polyline points="20 6 9 17 4 12"/>',
+          log: '<path d="M15 3H7a2 2 0 0 0-2 2v14l4-4h6a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/>'
+        };
+        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="${cls}">${paths[name]||''}</svg>`
+      }
+
+      function colStyle(kind){
+        if (kind==='pending') return 'border-hairline bg-white/5';
+        if (kind==='progress') return 'border-accent-cyan/30 bg-accent-cyan/10';
+        return 'border-success/30 bg-success/10'; // done
+      }
+
+      function badge(kind){
+        if (kind==='pending') return '<span class="rounded-md bg-white/10 px-1.5 py-0.5 text-[10px] text-white/70">Pending</span>';
+        if (kind==='progress') return '<span class="rounded-md bg-accent-cyan/20 px-1.5 py-0.5 text-[10px] text-accent-cyan">In Progress</span>';
+        return '<span class="rounded-md bg-success/20 px-1.5 py-0.5 text-[10px] text-success">Done</span>';
+      }
+
+      function card(task){
+        const pct = Math.max(0, Math.min(100, Number(task.progress||0)));
+        const pulse = task.status==='progress' ? ' pulse-cyan' : '';
+        const doneGlow = task.status==='done' ? ' check-glow' : '';
+        return `
+          <div class="rounded-xl border ${task.status==='pending'?'border-hairline':'border-white/10'} bg-white/5 p-3 text-sm text-white/90 hover:bg-white/10 transition-soft${pulse}${doneGlow}">
+            <div class="flex items-center justify-between gap-2">
+              <div class="font-semibold truncate">${task.id} — ${task.title}</div>
+              ${badge(task.status)}
+            </div>
+            <div class="mt-2 h-2 w-full overflow-hidden rounded-full bg-white/10">
+              <div class="h-full bg-gradient-to-r from-accent-cyan to-accent-violet" style="width:${pct}%"></div>
+            </div>
+            <div class="mt-2 flex items-center justify-between text-[11px] text-white/60">
+              <span class="inline-flex items-center gap-1">${iconMarkup('clock','h-3.5 w-3.5')} <span>${new Date(task.updated_at||task.created_at||Date.now()).toLocaleString()}</span></span>
+              <a href="${task.log_link||'#'}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 rounded-lg border border-hairline bg-white/5 px-2 py-0.5 text-[11px] hover:bg-white/10">
+                ${iconMarkup('log','h-3.5 w-3.5')} View Log
+              </a>
+            </div>
+          </div>`
+      }
+
+      function renderKanban(tasks){
+        const cont = document.getElementById('kanban-container');
+        if (!cont) return;
+        const cols = { pending: [], progress: [], done: [] };
+        (tasks||[]).forEach(t=>{ cols[t.status]?.push(t); });
+        cont.innerHTML = ['pending','progress','done'].map((kind)=>{
+          const title = kind==='pending'?'Pending Tasks':(kind==='progress'?'In Progress':'Done');
+          const extras = kind==='progress' ? 'ring-1 ring-accent-cyan/30' : (kind==='done' ? 'ring-1 ring-success/30' : '');
+          return `
+            <section class="col-span-12 md:col-span-4">
+              <div class="rounded-2xl border ${colStyle(kind)} backdrop-blur-md shadow-glass p-4 ${extras}">
+                <div class="mb-2 flex items-center justify-between">
+                  <div class="text-xs uppercase tracking-wide ${kind==='pending'?'text-white/60': kind==='progress'?'text-accent-cyan':'text-success'}">${title}</div>
+                  <div class="text-[11px] text-white/50">${cols[kind].length} items</div>
+                </div>
+                <div class="space-y-2">${cols[kind].map(card).join('')}</div>
+              </div>
+            </section>`;
+        }).join('');
+      }
+
+      async function fetchTasks(){
+        // Placeholder: replace with live endpoint (e.g., /api/tasks)
+        // Demo data to validate structure
+        const now = new Date().toISOString();
+        return [
+          { id:'T-101', title:'Render Worker aktivieren', status:'pending', progress:10, created_at:now, updated_at:now, log_link:'#' },
+          { id:'T-102', title:'Kanban mit Live-Daten', status:'progress', progress:55, created_at:now, updated_at:now, log_link:'#' },
+          { id:'T-103', title:'Lockfile deterministisch', status:'done', progress:100, created_at:now, updated_at:now, log_link:'#' }
+        ];
+      }
+
+      // Init
+      (async()=>{
+        try {
+          const data = await fetchTasks();
+          renderKanban(data);
+        } catch (e) {
+          console.warn('Kanban init failed', e);
+          renderKanban([]);
+        }
+        document.getElementById('refreshBtn')?.addEventListener('click', async ()=>{
+          try { renderKanban(await fetchTasks()); } catch { /* noop */ }
+        });
+      })();
+    </script>
+  </body>
+</html>
