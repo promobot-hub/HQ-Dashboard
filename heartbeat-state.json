@@ -1,17 +1,5 @@
 {
-  "lastRun": "2026-02-21T13:43:00Z",
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
-    "social": null,
-    "heartbeat": "2026-02-21T13:43:00Z",
-    "cron": "2026-02-21T13:43:00Z",
-    "microCommit": "2026-02-21T13:43:00Z"
-  },
-  "counters": {
-    "runsToday": 27,
-    "totalRuns": 35,
-    "lastDay": "2026-02-21"
+    "heartbeat": "2026-02-21T13:45:00Z"
   }
 }
