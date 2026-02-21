@@ -2,12 +2,12 @@
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "weather": null,
-    "mentions": null
+    "mentions": null,
+    "weather": null
   },
-  "lastCron": "2026-02-21T12:04:00Z",
-  "runsToday": 17,
-  "totalRuns": 17,
-  "lastCronId": "065329dc-eeff-4c85-a259-16730f4e8319",
-  "notes": "Auto-updated by cron DENKE micro-commit"
+  "counters": {
+    "runsToday": 2,
+    "totalRuns": 2
+  },
+  "updatedAt": "2026-02-21T12:09:00Z"
 }
