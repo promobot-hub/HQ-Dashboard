@@ -1,0 +1,51 @@
+name: AutoImproveBot
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  improve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run analyzer
+        run: |
+          node scripts/autoImprove.js
+      - name: Commit report
+        run: |
+          git config user.name "promobot-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/autoimprove/LATEST.md data/autoimprove/history || true
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(autoimprove): update report [skip ci]"
+            git push
+          else
+            echo "No changes in report"
+          fi
+      - name: Create/Update tracking issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('data/autoimprove/LATEST.md', 'utf8');
+            const title = 'AutoImproveBot: Continuous Report';
+            const { data: issues } = await github.rest.issues.listForRepo({ owner: context.repo.owner, repo: context.repo.repo, state: 'open' });
+            let issue = issues.find(i => i.title === title);
+            if (!issue) {
+              const res = await github.rest.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title, body });
+              core.info(`Created issue #${res.data.number}`);
+            } else {
+              await github.rest.issues.update({ owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number, body });
+              core.info(`Updated issue #${issue.number}`);
+            }
