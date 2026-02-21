@@ -1,10 +1,12 @@
 {
+  "createdAt": "2026-02-21T07:36:00Z",
   "lastChecks": {
+    "repo": null,
+    "skills": null,
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null
-  },
-  "updatedAt": "2026-02-21T07:34:00Z",
-  "version": 1
+    "social": null,
+    "progress": null
+  }
 }
