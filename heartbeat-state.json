@@ -1,6 +1,7 @@
 {
   "lastChecks": {
-    "quickTask": "2026-02-21T17:28:00Z"
+    "heartbeat": 1771704540
   },
-  "notes": "Auto-updated by cron quick task to keep state fresh."
+  "notes": "Updated by cron run to record last heartbeat timestamp.",
+  "version": 1
 }
