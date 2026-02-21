@@ -1,9 +1,13 @@
 {
   "lastChecks": {
-    "cron": 1771674840
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "mentions": null
   },
-  "runsToday": 9,
-  "totalRuns": 9,
-  "updatedAt": "2026-02-21T11:54:00Z",
-  "lastRun": "DENKE"
+  "lastCron": "2026-02-21T11:57:00Z",
+  "runsToday": 12,
+  "totalRuns": 12,
+  "lastCronId": "065329dc-eeff-4c85-a259-16730f4e8319",
+  "notes": "Auto-updated by cron DENKE micro-commit"
 }
