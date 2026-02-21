@@ -5,7 +5,10 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const keys = searchParams.get("keys") || "cpu,mem";
-    const r = await fetch(`${CLAWBOT_API_BASE}/api/metrics?keys=${encodeURIComponent(keys)}`, { cache: "no-store" });
+    const r = await fetch(
+      `${CLAWBOT_API_BASE}/api/metrics?keys=${encodeURIComponent(keys)}`,
+      { cache: "no-store" }
+    );
     const json = await r.json().catch(() => ({}));
     return NextResponse.json(json, { status: r.status || 200 });
   } catch (e) {
