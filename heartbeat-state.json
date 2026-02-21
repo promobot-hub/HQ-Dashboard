@@ -2,13 +2,17 @@
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "mentions": null,
     "weather": null,
-    "cronQuickTask": "2026-02-21T12:21:00Z"
+    "social": null
   },
   "counters": {
-    "runsToday": 10,
-    "totalRuns": 10
+    "runsToday": 11,
+    "totalRuns": 11,
+    "lastRunAt": "2026-02-21T12:23:00Z"
   },
-  "updatedAt": "2026-02-21T12:21:00Z"
+  "meta": {
+    "lastUpdated": 1771667040,
+    "lastUpdatedIso": "2026-02-21T12:23:00Z",
+    "notes": "Cron quick-task bump: counters incremented and status synced."
+  }
 }
