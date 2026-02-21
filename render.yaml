@@ -10,6 +10,10 @@ services:
         value: 22.22.0
       - key: WEB_CONCURRENCY
         value: 1
+      - key: NEXT_PUBLIC_CLAWBOT_API_BASE
+        sync: false # set in Render dashboard to Core base URL (e.g., https://core.example.com)
+      - key: CRON_SELF_URL
+        value: https://hq-dashboard-z74i.onrender.com
     buildCommand: yarn install && yarn build
     startCommand: yarn start
     healthCheckPath: /
