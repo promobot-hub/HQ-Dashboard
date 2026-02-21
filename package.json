@@ -2,8 +2,11 @@
   "name": "hq-dashboard",
   "version": "1.0.0",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\"",
-    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
     "health": "bash scripts/quick-health-check.sh",
     "gh:status": "bash scripts/gh-status.sh",
     "status:update": "node scripts/updateStatusAndLog.js",
@@ -16,12 +19,20 @@
     "hb:skills": "node scripts/updateHeartbeatState.js skills"
   },
   "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.32.2",
-    "prettier": "^2.8.8"
+    "eslint-config-next": "16.1.6",
+    "prettier": "^2.8.8",
+    "typescript": "5.9.3"
   },
   "dependencies": {
+    "next": "16.1.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "node-telegram-bot-api": "^0.67.0"
   }
 }
