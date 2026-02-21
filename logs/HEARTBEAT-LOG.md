@@ -13,3 +13,6 @@
 - 2026-02-21 09:28:40 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Added /pages/api/logs to expose HEARTBEAT-LOG to the dashboard LogViewer.
 - 2026-02-21 09:30:00 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Cron micro-commit: logs+state+status synced.
 - 2026-02-21 09:31:00 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Cron micro-commit: logs+state+status synced.
+- 2026-02-21 09:32:00 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Added /api/status endpoint (lastChecks + status KPIs).
+- 2026-02-21 09:33:00 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Cron micro-commit: logs+state+status synced.
+- 2026-02-21 09:33 UTC — KPIs: Micro-Commit=yes, Skill-Fortschritt=no, State-Update=yes. Notes: Heartbeat upkeep — bumped heartbeat-state lastChecks.heartbeat and updatedAt.
