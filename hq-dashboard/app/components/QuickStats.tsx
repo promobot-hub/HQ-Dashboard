@@ -30,12 +30,26 @@ export default function QuickStats() {
     };
   }, []);
 
-  const last = data?.lastRunAt ? new Date(data.lastRunAt).toLocaleString() : "—";
+  const last = data?.lastRunAt
+    ? new Date(data.lastRunAt).toLocaleString()
+    : "—";
 
-  const Stat = ({ label, value, accent }: { label: string; value: React.ReactNode; accent?: string }) => (
+  const Stat = ({
+    label,
+    value,
+    accent,
+  }: {
+    label: string;
+    value: React.ReactNode;
+    accent?: string;
+  }) => (
     <div className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3 text-center">
-      <div className="text-[10px] uppercase tracking-wide text-white/60">{label}</div>
-      <div className={`text-xl font-extrabold ${accent ?? "text-white"}`}>{value}</div>
+      <div className="text-[10px] uppercase tracking-wide text-white/60">
+        {label}
+      </div>
+      <div className={`text-xl font-extrabold ${accent ?? "text-white"}`}>
+        {value}
+      </div>
     </div>
   );
 
@@ -44,7 +58,13 @@ export default function QuickStats() {
       <Stat label="Runs Today" value={data?.runsToday ?? "—"} />
       <Stat label="Total Runs" value={data?.totalRuns ?? "—"} />
       <Stat label="Last Run" value={last} />
-      <Stat label="Liveness" value={data?.ok || data?.lastRunAt ? "OK" : "DOWN"} accent={data?.ok || data?.lastRunAt ? "text-emerald-400" : "text-red-400"} />
+      <Stat
+        label="Liveness"
+        value={data?.ok || data?.lastRunAt ? "OK" : "DOWN"}
+        accent={
+          data?.ok || data?.lastRunAt ? "text-emerald-400" : "text-red-400"
+        }
+      />
     </div>
   );
 }
