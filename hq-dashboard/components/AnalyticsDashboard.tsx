@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React from "react";
 import {
   LineChart,
   Line,
@@ -14,29 +14,29 @@ import {
   PieChart,
   Pie,
   Cell,
-} from 'recharts';
+} from "recharts";
 
 const taskData = [
-  { name: 'Task 1', progress: 80 },
-  { name: 'Task 2', progress: 45 },
-  { name: 'Task 3', progress: 60 },
+  { name: "Task 1", progress: 80 },
+  { name: "Task 2", progress: 45 },
+  { name: "Task 3", progress: 60 },
 ];
 
 const skillUsageData = [
-  { name: 'Twitter Agent', usage: 75 },
-  { name: 'GitHub Skill', usage: 86 },
-  { name: 'Email Handler', usage: 30 },
+  { name: "Twitter Agent", usage: 75 },
+  { name: "GitHub Skill", usage: 86 },
+  { name: "Email Handler", usage: 30 },
 ];
 
 const botActivityData = [
-  { time: '10AM', activity: 20 },
-  { time: '11AM', activity: 45 },
-  { time: '12PM', activity: 30 },
-  { time: '1PM', activity: 60 },
-  { time: '2PM', activity: 50 },
+  { time: "10AM", activity: 20 },
+  { time: "11AM", activity: 45 },
+  { time: "12PM", activity: 30 },
+  { time: "1PM", activity: 60 },
+  { time: "2PM", activity: 50 },
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 export default function AnalyticsDashboard() {
   return (
@@ -44,7 +44,10 @@ export default function AnalyticsDashboard() {
       <h2 className="text-xl font-bold">Analytics Dashboard</h2>
 
       <ResponsiveContainer width="100%" height={200}>
-        <BarChart data={taskData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+        <BarChart
+          data={taskData}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
@@ -67,7 +70,10 @@ export default function AnalyticsDashboard() {
             label
           >
             {skillUsageData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
             ))}
           </Pie>
           <Tooltip />
@@ -76,7 +82,10 @@ export default function AnalyticsDashboard() {
       </ResponsiveContainer>
 
       <ResponsiveContainer width="100%" height={200}>
-        <LineChart data={botActivityData} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
+        <LineChart
+          data={botActivityData}
+          margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="time" />
           <YAxis />

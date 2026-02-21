@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
-import TaskItem from './TaskItem';
+import React, { useState, useRef } from "react";
+import TaskItem from "./TaskItem";
 
 export default function TaskQueueDrag() {
   const [tasks, setTasks] = useState([
-    { id: 1, text: 'Task that can be dragged', done: false },
-    { id: 2, text: 'Another draggable task', done: true },
-    { id: 3, text: 'Yet another task', done: false },
+    { id: 1, text: "Task that can be dragged", done: false },
+    { id: 2, text: "Another draggable task", done: true },
+    { id: 3, text: "Yet another task", done: false },
   ]);
 
   const dragItem = useRef<number | null>(null);

@@ -1,13 +1,13 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 
 export default function FunnelDemo() {
   const funnelStages = [
-    { label: 'Visitors', value: 1000 },
-    { label: 'Signups', value: 750 },
-    { label: 'Leads', value: 300 },
-    { label: 'Customers', value: 120 },
+    { label: "Visitors", value: 1000 },
+    { label: "Signups", value: 750 },
+    { label: "Leads", value: 300 },
+    { label: "Customers", value: 120 },
   ];
 
   return (
@@ -19,7 +19,11 @@ export default function FunnelDemo() {
             {stage.label}: {stage.value}
             {index > 0 && (
               <span className="ml-2 text-green-400 font-semibold">
-                ({(((stage.value / funnelStages[index - 1].value) * 100) || 0).toFixed(1)}%)
+                (
+                {(
+                  (stage.value / funnelStages[index - 1].value) * 100 || 0
+                ).toFixed(1)}
+                %)
               </span>
             )}
           </li>

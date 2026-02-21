@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Dialog from './Dialog';
-import Button from './Button';
+import React, { useState, useEffect } from "react";
+import Dialog from "./Dialog";
+import Button from "./Button";
 
 interface TaskEditFormProps {
   taskText?: string;
@@ -10,7 +10,11 @@ interface TaskEditFormProps {
   children: React.ReactNode;
 }
 
-export default function TaskEditForm({ taskText = '', onSave, children }: TaskEditFormProps) {
+export default function TaskEditForm({
+  taskText = "",
+  onSave,
+  children,
+}: TaskEditFormProps) {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState(taskText);
 

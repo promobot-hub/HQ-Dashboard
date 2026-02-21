@@ -1,18 +1,18 @@
 "use client";
 
-import React from 'react';
-import { useDarkMode } from '../context/DarkModeContext';
-import TaskForm from './TaskForm';
-import TaskList from './TaskList';
-import TaskQueue from './TaskQueue';
-import FunnelDemo from './FunnelDemo';
-import MultiPlatformPostDemo from './MultiPlatformPostDemo';
-import AnalyticsCharts from './AnalyticsCharts';
-import AnalyticsDashboard from './AnalyticsDashboard';
-import LiveLogViewer from './LiveLogViewer';
-import { useSkillsStore } from '../stores/skillsStore';
-import SkillCard from './SkillCard';
-import { useTasksStore } from '../stores/tasksStore';
+import React from "react";
+import { useDarkMode } from "../context/DarkModeContext";
+import TaskForm from "./TaskForm";
+import TaskList from "./TaskList";
+import TaskQueue from "./TaskQueue";
+import FunnelDemo from "./FunnelDemo";
+import MultiPlatformPostDemo from "./MultiPlatformPostDemo";
+import AnalyticsCharts from "./AnalyticsCharts";
+import AnalyticsDashboard from "./AnalyticsDashboard";
+import LiveLogViewer from "./LiveLogViewer";
+import { useSkillsStore } from "../stores/skillsStore";
+import SkillCard from "./SkillCard";
+import { useTasksStore } from "../stores/tasksStore";
 
 const COLORS = {
   darkBackground: "#1E293B",
@@ -26,15 +26,15 @@ const COLORS = {
   logBgDark: "#334155",
   logBgLight: "#E2E8F0",
   logTextDark: "#F1F5F9",
-  logTextLight: "#0F172A"
+  logTextLight: "#0F172A",
 };
 
 const FONT_SIZES = {
-  title: '3rem',
-  subtitle: '1.875rem',
-  sectionTitle: '1.5rem',
-  normal: '1rem',
-  small: '0.875rem',
+  title: "3rem",
+  subtitle: "1.875rem",
+  sectionTitle: "1.5rem",
+  normal: "1rem",
+  small: "0.875rem",
 };
 
 const FONT_FAMILY = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
@@ -62,15 +62,29 @@ export default function DarkModeAwareContent() {
   return (
     <div
       className="min-h-screen p-4 md:p-8 font-sans max-w-7xl mx-auto"
-      style={{ backgroundColor: bgColor, color: textColor, fontFamily: FONT_FAMILY }}
+      style={{
+        backgroundColor: bgColor,
+        color: textColor,
+        fontFamily: FONT_FAMILY,
+      }}
     >
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 md:gap-0">
-        <h1 style={{ fontSize: FONT_SIZES.title, fontWeight: 800, letterSpacing: '-0.05em' }}>
+        <h1
+          style={{
+            fontSize: FONT_SIZES.title,
+            fontWeight: 800,
+            letterSpacing: "-0.05em",
+          }}
+        >
           HQ Dashboard
         </h1>
         <button
           className="px-6 py-3 rounded shadow-lg transition-transform duration-300 ease-in-out active:scale-95 hover:shadow-xl"
-          style={{ backgroundColor: primaryColor, color: textColor, fontFamily: FONT_FAMILY }}
+          style={{
+            backgroundColor: primaryColor,
+            color: textColor,
+            fontFamily: FONT_FAMILY,
+          }}
           onClick={toggleDarkMode}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = primaryHoverColor;
@@ -79,23 +93,40 @@ export default function DarkModeAwareContent() {
             e.currentTarget.style.backgroundColor = primaryColor;
           }}
         >
-          {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
         </button>
       </header>
 
       <section className="mb-12">
-        <h2 style={{ fontSize: FONT_SIZES.subtitle, fontWeight: 600, marginBottom: '1.5rem' }}>
+        <h2
+          style={{
+            fontSize: FONT_SIZES.subtitle,
+            fontWeight: 600,
+            marginBottom: "1.5rem",
+          }}
+        >
           Skills Status
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {skills.map((skill) => (
-            <SkillCard key={skill.id} name={skill.name} active={skill.active} progress={skill.progress} />
+            <SkillCard
+              key={skill.id}
+              name={skill.name}
+              active={skill.active}
+              progress={skill.progress}
+            />
           ))}
         </div>
       </section>
 
       <section className="mb-12">
-        <h2 style={{ fontSize: FONT_SIZES.subtitle, fontWeight: 600, marginBottom: '1.5rem' }}>
+        <h2
+          style={{
+            fontSize: FONT_SIZES.subtitle,
+            fontWeight: 600,
+            marginBottom: "1.5rem",
+          }}
+        >
           Goals & Tasks
         </h2>
         <TaskForm onAdd={addTask} />
@@ -127,7 +158,13 @@ export default function DarkModeAwareContent() {
           style={{ backgroundColor: errorBgColor, color: errorTextColor }}
           className="p-6 rounded overflow-y-auto max-h-96"
         >
-          <h3 style={{ fontSize: FONT_SIZES.sectionTitle, fontWeight: 600, marginBottom: '1rem' }}>
+          <h3
+            style={{
+              fontSize: FONT_SIZES.sectionTitle,
+              fontWeight: 600,
+              marginBottom: "1rem",
+            }}
+          >
             Error Log
           </h3>
           <LiveLogViewer />
@@ -137,7 +174,13 @@ export default function DarkModeAwareContent() {
           style={{ backgroundColor: logBgColor, color: logTextColor }}
           className="p-6 rounded overflow-y-auto max-h-96"
         >
-          <h3 style={{ fontSize: FONT_SIZES.sectionTitle, fontWeight: 600, marginBottom: '1rem' }}>
+          <h3
+            style={{
+              fontSize: FONT_SIZES.sectionTitle,
+              fontWeight: 600,
+              marginBottom: "1rem",
+            }}
+          >
             Full Log
           </h3>
           <LiveLogViewer />

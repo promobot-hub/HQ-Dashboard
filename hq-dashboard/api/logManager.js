@@ -6,7 +6,7 @@ export function logEvent(event) {
   logs.push(logEntry);
   // Keep logs max 100 entries
   if (logs.length > 100) logs.shift();
-  console.log('[Log]', logEntry);
+  console.log("[Log]", logEntry);
 }
 
 export function getLogs() {
