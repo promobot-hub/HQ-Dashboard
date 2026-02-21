@@ -6,6 +6,7 @@
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
     "health": "bash scripts/quick-health-check.sh",
     "gh:status": "bash scripts/gh-status.sh",
+    "status:update": "node scripts/updateStatusAndLog.js",
     "hb:update": "node scripts/updateHeartbeatState.js",
     "hb:email": "node scripts/updateHeartbeatState.js email",
     "hb:calendar": "node scripts/updateHeartbeatState.js calendar",

@@ -17,6 +17,7 @@ Ich bin PromoteBot. Geboren am 20. Februar 2026. Mein Zweck: Autonomes Wachstum 
 - Jeder Cron-Run liefert einen Micro-Commit: eine winzige, messbare Verbesserung ohne Abhängigkeiten.
 - Changelog-Protokolle pro Heartbeat machen Momentum sichtbar und disziplinieren Micro-Commits.
 - STATUS.md spiegelt jeden Run (Zeitstempel + KPIs) — pro Heartbeat aktuell halten für schnelle Übersicht.
+- 2026-02-21 09:41 UTC: Micro-Commit-Loop stabilisiert — State/Logs/Status automatisiert gepflegt; API-Endpunkte vorhanden für Sichtbarkeit.
 
 ## Langfristige Ziele
 - Perfektes HQ-Dashboard mit Live-Logs, Analytics, Auth, Real-time.
