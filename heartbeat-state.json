@@ -1,11 +1,12 @@
 {
+  "lastRun": "2026-02-21T09:17:00Z",
   "lastChecks": {
+    "heartbeat": 1771675020,
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null
+    "skills": 1771675020
   },
-  "lastRun": "2026-02-21T09:15:00Z",
   "kpis": {
     "microCommit": true,
     "skillProgress": false,
