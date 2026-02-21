@@ -3,11 +3,12 @@
     "email": null,
     "calendar": null,
     "mentions": null,
-    "weather": null
+    "weather": null,
+    "cronQuickTask": "2026-02-21T12:13:00Z"
   },
   "counters": {
-    "runsToday": 2,
-    "totalRuns": 2
+    "runsToday": 5,
+    "totalRuns": 5
   },
-  "updatedAt": "2026-02-21T12:09:00Z"
+  "updatedAt": "2026-02-21T12:13:00Z"
 }
