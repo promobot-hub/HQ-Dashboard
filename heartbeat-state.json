@@ -1,16 +1,5 @@
 {
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
-    "social": null,
-    "mentions": null
-  },
-  "lastUpdated": "2026-02-21T08:30:00Z",
-  "lastCron": "2026-02-21T08:30:00Z",
-  "kpis": {
-    "microCommit": true,
-    "skillProgress": false,
-    "stateUpdated": true
+    "cron": "2026-02-21T08:32:00Z"
   }
 }
