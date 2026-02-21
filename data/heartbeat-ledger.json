@@ -1,8 +1,13 @@
 {
-  "lastRunUTC": "2026-02-21T21:59:27Z",
+  "lastRunUTC": "2026-02-21T22:15:29Z",
   "runsToday": 0,
   "totalRuns": 0,
   "completed": [
+    {
+      "timeUTC": "2026-02-21T22:15:29Z",
+      "type": "heartbeat-sync",
+      "summary": "feat(debug): add flat /debug route (UI) and point Navbar there; ensure website debug visible; prepare deploy/cache-break · 16 files (16 files changed, 246 insertions(+), 33 deletions(-))"
+    },
     {
       "timeUTC": "2026-02-21T21:59:27Z",
       "type": "heartbeat-sync",
@@ -184,6 +189,90 @@
       "source": "md"
     },
     {
+      "id": "deploy-cache-force-redeploy-edge-cache-break-so-new-api-scheduler-and-scheduler-",
+      "title": "[ ] Deploy/Cache: Force redeploy + edge cache break so new /api/scheduler/* and /scheduler are live",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "scheduler-ui-polish-scheduler-page-visible-in-navbar-jobs-list-run-due-now-histo",
+      "title": "[ ] Scheduler UI polish: /scheduler page visible in Navbar, jobs list, run due now, history table",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "executor-wiring-openclaw-5m-cron-api-scheduler-execute-then-api-cron-trigger-ver",
+      "title": "[ ] Executor wiring: OpenClaw 5m cron → /api/scheduler/execute then /api/cron/trigger (verify history writes)",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "seed-job-evolution-cycle-every-10m-action-trigger-verify-next-last-timestamps-up",
+      "title": "[ ] Seed job: Evolution Cycle (every 10m, action=trigger) — verify next/last timestamps update",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "sessions-agents-tile-on-overview-reads-api-sessions-with-freshness-tooltip-ampel",
+      "title": "[ ] Sessions & Agents tile on Overview (reads /api/sessions) with freshness tooltip/ampel",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "activityfeed-auto-scroll-type-filters-all-improve-snapshot-kanban-status-soft-ne",
+      "title": "[ ] ActivityFeed: auto-scroll, type filters (All/Improve/Snapshot/Kanban/Status), soft “New” fade-in",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "health-github-mode-badge-data-freshness-snapshot-logs-heartbeat-ampels",
+      "title": "[ ] Health: GitHub-Mode badge + data freshness (snapshot/logs/heartbeat) ampels",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "raw-fetch-hardening-optional-t-timestamp-if-cf-swr-too-sticky",
+      "title": "[ ] RAW fetch hardening: optional ?t=<timestamp> if CF/SWR too sticky",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "logs-seed-append-ensure-data-logs-ndjson-append-path-exists-via-api-ingest-logs-",
+      "title": "[ ] Logs seed/append: ensure data/logs.ndjson append path exists via /api/ingest/logs or GH put (ordered)",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "improve-via-git-flow-optional-job-every-15m-action-improve-core-reacts-to-improv",
+      "title": "[ ] Improve via Git flow: optional job every 15m (action=improve) → Core reacts to improve_trigger-*.json",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "core-generate-snapshots-git-push-every-5m-heartbeat-logs-ndjson-append-tasks-met",
+      "title": "[ ] Core: generate_snapshots() + git push every 5m (heartbeat, logs.ndjson append, tasks, metrics, skills, sessions)",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "metrics-mini-sparklines-trend-deltas",
+      "title": "[ ] Metrics mini-sparklines + trend deltas",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "kanban-a11y-keyboard-mobile-swipe-polish",
+      "title": "[ ] Kanban a11y keyboard + mobile swipe polish",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "gateway-scheduler-parity-if-ws-target-configurable-later",
+      "title": "[ ] Gateway Scheduler parity (if WS target configurable later)",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
       "id": "seeded-tasks-md-backlog-with-concrete-small-growth-focused-items-2026-02-21-utc",
       "title": "Seeded TASKS.md backlog with concrete, small, growth-focused items (2026-02-21 UTC)",
       "priority": "normal",
@@ -202,5 +291,5 @@
       "source": "md"
     }
   ],
-  "lastCommit": "e7ea9a1fb5fd9b987bac955ff55e9c2f7bdf8cd1"
+  "lastCommit": "ad7458fb6122f083cb6738a834384b66eac888f2"
 }
