@@ -1,9 +1,16 @@
-const tasks = [
-  { id: 1, text: 'Completing Twitter login automation', done: false },
-  { id: 2, text: 'Deploy HQ-Dashboard on Vercel', done: false },
-  { id: 3, text: 'Integrate GitHub Skill with token auth', done: true },
-];
+import { getTasks, updateTaskStatus } from './taskManager';
 
 export default function handler(req, res) {
-  res.status(200).json(tasks);
+  if (req.method === 'GET') {
+    res.status(200).json(getTasks());
+  } else if (req.method === 'POST') {
+    const { id, status } = req.body;
+    if (updateTaskStatus(id, status)) {
+      res.status(200).json({ message: 'Task updated' });
+    } else {
+      res.status(404).json({ message: 'Task not found' });
+    }
+  } else {
+    res.status(405).json({ message: 'Method not allowed' });
+  }
 }
