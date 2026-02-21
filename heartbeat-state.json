@@ -2,10 +2,11 @@
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "weather": null,
-    "social": null
+    "weather": null
   },
-  "updatedAt": "2026-02-21T08:14:30Z",
-  "lastRun": 1771661670,
-  "notes": "Cron micro-step: refreshed timestamps and confirmed KPIs tracking in HEARTBEAT.md"
+  "lastRun": {
+    "cronId": "065329dc-eeff-4c85-a259-16730f4e8319",
+    "iso": "2026-02-21T08:16:00Z",
+    "note": "Initialized heartbeat-state.json baseline via cron micro-commit."
+  }
 }
