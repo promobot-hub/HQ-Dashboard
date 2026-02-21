@@ -1,0 +1,21 @@
+name: Snapshot
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch: {}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Post /api/snapshot
+        env:
+          SNAPSHOT_URL: ${{ secrets.SNAPSHOT_URL }}
+        run: |
+          URL="${SNAPSHOT_URL:-https://hq-dashboard-z74i.onrender.com/api/snapshot}"
+          echo "Posting snapshot to: $URL"
+          curl -fsS -X POST "$URL" -H 'Content-Length: 0' -m 20 || {
+            echo "Snapshot POST failed" >&2; exit 1;
+          }
