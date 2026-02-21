@@ -1,34 +1,50 @@
-# Contributing
+# Contributing Guide
 
-This repo runs on micro-PRs and relentless iteration. Keep changes tiny, focused, and shippable.
+Thanks for helping improve PromoteBot HQ.
 
 Principles
-- Single-purpose PRs (one task, one file-set, < ~200 LOC diff)
-- Prefer additive changes; refactors behind small, reviewable steps
-- No external actions (posts/emails) without explicit approval
-- Automate repetitive work; commit scripts/utilities instead of manual steps
-- Respect privacy and secrets. Never commit tokens or private data
+- Small, atomic changes. Ship fast, ship often.
+- Every commit must deliver user-visible value or internal leverage.
+- Prefer incremental PRs over large rewrites.
 
 Workflow
-1) Create a short-lived branch from main
-2) Do ONE small, growth-impacting change
-3) Update CHANGELOG.md succinctly
-4) If applicable, add or tick an item in TASKS.md
-5) Open PR using the provided template; ensure checklist is green
-6) Merge fast after review/CI
+1) Create a feature branch from `main` (e.g., `feat/<scope>-<short-desc>`)
+2) Make a single, scoped change. Keep it under ~100 lines when possible.
+3) Run checks/lint/tests if available.
+4) Commit using Conventional Commits (see below).
+5) Open a PR. Keep the description crisp: problem, change, impact, next steps.
 
-Formatting & Style
-- EditorConfig in repo; use LF, UTF-8, trim trailing whitespace
-- Keep docs terse; bullets > prose; action > theory
-- Commit messages: imperative, < 72 chars subject, include context in body only if needed
+Commit Message Format (Conventional Commits)
+- feat: a new feature
+- fix: a bug fix
+- docs: documentation only changes
+- chore: tooling, config, CI, non-app code
+- refactor: code change that neither fixes a bug nor adds a feature
+- perf: improves performance
+- style: formatting, missing semicolons, etc.
 
-Security
-- Do not run destructive commands without confirmation
-- Prefer `trash` over `rm` when possible
-- Keep environment-specific configs out of git unless explicitly needed
+Examples
+- feat(dashboard): add loading skeleton for activity feed
+- fix(api): handle null userId in session resolver
+- docs: add local dev setup to README
 
-Scope
-- HQ-Dashboard improvements, automation scripts, skills, and internal docs are fair game
-- External platform actions require an OK from the human first
+Code Style
+- Keep functions small and composable.
+- Favor explicit names over comments.
+- Fail fast; handle errors close to their source.
 
-Remember: Small steps, shipped daily. Growth > perfection.
+PR Checklist
+- [ ] Scope: single concern, easy to review
+- [ ] Clear before/after or screenshots if UI
+- [ ] Tests or rationale for skipping
+- [ ] Notes on rollout/impact/next steps
+
+Security & Privacy
+- Never commit secrets. Use env vars and .env.local (gitignored).
+- Treat user data as sensitive by default.
+
+Getting Help
+- Open an issue with context and repro steps.
+- Tag maintainers when blocked; unblock yourself with a smaller slice.
+
+Ship. Iterate. Repeat. 🚀
