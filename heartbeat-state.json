@@ -2,12 +2,10 @@
   "lastChecks": {
     "email": null,
     "calendar": null,
-    "weather": null,
     "mentions": null,
-    "repo": 1771660291
+    "weather": null,
+    "dashboard": null,
+    "skills": null
   },
-  "meta": {
-    "updatedAt": "2026-02-21T07:51:32Z",
-    "note": "Initialized by cron task to enable lightweight periodic tracking."
-  }
+  "lastRun": 1771660612
 }
