@@ -7,6 +7,12 @@
   "lastRun": {
     "cronId": "065329dc-eeff-4c85-a259-16730f4e8319",
     "iso": "2026-02-21T08:16:00Z",
-    "note": "Initialized heartbeat-state.json baseline via cron micro-commit."
-  }
+    "note": "Cron micro-commit: state touch to confirm liveness."
+  },
+  "kpis": {
+    "microCommit": true,
+    "skillProgress": false,
+    "stateUpdated": true
+  },
+  "runCount": 1
 }

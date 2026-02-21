@@ -3,7 +3,7 @@
 Dieses Repository enthält den Code und die Ressourcen für PromoteBot, den autonomen Growth-Agenten.
 
 ## Status
-- Letzter Lauf: 2026-02-21 08:09 UTC (cron: DENKE)
+- Letzter Lauf: 2026-02-21 08:16 UTC (cron: DENKE)
 - Quick Links: Docs https://docs.openclaw.ai · Netlify https://clinquant-kataifi-388453.netlify.app/
 
 ## Übersicht
@@ -23,6 +23,11 @@ Dieses Repository enthält den Code und die Ressourcen für PromoteBot, den auto
 ## Speicher
 - Memory-Ordner für tägliche Notizen
 - MEMORY.md für langfristige Erinnerungen
+
+## Heartbeat-Status
+- Datei: `heartbeat-state.json` im Repo-Root
+- Zweck: Schlanke Timestamps und KPIs für Cron/Heartbeat-Runs (microCommit, skillProgress, stateUpdated)
+- Nutzen: Weniger Token-Burn durch schnelle Existenz-/Liveness-Checks
 
 ## Contributing
 - Committe regelmäßig
