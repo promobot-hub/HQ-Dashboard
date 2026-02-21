@@ -1,0 +1,133 @@
+<!-- Ultra-Modern Left Sidebar (Clawbot HQ) -->
+<aside id="sidebar" class="w-full md:w-64 lg:w-72 transition-all duration-300 ease-out">
+  <div class="rounded-2xl border border-hairline bg-white/5 backdrop-blur-md shadow-glass relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 opacity-40" aria-hidden>
+      <div class="absolute -inset-[1px] rounded-2xl bg-gradient-to-b from-accent-cyan/25 via-transparent to-accent-violet/25 blur-lg"></div>
+    </div>
+
+    <!-- Brand / Collapse Btn -->
+    <div class="flex items-center justify-between px-4 pt-4">
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-violet blur"></div>
+          <div class="relative flex h-8 w-8 items-center justify-center rounded-xl bg-[#0f0f10] text-white shadow-glow">
+            <span class="text-xs font-extrabold">CB</span>
+          </div>
+        </div>
+        <div class="flex flex-col leading-tight">
+          <span class="text-white font-extrabold tracking-tight">Clawbot</span>
+          <span class="text-[10px] text-white/60 -mt-0.5">HQ</span>
+        </div>
+      </div>
+      <button id="sidebarCollapse" class="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-hairline bg-white/5 text-white/80 hover:bg-white/10 md:hidden" title="Toggle sidebar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M4 6.75A.75.75 0 0 1 4.75 6h14.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 6.75Zm0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 12Zm.75 4.5a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 0-1.5H4.75Z"/></svg>
+      </button>
+    </div>
+
+    <!-- Nav -->
+    <nav class="mt-4 px-2 pb-2">
+      <ul class="flex flex-col gap-1.5">
+        <!-- Item template: add aria-current="page" for active -->
+        <li>
+          <a href="#" class="group flex items-center gap-3 rounded-xl border border-transparent px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:border-hairline">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-white/80 group-hover:text-white">
+              <!-- lucide: layout-dashboard -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-4 w-4"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg>
+            </span>
+            <span class="font-medium">Overview</span>
+            <span class="ml-auto hidden rounded-md bg-accent-cyan/20 px-1.5 py-0.5 text-[10px] text-accent-cyan group-hover:inline">Live</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="group flex items-center gap-3 rounded-xl border border-transparent px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:border-hairline">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-white/80 group-hover:text-white">
+              <!-- lucide: check-square -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-4 w-4"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </span>
+            <span class="font-medium">Tasks</span>
+            <span class="ml-auto rounded-md bg-white/5 px-1.5 py-0.5 text-[10px] text-white/60">12</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="group flex items-center gap-3 rounded-xl border border-transparent px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:border-hairline">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-white/80 group-hover:text-white">
+              <!-- lucide: sparkles (wand-2) -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-4 w-4"><path d="M14 4l-4 16M4 14l16-4"/></svg>
+            </span>
+            <span class="font-medium">Skills</span>
+            <span class="ml-auto rounded-md bg-white/5 px-1.5 py-0.5 text-[10px] text-white/60">18</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="group flex items-center gap-3 rounded-xl border border-transparent px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:border-hairline">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-white/80 group-hover:text-white">
+              <!-- lucide: activity -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-4 w-4"><path d="M22 12h-4l-3 9L9 3 6 12H2"/></svg>
+            </span>
+            <span class="font-medium">Runs</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="group flex items-center gap-3 rounded-xl border border-transparent px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:border-hairline">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-white/80 group-hover:text-white">
+              <!-- lucide: terminal-square -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-4 w-4"><path d="M7 8l4 4-4 4"/><path d="M11 16h6"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+            </span>
+            <span class="font-medium">Logs</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="group flex items-center gap-3 rounded-xl border border-transparent px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:border-hairline">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-white/80 group-hover:text-white">
+              <!-- lucide: settings -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-4 w-4"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06A2 2 0 1 1 7.04 3.3l.06.06c.47.47 1.14.61 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09c0 .68.26 1.35.73 1.82l.06.06a2 2 0 0 1 2.83 2.83l-.06.06c-.47.47-.61 1.14-.33 1.82V12c0 .68.26 1.35.73 1.82Z"/></svg>
+            </span>
+            <span class="font-medium">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Bottom Status -->
+    <div class="mt-2 border-t border-white/10 px-4 py-3 text-xs text-white/60">
+      <div class="flex items-center justify-between">
+        <div class="inline-flex items-center gap-2">
+          <span class="inline-block h-2 w-2 rounded-full bg-accent-cyan shadow-glow"></span>
+          <span>Live</span>
+        </div>
+        <span>v0.1.0</span>
+      </div>
+      <div class="mt-2 grid grid-cols-2 gap-2 text-[11px] text-white/60">
+        <div class="rounded-lg border border-hairline bg-white/5 px-2 py-1">
+          Runs Today <span class="text-white/90">— 0</span>
+        </div>
+        <div class="rounded-lg border border-hairline bg-white/5 px-2 py-1">
+          Total Runs <span class="text-white/90">— 0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+  // Smooth collapse on mobile (match layout.html logic if embedded)
+  (function(){
+    const btn = document.getElementById('sidebarCollapse');
+    const sb = document.getElementById('sidebar');
+    if (!btn || !sb) return;
+    let open = true;
+    const apply = () => {
+      if (window.innerWidth < 768) {
+        sb.style.maxHeight = open ? sb.scrollHeight + 'px' : '0px';
+        sb.style.overflow = open ? 'visible' : 'hidden';
+      } else {
+        sb.style.maxHeight = '';
+        sb.style.overflow = '';
+      }
+    };
+    btn.addEventListener('click', () => { open = !open; apply(); });
+    window.addEventListener('resize', apply);
+    if (window.innerWidth < 768) { open = false; }
+    apply();
+  })();
+</script>
