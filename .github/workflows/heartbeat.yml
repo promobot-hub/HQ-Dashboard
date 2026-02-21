@@ -33,7 +33,7 @@ jobs:
           node scripts/incrementRunCounters.js || true
           node scripts/updateHeartbeatState.js || true
           node scripts/updateStatusAndLog.js || true
-          node scripts/appendHeartbeatLog.js || true
+          node scripts/checkRenderInbox.js || true
           node scripts/updateTaskLedger.js || true
 
       - name: Update README badges (optional)
