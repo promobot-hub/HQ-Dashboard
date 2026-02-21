@@ -1,6 +1,5 @@
 import React from "react";
-import dynamic from "next/dynamic";
-const ChartsClient = dynamic(() => import("../components/ChartsClient"), { ssr: false });
+import ChartsClient from "../components/ChartsClient";
 
 export default function Home() {
   return (
