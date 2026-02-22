@@ -7,12 +7,18 @@ export async function POST(req: NextRequest) {
   try {
     const { message } = await req.json().catch(() => ({}));
     if (!message || typeof message !== "string") {
-      return NextResponse.json({ ok: false, error: "message required" }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "message required" },
+        { status: 400 }
+      );
     }
     const repo = process.env.GH_REPO;
     const token = process.env.GH_TOKEN;
     if (!repo || !token) {
-      return NextResponse.json({ ok: false, error: "GH_TOKEN/GH_REPO not set" }, { status: 500 });
+      return NextResponse.json(
+        { ok: false, error: "GH_TOKEN/GH_REPO not set" },
+        { status: 500 }
+      );
     }
     const existing = await ghGetContent(repo, PATH).catch(() => null);
     let old = "";
@@ -27,9 +33,20 @@ export async function POST(req: NextRequest) {
     };
     const line = JSON.stringify(entry);
     const next = (old ? old + "\n" : "") + line;
-    const put = await ghPutContent(repo, PATH, next, "feat(chat): append user message");
-    return NextResponse.json({ ok: !!put.ok, appended: true }, { status: put.ok ? 200 : 502 });
+    const put = await ghPutContent(
+      repo,
+      PATH,
+      next,
+      "feat(chat): append user message"
+    );
+    return NextResponse.json(
+      { ok: !!put.ok, appended: true },
+      { status: put.ok ? 200 : 502 }
+    );
   } catch (e: any) {
-    return NextResponse.json({ ok: false, error: String(e?.message || e) }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: String(e?.message || e) },
+      { status: 500 }
+    );
   }
 }

@@ -20,13 +20,20 @@ export default function StatusBar() {
     };
     load();
     const iv = setInterval(load, 15000);
-    return () => { live = false; clearInterval(iv); };
+    return () => {
+      live = false;
+      clearInterval(iv);
+    };
   }, []);
 
-  const ok = (k: string) => checks.find(c => c.key === k)?.ok;
+  const ok = (k: string) => checks.find((c) => c.key === k)?.ok;
   const Dot = ({ k, label }: { k: string; label: string }) => (
     <div className="flex items-center gap-1 text-[11px]">
-      <span className={`inline-block h-2.5 w-2.5 rounded-full ${ok(k)? 'bg-emerald-400':'bg-red-500'}`} />
+      <span
+        className={`inline-block h-2.5 w-2.5 rounded-full ${
+          ok(k) ? "bg-emerald-400" : "bg-red-500"
+        }`}
+      />
       <span className="text-white/60">{label}</span>
     </div>
   );
@@ -39,7 +46,9 @@ export default function StatusBar() {
         <Dot k="schedulerJobs" label="Jobs" />
         <Dot k="schedulerExecute" label="Exec" />
         <Dot k="debugWrite" label="Debug" />
-        <div className="ml-auto text-[10px] text-white/40">{ts ? new Date(ts).toLocaleTimeString() : ''}</div>
+        <div className="ml-auto text-[10px] text-white/40">
+          {ts ? new Date(ts).toLocaleTimeString() : ""}
+        </div>
       </div>
     </div>
   );

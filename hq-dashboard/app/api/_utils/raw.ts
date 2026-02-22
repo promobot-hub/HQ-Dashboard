@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 
 const PRIMARY_REPO = process.env.GH_REPO || "";
 const FALLBACK_REPO = "promobot-hub/HQ-Dashboard";
-const BASES = [PRIMARY_REPO, FALLBACK_REPO].filter(Boolean).map(
-  (r) => `https://raw.githubusercontent.com/${r}/main/`
-);
+const BASES = [PRIMARY_REPO, FALLBACK_REPO]
+  .filter(Boolean)
+  .map((r) => `https://raw.githubusercontent.com/${r}/main/`);
 
 export async function fetchRaw(path: string) {
   const bust = Date.now();
@@ -23,6 +23,9 @@ export async function fetchRaw(path: string) {
 export async function jsonFromRaw(path: string) {
   const r = await fetchRaw(path);
   if (!r.ok) return { ok: false, data: null, meta: r };
-  try { return { ok: true, data: JSON.parse(r.text || "{}"), meta: r }; }
-  catch { return { ok: true, data: r.text, meta: r }; }
+  try {
+    return { ok: true, data: JSON.parse(r.text || "{}"), meta: r };
+  } catch {
+    return { ok: true, data: r.text, meta: r };
+  }
 }

@@ -12,7 +12,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, error: "empty" }, { status: 400 });
     // payload cap ~200KB
     if (bodyText.length > 200 * 1024) {
-      return NextResponse.json({ ok: false, error: "payload too large" }, { status: 413 });
+      return NextResponse.json(
+        { ok: false, error: "payload too large" },
+        { status: 413 }
+      );
     }
     if (!repo || !token)
       return NextResponse.json({ ok: true, persisted: false }, { status: 200 });
@@ -34,8 +37,16 @@ export async function POST(req: NextRequest) {
     })();
     const oldLines = old ? old.split(/\n+/).filter(Boolean) : [];
     const next = [...oldLines, ...incomingLines].slice(-200).join("\n");
-    const put = await ghPutContent(repo, PATH, next, `chore(debug): append debug events`);
-    return NextResponse.json({ ok: put.ok, persisted: true }, { status: put.ok ? 200 : 502 });
+    const put = await ghPutContent(
+      repo,
+      PATH,
+      next,
+      `chore(debug): append debug events`
+    );
+    return NextResponse.json(
+      { ok: put.ok, persisted: true },
+      { status: put.ok ? 200 : 502 }
+    );
   } catch (e: any) {
     return NextResponse.json(
       { ok: false, error: String(e?.message || e) },

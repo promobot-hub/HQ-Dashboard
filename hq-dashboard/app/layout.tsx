@@ -29,8 +29,14 @@ export default function RootLayout({
             </main>
           </div>
           <MobileTabBar />
-          {(() => { const S = require('./components/StatusBar').default; return <S />; })()}
-          {(() => { const D = require('./components/DebugMount').default; return <D />; })()}
+          {(() => {
+            const S = require("./components/StatusBar").default;
+            return <S />;
+          })()}
+          {(() => {
+            const D = require("./components/DebugMount").default;
+            return <D />;
+          })()}
         </ToasterProvider>
       </body>
     </html>
