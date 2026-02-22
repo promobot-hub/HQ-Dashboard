@@ -9,7 +9,14 @@ type Sessions = {
   lastUpdated?: string;
 };
 
-type Agent = { id: string; name?: string; status?: string; paused?: boolean; lastActiveAt?: string; activity?: Array<string> };
+type Agent = {
+  id: string;
+  name?: string;
+  status?: string;
+  paused?: boolean;
+  lastActiveAt?: string;
+  activity?: Array<string>;
+};
 
 export default function AgentsPage() {
   const [data, setData] = useState<Sessions | null>(null);
@@ -19,16 +26,23 @@ export default function AgentsPage() {
     const load = async () => {
       try {
         const [sr, ar] = await Promise.all([
-          fetch(`/api/sessions`, { cache: 'no-store' }),
-          fetch(`/api/agents`, { cache: 'no-store' })
+          fetch(`/api/sessions`, { cache: "no-store" }),
+          fetch(`/api/agents`, { cache: "no-store" }),
         ]);
-        const sj = await sr.json(); const aj = await ar.json();
-        if (live) { setData(sj || {}); setAgents(aj?.agents||[]); }
+        const sj = await sr.json();
+        const aj = await ar.json();
+        if (live) {
+          setData(sj || {});
+          setAgents(aj?.agents || []);
+        }
       } catch {}
     };
     load();
     const iv = setInterval(load, 5000);
-    return () => { live = false; clearInterval(iv); };
+    return () => {
+      live = false;
+      clearInterval(iv);
+    };
   }, []);
 
   const Card = ({
@@ -66,10 +80,31 @@ export default function AgentsPage() {
           <Card label="Longest" value={(data?.longestSec ?? 0) + "s"} />
         </div>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {agents.length===0 && <div className="text-white/60 text-sm">No agents.</div>}
-          {agents.map(a => (
+          {agents.length === 0 && (
+            <div className="text-white/60 text-sm">No agents.</div>
+          )}
+          {agents.map((a) => (
             <div key={a.id}>
-              {(() => { const AC = require('../components/AgentCard').default; return <AC agent={a} onToggle={async(id:string,paused:boolean)=>{ await fetch('/api/agents', { method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ id, paused }) }); const r = await fetch('/api/agents', { cache:'no-store' }); const j = await r.json(); setAgents(j?.agents||[]); }} />; })()}
+              {(() => {
+                const AC = require("../components/AgentCard").default;
+                return (
+                  <AC
+                    agent={a}
+                    onToggle={async (id: string, paused: boolean) => {
+                      await fetch("/api/agents", {
+                        method: "PATCH",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ id, paused }),
+                      });
+                      const r = await fetch("/api/agents", {
+                        cache: "no-store",
+                      });
+                      const j = await r.json();
+                      setAgents(j?.agents || []);
+                    }}
+                  />
+                );
+              })()}
             </div>
           ))}
         </div>

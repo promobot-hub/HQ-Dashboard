@@ -117,7 +117,10 @@ export default function DebugPage() {
           />
         </div>
         <div className="mt-6">
-          {(() => { const LV = require('../components/LogViewer').default; return <LV/>; })()}
+          {(() => {
+            const LV = require("../components/LogViewer").default;
+            return <LV />;
+          })()}
         </div>
       </section>
     </div>

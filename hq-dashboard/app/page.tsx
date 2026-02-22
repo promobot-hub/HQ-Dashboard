@@ -1,6 +1,8 @@
 import React from "react";
 import dynamic from "next/dynamic";
-const ChartsClient = dynamic(() => import("../components/ChartsClient"), { ssr: false });
+const ChartsClient = dynamic(() => import("../components/ChartsClient"), {
+  ssr: false,
+});
 import HeartbeatWidget from "./components/HeartbeatWidget";
 import SelfImproveWidget from "./components/SelfImproveWidget";
 import KanbanBoard from "./components/KanbanBoard";

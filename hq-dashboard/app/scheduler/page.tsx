@@ -15,20 +15,22 @@ export default function SchedulerPage() {
     try {
       const [jr, hr] = await Promise.all([
         fetch(`/api/scheduler/jobs`, { cache: "no-store" }),
-        fetch(`/api/scheduler/history?limit=50`, { cache: "no-store" })
+        fetch(`/api/scheduler/history?limit=50`, { cache: "no-store" }),
       ]);
       const jj = await jr.json();
       const hj = await hr.json();
       setJobs(jj?.jobs || []);
-      const err = (hj?.items||[]).reverse().find((x:any)=> x?.ok===false);
-      setLastError(err? (err.message || err.error || JSON.stringify(err)) : null);
+      const err = (hj?.items || []).reverse().find((x: any) => x?.ok === false);
+      setLastError(
+        err ? err.message || err.error || JSON.stringify(err) : null
+      );
     } catch {}
     setLoading(false);
   };
 
   useEffect(() => {
     load();
-    const iv = setInterval(()=> setTick(t=>t+1), 1000);
+    const iv = setInterval(() => setTick((t) => t + 1), 1000);
     return () => clearInterval(iv);
   }, []);
 
@@ -85,7 +87,14 @@ export default function SchedulerPage() {
             Scheduler
           </h1>
           <div className="flex items-center gap-2">
-            {lastError && <span className="rounded-md bg-red-500/20 text-red-200 px-2 py-0.5 text-[10px] truncate max-w-[220px]" title={lastError}>Last error: {lastError}</span>}
+            {lastError && (
+              <span
+                className="rounded-md bg-red-500/20 text-red-200 px-2 py-0.5 text-[10px] truncate max-w-[220px]"
+                title={lastError}
+              >
+                Last error: {lastError}
+              </span>
+            )}
             <button
               onClick={runNow}
               className="rounded-xl bg-accent-cyan px-3 py-1.5 text-xs font-semibold text-black hover:brightness-110"
@@ -109,8 +118,42 @@ export default function SchedulerPage() {
           </button>
         </div>
         <div className="mt-2 flex flex-wrap items-center gap-2">
-          <button onClick={async()=>{ await fetch('/api/scheduler/jobs', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name: 'Import GitHub Issues', everyMinutes: 15, enabled: true, payload: { action: 'trigger', note: 'import_issues' } }) }); await load(); }} className="rounded-md bg-accent-cyan/20 text-cyan-200 border border-cyan-400/20 px-2 py-1 text-xs hover:bg-accent-cyan/30">Create preset job: Import */15m</button>
-          <button onClick={async()=>{ await fetch('/api/scheduler/jobs', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name: 'Train Skills Activity', everyMinutes: 30, enabled: true, payload: { action: 'trigger', note: 'train_skills' } }) }); await load(); }} className="rounded-md bg-accent-cyan/20 text-cyan-200 border border-cyan-400/20 px-2 py-1 text-xs hover:bg-accent-cyan/30">Create preset job: Train */30m</button>
+          <button
+            onClick={async () => {
+              await fetch("/api/scheduler/jobs", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name: "Import GitHub Issues",
+                  everyMinutes: 15,
+                  enabled: true,
+                  payload: { action: "trigger", note: "import_issues" },
+                }),
+              });
+              await load();
+            }}
+            className="rounded-md bg-accent-cyan/20 text-cyan-200 border border-cyan-400/20 px-2 py-1 text-xs hover:bg-accent-cyan/30"
+          >
+            Create preset job: Import */15m
+          </button>
+          <button
+            onClick={async () => {
+              await fetch("/api/scheduler/jobs", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name: "Train Skills Activity",
+                  everyMinutes: 30,
+                  enabled: true,
+                  payload: { action: "trigger", note: "train_skills" },
+                }),
+              });
+              await load();
+            }}
+            className="rounded-md bg-accent-cyan/20 text-cyan-200 border border-cyan-400/20 px-2 py-1 text-xs hover:bg-accent-cyan/30"
+          >
+            Create preset job: Train */30m
+          </button>
         </div>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
           <input
@@ -189,7 +232,21 @@ export default function SchedulerPage() {
                   <span>
                     Next:{" "}
                     {j.nextRunAt ? new Date(j.nextRunAt).toLocaleString() : "—"}
-                    {j.nextRunAt && (()=>{ const ms = Date.parse(j.nextRunAt) - Date.now(); if (ms>0) { const s=Math.floor(ms/1000); const m=Math.floor(s/60); const ss=s%60; return <span className="ml-1 text-white/50">(in {m}m {ss}s)</span>; } return null; })()}
+                    {j.nextRunAt &&
+                      (() => {
+                        const ms = Date.parse(j.nextRunAt) - Date.now();
+                        if (ms > 0) {
+                          const s = Math.floor(ms / 1000);
+                          const m = Math.floor(s / 60);
+                          const ss = s % 60;
+                          return (
+                            <span className="ml-1 text-white/50">
+                              (in {m}m {ss}s)
+                            </span>
+                          );
+                        }
+                        return null;
+                      })()}
                   </span>
                 </div>
                 <div className="mt-2 flex items-center gap-2">
