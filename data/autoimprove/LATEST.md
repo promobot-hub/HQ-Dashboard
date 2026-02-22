@@ -1,15 +1,15 @@
-=== AutoImproveBot Run @ 2026-02-22T13:55:51Z ===
+=== AutoImproveBot Run @ 2026-02-22T14:57:20Z ===
 
-Commit: 2bce34f
+Commit: f7564c0
 
 Recent commits:
 
 ```
+f7564c0 merge: fix drizzle devDeps for build
+a65a222 fix(build): add drizzle-kit and drizzle-orm as devDeps to satisfy TS in drizzle.config.ts and schema
+7ff65d8 chore(autoimprove): update report [skip ci]
 2bce34f docs(prompts): add Cron_Monitor.md (auto-heal + debug for all cron jobs)
 15b67de build: exclude db/**/* from TS to keep Render build green (Supabase prep files excluded)
-3a159e9 docs(memory): record Website_Verbesserung.md prompt in prompts list
-8512420 docs(prompts): add Website_Verbesserung.md (AutoImproveBot 5m cycle)
-b154843 fix(db-prep): remove top-level supabase import; lazy require to keep build clean when DATA_SOURCE!=supabase
 ```
 
 Open PRs:
