@@ -1,10 +1,7 @@
 {
-  "sessions": [
-    {
-      "id": "main",
-      "agents": 2,
-      "concurrent": 1,
-      "durationSec": 3600
-    }
-  ]
+  "sessions": 3,
+  "agents": 2,
+  "concurrent": 1,
+  "longestSec": 842,
+  "lastUpdated": "2026-02-22T00:10:00.000Z"
 }

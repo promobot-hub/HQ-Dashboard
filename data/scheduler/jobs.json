@@ -1,16 +1,11 @@
-{
-  "jobs": [
-    {
-      "id": "job_init",
-      "name": "Evolution Cycle",
-      "everyMinutes": 10,
-      "enabled": true,
-      "payload": {
-        "action": "trigger"
-      },
-      "createdAt": "2026-02-21T21:39:45.741Z",
-      "lastRunAt": null,
-      "nextRunAt": null
-    }
-  ]
-}
+[
+  {
+    "id": "evolution-cycle",
+    "name": "Evolution Cycle",
+    "cron": "*/10 * * * *",
+    "action": "trigger",
+    "lastRunAt": null,
+    "nextRunAt": null,
+    "enabled": true
+  }
+]

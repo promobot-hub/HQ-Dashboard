@@ -1,10 +1,4 @@
-{
-  "tasks": [
-    {
-      "id": "T-1",
-      "title": "Initial wiring",
-      "status": "done",
-      "progress": 100
-    }
-  ]
-}
+[
+  {"id":"seed-1","title":"Initial Setup","status":"DONE","updatedAt":"2026-02-22T00:10:00.000Z"},
+  {"id":"seed-2","title":"Implement Scheduler","status":"DOING","updatedAt":"2026-02-22T00:11:00.000Z"}
+]
