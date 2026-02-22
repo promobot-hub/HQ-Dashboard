@@ -81,7 +81,7 @@ export default function QuickStats() {
   );
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 w-full md:w-auto">
+    <div className="grid grid-cols-2 sm:grid-cols-6 gap-3 w-full md:w-auto">
       <Stat label="Runs Today" value={data?.runsToday ?? "—"} />
       <Stat label="Total Runs" value={data?.totalRuns ?? "—"} />
       <Stat label="Last Run" value={last} />
@@ -93,6 +93,7 @@ export default function QuickStats() {
           data?.ok || data?.lastRunAt ? "text-emerald-400" : "text-red-400"
         }
       />
+      {(() => { const S = require('./RunsSparkline').default; return <S/>; })()}
     </div>
   );
 }
