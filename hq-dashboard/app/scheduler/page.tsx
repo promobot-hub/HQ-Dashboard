@@ -9,6 +9,8 @@ export default function SchedulerPage() {
   const [action, setAction] = useState("trigger");
   const [tick, setTick] = useState(0);
   const [lastError, setLastError] = useState<string | null>(null);
+  const [histFor, setHistFor] = useState<string | null>(null);
+  const [histItems, setHistItems] = useState<any[]>([]);
 
   const load = async () => {
     setLoading(true);
@@ -276,12 +278,43 @@ export default function SchedulerPage() {
                   >
                     Run now
                   </button>
+                  <button
+                    onClick={async () => {
+                      try { const r = await fetch('/api/scheduler/history?limit=100', { cache:'no-store' }); const jh = await r.json(); const all = jh?.items || []; setHistItems(all.filter((x:any)=>x?.jobId===j.id)); setHistFor(j.id); } catch {}
+                    }}
+                    className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10"
+                  >
+                    History
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         )}
       </section>
+
+      {histFor && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-black/60">
+          <div className="w-[92vw] max-w-2xl rounded-2xl border border-white/10 bg-[#0f0f10] p-4">
+            <div className="flex items-center justify-between">
+              <div className="text-white font-semibold">History for {histFor}</div>
+              <button onClick={()=>{ setHistFor(null); setHistItems([]); }} className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10">Close</button>
+            </div>
+            <ol className="mt-3 max-h-[60vh] overflow-auto space-y-2 pr-1">
+              {histItems.length===0 && <li className="text-white/60 text-sm">No history.</li>}
+              {histItems.map((h:any, i:number)=> (
+                <li key={i} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90 flex items-center gap-3">
+                  <span className={`inline-flex h-6 w-6 items-center justify-center rounded-lg ${h.ok===false?'bg-red-500/20 text-red-300':'bg-emerald-400/20 text-emerald-200'}`}>{h.ok===false?'✗':'✓'}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="truncate">{h.endpoint} • {h.status}</div>
+                    <div className="text-[11px] text-white/50">{h.ts ? new Date(h.ts).toLocaleString() : ''}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
