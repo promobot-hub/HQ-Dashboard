@@ -41,6 +41,10 @@ export default function LogViewer() {
     const a = document.createElement('a'); a.href=url; a.download='logs-export.json'; a.click(); URL.revokeObjectURL(url);
   };
 
+  const copyLink = async (anchorId: string) => {
+    try { await navigator.clipboard.writeText(`${location.origin}${location.pathname}#${anchorId}`); } catch {}
+  };
+
   return (
     <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
       <div className="flex items-center justify-between gap-2">
@@ -58,15 +62,19 @@ export default function LogViewer() {
         </div>
       </div>
       <div ref={listRef} className="mt-3 max-h-[60vh] overflow-auto space-y-2 pr-1">
-        {filtered.map((x,i)=> (
-          <div key={i} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90 flex items-center gap-3">
-            <span className={`inline-flex h-6 w-6 items-center justify-center rounded-lg ${levelOf(x)==='error'?'bg-red-500/20 text-red-300':levelOf(x)==='warn'?'bg-amber-400/20 text-amber-200':'bg-emerald-400/20 text-emerald-200'}`}>{levelOf(x).toUpperCase().slice(0,1)}</span>
-            <div className="flex-1 min-w-0">
-              <div className="truncate">{x.msg || x.message || JSON.stringify(x)}</div>
-              <div className="text-[11px] text-white/50">{x.type || 'log'} • {x.ts ? new Date(x.ts).toLocaleString() : ''}</div>
+        {filtered.map((x,i)=> {
+          const aid = `log-${i}`;
+          return (
+            <div id={aid} key={i} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90 flex items-center gap-3">
+              <span className={`inline-flex h-6 w-6 items-center justify-center rounded-lg ${levelOf(x)==='error'?'bg-red-500/20 text-red-300':levelOf(x)==='warn'?'bg-amber-400/20 text-amber-200':'bg-emerald-400/20 text-emerald-200'}`}>{levelOf(x).toUpperCase().slice(0,1)}</span>
+              <div className="flex-1 min-w-0">
+                <div className="truncate">{x.msg || x.message || JSON.stringify(x)}</div>
+                <div className="text-[11px] text-white/50">{x.type || 'log'} • {x.ts ? new Date(x.ts).toLocaleString() : ''}</div>
+              </div>
+              <button onClick={()=>copyLink(aid)} className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/80 hover:bg-white/10">Link</button>
             </div>
-          </div>
-        ))}
+          );
+        })}
         {filtered.length===0 && <div className="text-white/60 text-sm">No logs.</div>}
       </div>
     </div>

@@ -1,21 +1,7 @@
 {
+  "lastRunISO": "2026-02-22T01:41:00Z",
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
-    "mentions": null,
-    "repo": "2026-02-22T01:37:00Z",
-    "skills": null,
-    "heartbeat": "2026-02-22T01:37:00Z"
+    "cronDenke": "2026-02-22T01:41:00Z"
   },
-  "runs": {
-    "runsToday": 35,
-    "totalRuns": 89
-  },
-  "updatedAt": "2026-02-22T01:37:00Z",
-  "counters": {
-    "runsToday": 35,
-    "lastDay": "2026-02-22",
-    "totalRuns": 89
-  }
+  "notes": "Auto-updated by cron DENKE for quick single-step state tracking."
 }
