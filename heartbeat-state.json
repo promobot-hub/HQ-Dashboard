@@ -1,7 +1,14 @@
 {
-  "lastRunISO": "2026-02-22T01:41:00Z",
   "lastChecks": {
-    "cronDenke": "2026-02-22T01:41:00Z"
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "social": null
   },
-  "notes": "Auto-updated by cron DENKE for quick single-step state tracking."
+  "lastRun": "2026-02-22T01:44:00Z",
+  "kpis": {
+    "microCommit": true,
+    "skillProgress": false,
+    "stateUpdated": true
+  }
 }

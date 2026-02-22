@@ -136,7 +136,7 @@ export default function HeroStatus() {
   }, [status?.lastRunAt]);
 
   return (
-    <section className="rounded-3xl border border-[rgba(255,255,255,0.08)] bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-6 md:p-8">
+    <section className="rounded-3xl border border-[rgba(255,255,255,0.08)] bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-6 md:p-8 animate-[fadeIn_500ms_ease-out]">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-5">
           <div className="relative">
@@ -187,7 +187,7 @@ export default function HeroStatus() {
               <a
                 key={l.href}
                 href={l.href}
-                className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:bg-white/10 text-center"
+                className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:bg-white/10 text-center transition-transform duration-150 hover:scale-[1.03]"
               >
                 {l.label}
               </a>

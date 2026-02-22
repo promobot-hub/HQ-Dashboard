@@ -6,8 +6,8 @@ type Item = { ts?: string; ok?: boolean; message?: string; msg?: string; type?: 
 function levelOf(x: Item) {
   const t = (x.type||'').toLowerCase();
   const m = (x.msg||x.message||'').toLowerCase();
-  if (x.ok===false || /error|fail|timeout|refused|429/.test(m)) return 'error';
-  if (/warn|retry|backoff/.test(m)) return 'warn';
+  if (x.ok===false || /(fatal|exception|error|fail|timeout|refused|429|rate limit)/.test(m)) return 'error';
+  if (/(warn|retry|backoff)/.test(m)) return 'warn';
   return 'info';
 }
 
