@@ -13,7 +13,14 @@ export async function GET() {
       const fr = await fetchRaw("data/tasks.json");
       if (!fr.ok || !fr.text) r = null; else r = new Response(fr.text, { status: 200 });
     }
-    const json = r && r.ok ? await r.json() : { tasks: [] };
+    let json: any;
+    if (r && r.ok) {
+      json = await r.json();
+      if (Array.isArray(json)) json = { tasks: json };
+      if (json && !Array.isArray(json.tasks) && Array.isArray(json.items)) json.tasks = json.items;
+    } else {
+      json = { tasks: [] };
+    }
     return NextResponse.json(json, { status: 200 });
   } catch (e) {
     return NextResponse.json({ updatedAt: null, tasks: [] }, { status: 200 });
