@@ -77,10 +77,15 @@ export default function TaskCard({
           style={{ width: `${pct}%` }}
         />
       </div>
-      {task.labels && task.labels.length>0 && (
+      {task.labels && task.labels.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-1">
-          {task.labels.slice(0,5).map((l) => (
-            <span key={l} className="rounded-md border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-white/70">{l}</span>
+          {task.labels.slice(0, 5).map((l) => (
+            <span
+              key={l}
+              className="rounded-md border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-white/70"
+            >
+              {l}
+            </span>
           ))}
         </div>
       )}
@@ -92,7 +97,13 @@ export default function TaskCard({
         </span>
         <div className="flex items-center gap-2">
           {task.url && (
-            <a href={task.url} target="_blank" className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] hover:bg-white/10">Open</a>
+            <a
+              href={task.url}
+              target="_blank"
+              className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] hover:bg-white/10"
+            >
+              Open
+            </a>
           )}
           <button
             className="rounded-lg border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] hover:bg-white/10"

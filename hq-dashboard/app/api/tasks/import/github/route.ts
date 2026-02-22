@@ -4,7 +4,12 @@ import { ghGetContent, ghPutContent } from "../../../ingest/utils";
 function mapStatus(labels: any[], state: string) {
   const names = (labels || []).map((l: any) => (l?.name || "").toLowerCase());
   if (state === "closed") return "done";
-  if (names.includes("in-progress") || names.includes("doing") || names.includes("wip")) return "progress";
+  if (
+    names.includes("in-progress") ||
+    names.includes("doing") ||
+    names.includes("wip")
+  )
+    return "progress";
   return "pending";
 }
 
@@ -15,33 +20,63 @@ export async function POST(req: NextRequest) {
     const body = await req.json().catch(() => ({}));
     const repo = (body?.repo as string) || repoEnv;
     if (!token || !repo) {
-      return NextResponse.json({ ok: false, error: "GH_TOKEN/GH_REPO or body.repo required" }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "GH_TOKEN/GH_REPO or body.repo required" },
+        { status: 400 }
+      );
     }
     const apiUrl = `https://api.github.com/repos/${repo}/issues?state=all&per_page=100`;
-    const r = await fetch(apiUrl, { headers: { Authorization: `token ${token}`, "User-Agent": "hq-dashboard" }, cache: "no-store" });
+    const r = await fetch(apiUrl, {
+      headers: {
+        Authorization: `token ${token}`,
+        "User-Agent": "hq-dashboard",
+      },
+      cache: "no-store",
+    });
     if (!r.ok) {
       const err = await r.text().catch(() => "");
-      return NextResponse.json({ ok: false, error: `GitHub API ${r.status}: ${err.slice(0,200)}` }, { status: 502 });
+      return NextResponse.json(
+        { ok: false, error: `GitHub API ${r.status}: ${err.slice(0, 200)}` },
+        { status: 502 }
+      );
     }
     const issues = await r.json();
-    const tasks = (issues || []).filter((x: any) => !x.pull_request).map((it: any) => ({
-      id: String(it.number),
-      title: it.title,
-      status: mapStatus(it.labels, it.state),
-      progress: it.state === 'closed' ? 100 : (mapStatus(it.labels, it.state) === 'progress' ? 50 : 10),
-      created_at: it.created_at,
-      updated_at: it.updated_at,
-      url: it.html_url
-    }));
+    const tasks = (issues || [])
+      .filter((x: any) => !x.pull_request)
+      .map((it: any) => ({
+        id: String(it.number),
+        title: it.title,
+        status: mapStatus(it.labels, it.state),
+        progress:
+          it.state === "closed"
+            ? 100
+            : mapStatus(it.labels, it.state) === "progress"
+            ? 50
+            : 10,
+        created_at: it.created_at,
+        updated_at: it.updated_at,
+        url: it.html_url,
+      }));
 
     // persist to repo data/tasks.json using GH_REPO env as target for the dashboard data
     const targetRepo = repoEnv || repo; // prefer configured data repo; fallback to source
     const path = "data/tasks.json";
-    const existing = await ghGetContent(targetRepo, path).catch(()=>null);
+    const existing = await ghGetContent(targetRepo, path).catch(() => null);
     const nextJson = JSON.stringify(tasks, null, 2);
-    const put = await ghPutContent(targetRepo, path, nextJson, `feat(tasks): import ${tasks.length} issues from ${repo}`);
-    return NextResponse.json({ ok: !!put.ok, repo: targetRepo, imported: tasks.length }, { status: 200 });
+    const put = await ghPutContent(
+      targetRepo,
+      path,
+      nextJson,
+      `feat(tasks): import ${tasks.length} issues from ${repo}`
+    );
+    return NextResponse.json(
+      { ok: !!put.ok, repo: targetRepo, imported: tasks.length },
+      { status: 200 }
+    );
   } catch (e: any) {
-    return NextResponse.json({ ok: false, error: String(e?.message || e) }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: String(e?.message || e) },
+      { status: 500 }
+    );
   }
 }
