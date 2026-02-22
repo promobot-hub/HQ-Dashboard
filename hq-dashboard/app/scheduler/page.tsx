@@ -95,6 +95,10 @@ export default function SchedulerPage() {
             Preset: Train Skills */30m
           </button>
         </div>
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <button onClick={async()=>{ await fetch('/api/scheduler/jobs', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name: 'Import GitHub Issues', everyMinutes: 15, enabled: true, payload: { action: 'trigger', note: 'import_issues' } }) }); await load(); }} className="rounded-md bg-accent-cyan/20 text-cyan-200 border border-cyan-400/20 px-2 py-1 text-xs hover:bg-accent-cyan/30">Create preset job: Import */15m</button>
+          <button onClick={async()=>{ await fetch('/api/scheduler/jobs', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name: 'Train Skills Activity', everyMinutes: 30, enabled: true, payload: { action: 'trigger', note: 'train_skills' } }) }); await load(); }} className="rounded-md bg-accent-cyan/20 text-cyan-200 border border-cyan-400/20 px-2 py-1 text-xs hover:bg-accent-cyan/30">Create preset job: Train */30m</button>
+        </div>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
           <input
             value={name}
