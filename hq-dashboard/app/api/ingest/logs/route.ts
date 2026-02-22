@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getRepo, ghGetContent, ghPutContent, verifySignature } from "../utils";
+import { rateLimit } from "../../_utils/rate";
 
 export async function POST(req: NextRequest) {
   try {
+    const rl = rateLimit(req, 'ingest_logs', 60, 60*1000);
+    if (!rl.allowed) return NextResponse.json({ ok:false, error:'rate_limited' }, { status:429, headers: { 'Retry-After': String(rl.retryAfter) } });
     const raw = await req.text();
     const ts = req.headers.get("x-timestamp");
     const sig = req.headers.get("x-signature");

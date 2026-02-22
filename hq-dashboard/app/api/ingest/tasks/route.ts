@@ -6,6 +6,7 @@ import {
   readJson,
   verifySignature,
 } from "../utils";
+import { rateLimit } from "../../_utils/rate";
 
 export async function POST(req: NextRequest) {
   try {
