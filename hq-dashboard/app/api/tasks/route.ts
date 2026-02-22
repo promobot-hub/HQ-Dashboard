@@ -11,13 +11,15 @@ export async function GET() {
     if (!r || !r.ok) {
       // Fallback to GitHub raw snapshot (dual-repo)
       const fr = await fetchRaw("data/tasks.json");
-      if (!fr.ok || !fr.text) r = null; else r = new Response(fr.text, { status: 200 });
+      if (!fr.ok || !fr.text) r = null;
+      else r = new Response(fr.text, { status: 200 });
     }
     let json: any;
     if (r && r.ok) {
       json = await r.json();
       if (Array.isArray(json)) json = { tasks: json };
-      if (json && !Array.isArray(json.tasks) && Array.isArray(json.items)) json.tasks = json.items;
+      if (json && !Array.isArray(json.tasks) && Array.isArray(json.items))
+        json.tasks = json.items;
     } else {
       json = { tasks: [] };
     }
