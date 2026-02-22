@@ -91,7 +91,10 @@ export default function HealthPage() {
                 GitHub Mode
               </span>
             )}
+            <div className="flex items-center gap-2">
+            {(() => { const B = require('../components/DataSourceBadge').default; return <B/>; })()}
             {badge(!!data?.ok)}
+          </div>
           </div>
         </div>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
