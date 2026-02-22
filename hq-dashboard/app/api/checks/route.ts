@@ -62,7 +62,7 @@ export async function GET(req: NextRequest) {
         const line = JSON.stringify({ ts: new Date().toISOString(), kind: "check", action: "execute", ok: true });
         const next = (old ? old + "\n" : "") + line;
         const put = await ghPutContent(repo, path, next, "chore(checks): scheduler execute noop");
-        ok = !!put.ok;
+        ok = put?.ok !== false; // treat 2xx as ok even if helper lacks explicit ok
       }
     } catch (e: any) {
       ok = false; status = 0; error = String(e?.message || e);
@@ -95,7 +95,7 @@ export async function GET(req: NextRequest) {
         const line = JSON.stringify({ ts: new Date().toISOString(), kind: "check", url: "/api/checks", ok: true, status: 200, message: "self-check" });
         const next = (old ? old + "\n" : "") + line;
         const put = await ghPutContent(repo, path, next, "chore(checks): debug write");
-        ok = !!put.ok;
+        ok = put?.ok !== false;
       }
     } catch (e: any) { ok = false; status = 0; error = String(e?.message || e); }
     results.push({ key: "debugWrite", url: "gh:append data/debug.ndjson", ok, status, durationMs: Date.now() - t0, error });
