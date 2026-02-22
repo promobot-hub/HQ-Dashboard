@@ -7,7 +7,8 @@ const RAW_BASE = `https://raw.githubusercontent.com/${DEFAULT_REPO}/main/`;
 async function rawOk(path: string) {
   const t0 = Date.now();
   try {
-    const r = await fetch(RAW_BASE + path, { cache: "no-store" });
+    const bust = Date.now();
+    const r = await fetch(`${RAW_BASE}${path}?t=${bust}`, { cache: "no-store" });
     const ok = r.ok;
     // consume body small
     try { await r.text(); } catch {}
