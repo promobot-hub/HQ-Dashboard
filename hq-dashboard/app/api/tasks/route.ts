@@ -11,7 +11,7 @@ export async function GET() {
     }).catch(() => null);
     if (!r || !r.ok) {
       // Fallback to GitHub raw snapshot
-      r = await fetch(RAW, { cache: "no-store" });
+      r = await fetch(`${RAW}?t=${Date.now()}`, { cache: "no-store" });
     }
     const json = r && r.ok ? await r.json() : { tasks: [] };
     return NextResponse.json(json, { status: 200 });
