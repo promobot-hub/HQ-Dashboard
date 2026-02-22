@@ -49,11 +49,11 @@ export async function POST(req: NextRequest) {
           .filter(Boolean);
         const st = mapStatus(it.labels, it.state);
         const priority = (() => {
-          const l = labels.map((x: string) => x.toLowerCase());
-          if (l.some((x) => ["p0", "p1", "urgent", "high"].includes(x)))
+          const l: string[] = labels.map((x: string) => x.toLowerCase());
+          if (l.some((x: string) => ["p0", "p1", "urgent", "high"].includes(x)))
             return "high";
-          if (l.some((x) => ["p2", "medium"].includes(x))) return "medium";
-          if (l.some((x) => ["p3", "low"].includes(x))) return "low";
+          if (l.some((x: string) => ["p2", "medium"].includes(x))) return "medium";
+          if (l.some((x: string) => ["p3", "low"].includes(x))) return "low";
           return "medium";
         })();
         return {

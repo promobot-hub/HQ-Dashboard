@@ -29,8 +29,8 @@ if [[ "$STATUS" == "ok" ]]; then
   fi
 fi
 
-# Append audit record
-LINE=$(jq -nc --arg ts "$TS" --arg status "$STATUS" --arg msg "$MSG" '{ts:$ts,kind:"audit",status:$status,msg:$msg}')
+# Append audit record (no jq dependency)
+LINE="{\"ts\":\"$TS\",\"kind\":\"audit\",\"status\":\"$STATUS\",\"msg\":\"$MSG\"}"
 printf "%s\n" "$LINE" >> "$APP/data/audit.ndjson"
 
 echo "[$TS] Website audit: $STATUS — $MSG" | tee -a "$LOG_FILE"

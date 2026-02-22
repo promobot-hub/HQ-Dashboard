@@ -12,9 +12,9 @@ export function rateLimit(
   limit: number,
   windowMs: number
 ) {
-  const ip = (req.ip ||
-    req.headers.get("x-forwarded-for") ||
-    "unknown") as string;
+  // Next.js 16: NextRequest has no req.ip; derive from headers and remote addr if exposed
+  const xf = req.headers.get("x-forwarded-for") || "";
+  const ip = (xf.split(",")[0].trim() || "unknown") as string;
   const k = `${ip}:${key}`;
   const now = Date.now();
   const rec = store.get(k) || { count: 0, ts: now };
