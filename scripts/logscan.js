@@ -49,8 +49,8 @@ function writeNdjson(items) {
   fs.appendFileSync(DEBUG_FILE, lines);
 }
 
-function main() {
-  const files = listFiles(CLAW_LOG_DIR).filter(f => fs.statSync(f).isFile());
+async function main() {
+  const files = listFiles(CLAW_LOG_DIR).filter(f => { try { return fs.statSync(f).isFile(); } catch { return false; } });
   const report = { ts: new Date().toISOString(), scanned: [], findings: [] };
   for (const f of files) {
     const tail = readTail(f);
@@ -64,6 +64,14 @@ function main() {
   // write ndjson summary
   writeNdjson(report.findings.length ? report.findings : [{ type:'logscan_ok', msg:'no critical findings' }]);
   console.log(`logscan complete: scanned=${report.scanned.length} files, findings=${report.findings.length}`);
+  // optional Discord alert on findings
+  if (report.findings.length && process.env.DISCORD_WEBHOOK_URL) {
+    try {
+      const { sendAlert } = require('./alert-discord');
+      const top = report.findings.slice(0, 10);
+      await sendAlert(process.env.DISCORD_WEBHOOK_URL, `Findings ${new Date().toISOString()}`, top);
+    } catch (e) { console.error('discord alert failed:', e?.message||e); }
+  }
 }
 
 if (require.main === module) main();
