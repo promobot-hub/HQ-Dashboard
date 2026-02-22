@@ -126,7 +126,10 @@ export default function HealthPage() {
           <Tile label="Last Snapshot" value={data?.lastSnapshot ?? "—"} />
         </div>
         <div className="mt-6">
-          {(() => { const HW = require('../components/HealthWidget').default; return <HW/>; })()}
+          {(() => {
+            const HW = require("../components/HealthWidget").default;
+            return <HW />;
+          })()}
         </div>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3">

@@ -14,26 +14,26 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   themeColor: "#0a0a0a",
   openGraph: {
-    type: 'website',
-    title: 'Clawbot HQ',
-    description: 'Live status and controls for Clawbot HQ Dashboard',
-    url: 'https://hq-dashboard.example.com/',
-    images: [{ url: '/og.png', width: 1200, height: 630 }],
+    type: "website",
+    title: "Clawbot HQ",
+    description: "Live status and controls for Clawbot HQ Dashboard",
+    url: "https://hq-dashboard.example.com/",
+    images: [{ url: "/og.png", width: 1200, height: 630 }],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Clawbot HQ',
-    description: 'Live status and controls for Clawbot HQ Dashboard',
-    images: ['/og.png'],
+    card: "summary_large_image",
+    title: "Clawbot HQ",
+    description: "Live status and controls for Clawbot HQ Dashboard",
+    images: ["/og.png"],
   },
   alternates: {
-    canonical: '/',
+    canonical: "/",
     languages: {
-      'en-US': '/',
-      'de-DE': '/',
+      "en-US": "/",
+      "de-DE": "/",
     },
   },
-  metadataBase: new URL('https://hq-dashboard.example.com'),
+  metadataBase: new URL("https://hq-dashboard.example.com"),
 };
 
 export default function RootLayout({
