@@ -1,13 +1,5 @@
 {
-  "lastRun": "2026-02-22T00:37:00Z",
-  "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
-    "social": null
-  },
-  "kpis": {
-    "microCommit": true,
-    "skillProgress": false
-  }
+  "lastCron": 1771720740,
+  "lastUpdated": "2026-02-22T00:39:00Z",
+  "notes": "Auto-updated by cron micro-commit: keep cadence lean."
 }
