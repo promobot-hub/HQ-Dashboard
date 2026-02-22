@@ -1,9 +1,9 @@
 {
   "lastChecks": {
-    "cron": "2026-02-22T00:57:00Z"
-  },
-  "meta": {
-    "source": "cron: DENKE",
-    "note": "Auto-updated by cron micro-commit to track last cron run."
+    "cronQuick": {
+      "iso": "2026-02-22T00:59:00Z",
+      "source": "cron:065329dc-eeff-4c85-a259-16730f4e8319",
+      "note": "Quick one-step maintenance run: recorded timestamp for cron quick-check."
+    }
   }
 }
