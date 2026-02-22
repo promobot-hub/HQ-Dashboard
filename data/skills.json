@@ -1,22 +1,4 @@
-{
-  "skills": [
-    {
-      "id": "email",
-      "name": "Email",
-      "level": 94,
-      "mastered": true,
-      "capabilities": [
-        {
-          "key": "recv",
-          "label": "Empfangen",
-          "value": 247
-        },
-        {
-          "key": "send",
-          "label": "Senden",
-          "value": "94%"
-        }
-      ]
-    }
-  ]
-}
+[
+  {"name":"GitHub Management","level":3,"lastTrainedAt":"2026-02-22T00:05:00.000Z"},
+  {"name":"Next.js","level":4,"lastTrainedAt":"2026-02-22T00:06:00.000Z"}
+]

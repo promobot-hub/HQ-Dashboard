@@ -1,6 +1,7 @@
 {
-  "cpu": 23.4,
-  "memory": 57.8,
-  "disk": 61,
-  "active_tasks": 1
+  "cpu": 17,
+  "memUsedMB": 512,
+  "diskUsedPct": 23,
+  "activeTasks": 2,
+  "timestamp": "2026-02-22T00:10:00.000Z"
 }

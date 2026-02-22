@@ -1,6 +1,8 @@
 {
   "ok": true,
-  "lastRunAt": "2026-02-21T21:22:22.680Z",
-  "runsToday": 1,
-  "totalRuns": 1
+  "lastRunAt": "2026-02-22T00:10:00.000Z",
+  "proxyLatencyMs": 42,
+  "heartbeatDirect": false,
+  "statusFallback": true,
+  "logsProxy": false
 }
