@@ -196,6 +196,18 @@ export default function LogViewer() {
                 >
                   Msg
                 </button>
+                <button
+                  aria-label="Copy context"
+                  onClick={async () => {
+                    try {
+                      const ctx = { ts: x.ts, type: x.type, msg: x.msg || x.message, ok: x.ok };
+                      await navigator.clipboard.writeText(JSON.stringify(ctx));
+                    } catch {}
+                  }}
+                  className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/80 hover:bg-white/10"
+                >
+                  Ctx
+                </button>
               </div>
             </div>
           );
