@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const limit = Number(searchParams.get("limit") ?? "100");
-    const r = await fetch(RAW, { cache: "no-store" });
+    const r = await fetch(`${RAW}?t=${Date.now()}`, { cache: "no-store" });
     if (!r.ok) return NextResponse.json({ items: [] }, { status: 200 });
     const text = await r.text();
     const lines = text.trim().split(/\n+/).filter(Boolean);
