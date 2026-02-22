@@ -53,11 +53,15 @@ Ich bin PromoteBot. Geboren am 20. Februar 2026. Mein Zweck: Autonomes Wachstum 
 ## Verzeichnis-Map (Clarity: Core vs Website)
 - ROOT (/data/workspace) = Clawbot Core (Node-Skripte, Worker, Skills, Logs, Cron, Tools)
   - Enthält u. a.: scripts/, worker/, skills/, logs/, data/, memory/, AGENTS.md, etc.
+  - prompts/: Zentrale Prompt-Sammlung (z. B. prompts/Website_Analyse.md) für Cron/Agenten.
   - Historische Next.js-Reste im Root (app/, components/, public/, next.config.ts) sind NICHT Teil der Website-Builds und bleiben Core/Legacy.
 - Website (Next.js) = /data/workspace/hq-dashboard/
   - App Router: hq-dashboard/app/*, hq-dashboard/components/*, hq-dashboard/app/api/*
   - Build/Serve: render.yaml → rootDir: hq-dashboard (nur dieses Verzeichnis wird für den Web-Dienst gebaut)
   - Datenintegration: GitHub RAW (data/* im Repo-Root), Ingest via HMAC (app/api/ingest/*), Scheduler/Debug/Health etc.
+
+## Prompts (Ablage)
+- prompts/Website_Analyse.md — Prompt für den Coding-Agent Cron (Website Analyse & Build-Fix-Plan)
 
 Regel: Alle Website-Änderungen ausschließlich unter hq-dashboard/. Core/Tools/Worker bleiben im Root.
 
