@@ -200,7 +200,12 @@ export default function LogViewer() {
                   aria-label="Copy context"
                   onClick={async () => {
                     try {
-                      const ctx = { ts: x.ts, type: x.type, msg: x.msg || x.message, ok: x.ok };
+                      const ctx = {
+                        ts: x.ts,
+                        type: x.type,
+                        msg: x.msg || x.message,
+                        ok: x.ok,
+                      };
                       await navigator.clipboard.writeText(JSON.stringify(ctx));
                     } catch {}
                   }}

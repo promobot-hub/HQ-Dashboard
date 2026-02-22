@@ -52,7 +52,8 @@ export async function POST(req: NextRequest) {
           const l: string[] = labels.map((x: string) => x.toLowerCase());
           if (l.some((x: string) => ["p0", "p1", "urgent", "high"].includes(x)))
             return "high";
-          if (l.some((x: string) => ["p2", "medium"].includes(x))) return "medium";
+          if (l.some((x: string) => ["p2", "medium"].includes(x)))
+            return "medium";
           if (l.some((x: string) => ["p3", "low"].includes(x))) return "low";
           return "medium";
         })();
