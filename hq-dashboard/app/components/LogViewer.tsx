@@ -32,6 +32,17 @@ export default function LogViewer() {
     return (items||[]).filter(x => (lvl==='all' || levelOf(x)===lvl) && (!qq || JSON.stringify(x).toLowerCase().includes(qq)));
   }, [items, q, lvl]);
 
+  useEffect(() => {
+    const hash = typeof window!=='undefined' ? window.location.hash.replace('#','') : '';
+    if (!hash) return;
+    const el = document.getElementById(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.classList.add('ring-2','ring-accent-cyan/40');
+      setTimeout(()=> el.classList.remove('ring-2','ring-accent-cyan/40'), 2000);
+    }
+  }, [filtered]);
+
   const copy = async () => {
     try { await navigator.clipboard.writeText(JSON.stringify(filtered, null, 2)); } catch {}
   };
