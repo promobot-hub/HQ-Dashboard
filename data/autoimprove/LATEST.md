@@ -1,15 +1,15 @@
-=== AutoImproveBot Run @ 2026-02-22T17:53:53Z ===
+=== AutoImproveBot Run @ 2026-02-22T19:04:27Z ===
 
-Commit: f7faafa
+Commit: 2488a3c
 
 Recent commits:
 
 ```
-f7faafa chore(heartbeat): auto-update state/logs/badges [skip ci]
-93da0c1 chore(autoimprove): update report [skip ci]
-5475662 chore(heartbeat): auto-update state/logs/badges [skip ci]
-0036540 chore(heartbeat): sync hq-dashboard subtree [skip ci]
-e622f6d chore(autoimprove): update report [skip ci]
+2488a3c chore(heartbeat): auto-update state/logs/badges [skip ci]
+20b7285 chore(heartbeat): sync hq-dashboard subtree [skip ci]
+1f79399 fix(cron+health): enable local fallbacks for cron ok + health aggregation (#11)
+408477a chore(heartbeat): auto-update state/logs/badges [skip ci]
+fd8cb00 chore(heartbeat): auto-update state/logs/badges [skip ci]
 ```
 
 Open PRs:
