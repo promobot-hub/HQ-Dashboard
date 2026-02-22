@@ -4,6 +4,12 @@
       "iso": "2026-02-22T01:00:00Z",
       "source": "cron:065329dc-eeff-4c85-a259-16730f4e8319",
       "note": "Quick one-step maintenance run: recorded timestamp for cron quick-check."
-    }
+    },
+    "heartbeat": "2026-02-22T01:04:36.122Z"
+  },
+  "counters": {
+    "runsToday": 1,
+    "lastDay": "2026-02-22",
+    "totalRuns": 1
   }
 }
