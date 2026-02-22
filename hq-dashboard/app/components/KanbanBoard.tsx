@@ -273,19 +273,24 @@ export default function KanbanBoard() {
             role="group"
             aria-label="Filter tasks"
           >
-          {(["all", "pending", "progress", "done"] as const).map((k) => (
-            <button
-              key={k}
-              onClick={() => setFilter(k)}
-              aria-pressed={filter === k}
-              className={`rounded-md border border-[rgba(255,255,255,0.08)] bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10 ${
-                filter === k ? "ring-1 ring-accent-cyan/40" : ""
-              }`}
-            >
-              {k[0].toUpperCase() + k.slice(1)}
-            </button>
-          ))}
-          <select value={prio} onChange={e=>setPrio(e.target.value as any)} className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80">
+            {(["all", "pending", "progress", "done"] as const).map((k) => (
+              <button
+                key={k}
+                onClick={() => setFilter(k)}
+                aria-pressed={filter === k}
+                className={`rounded-md border border-[rgba(255,255,255,0.08)] bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10 ${
+                  filter === k ? "ring-1 ring-accent-cyan/40" : ""
+                }`}
+              >
+                {k[0].toUpperCase() + k.slice(1)}
+              </button>
+            ))}
+          </div>
+          <select
+            value={prio}
+            onChange={(e) => setPrio(e.target.value as any)}
+            className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80"
+          >
             <option value="all">All Priorities</option>
             <option value="high">High</option>
             <option value="medium">Medium</option>
