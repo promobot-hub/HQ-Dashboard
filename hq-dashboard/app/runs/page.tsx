@@ -43,6 +43,7 @@ export default function RunsPage() {
   const [items, setItems] = useState<LogItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
+  const [range, setRange] = useState<'24h'|'7d'>('24h');
 
   useEffect(() => {
     let live = true;
@@ -67,15 +68,18 @@ export default function RunsPage() {
 
   const filtered = useMemo(() => {
     const qq = q.trim().toLowerCase();
-    const arr = (items || []).filter((x) =>
-      ["snapshot", "improve", "kanban", "status"].includes(
-        String(x.type || "").toLowerCase()
-      )
-    );
+    const now = Date.now();
+    const win = range==='24h' ? 24*60*60*1000 : 7*24*60*60*1000;
+    const arr = (items || []).filter((x) => {
+      const t = x.ts ? Date.parse(String(x.ts)) : 0;
+      const inWin = t && (now - t) < win;
+      const typOk = ["snapshot", "improve", "kanban", "status"].includes(String(x.type || "").toLowerCase());
+      return inWin && typOk;
+    });
     return qq
       ? arr.filter((x) => JSON.stringify(x).toLowerCase().includes(qq))
       : arr;
-  }, [items, q]);
+  }, [items, q, range]);
 
   const stats = useMemo(() => {
     const total = filtered.length;
@@ -96,12 +100,18 @@ export default function RunsPage() {
           <h1 className="text-white text-2xl font-extrabold tracking-tight">
             Runs
           </h1>
-          <input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Search runs…"
-            className="w-full sm:w-64 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90 placeholder:text-white/40"
-          />
+          <div className="flex items-center gap-2">
+            <select value={range} onChange={e=>setRange(e.target.value as any)} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90">
+              <option value="24h">Last 24h</option>
+              <option value="7d">Last 7d</option>
+            </select>
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Search runs…"
+              className="w-full sm:w-64 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90 placeholder:text-white/40"
+            />
+          </div>
         </div>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
