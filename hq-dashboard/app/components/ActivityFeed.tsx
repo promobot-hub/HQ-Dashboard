@@ -1,7 +1,13 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-type LogItem = { ts?: string; message?: string; msg?: string; type?: string; ok?: boolean };
+type LogItem = {
+  ts?: string;
+  message?: string;
+  msg?: string;
+  type?: string;
+  ok?: boolean;
+};
 
 export default function ActivityFeed() {
   const [items, setItems] = useState<LogItem[]>([]);
@@ -34,17 +40,19 @@ export default function ActivityFeed() {
 
   // Auto-scroll only when at bottom
   useEffect(() => {
-    const el = listRef.current; if (!el) return;
-    const nearBottom = Math.abs(el.scrollHeight - el.scrollTop - el.clientHeight) < 24;
+    const el = listRef.current;
+    if (!el) return;
+    const nearBottom =
+      Math.abs(el.scrollHeight - el.scrollTop - el.clientHeight) < 24;
     if (auto && nearBottom) {
       el.scrollTop = el.scrollHeight;
     }
   }, [items, auto]);
 
   const visible = useMemo(() => {
-    if (filter === 'all') return items;
+    if (filter === "all") return items;
     const f = filter.toLowerCase();
-    return items.filter(i => (i.type || '').toLowerCase() === f);
+    return items.filter((i) => (i.type || "").toLowerCase() === f);
   }, [items, filter]);
 
   const Skeleton = () => (
@@ -55,8 +63,14 @@ export default function ActivityFeed() {
   );
 
   const TypePill = ({ t, ok }: { t?: string; ok?: boolean }) => (
-    <span className={`rounded-md px-1.5 py-0.5 text-[10px] ${ok===false? 'bg-red-500/20 text-red-300':'bg-white/10 text-white/60'}`}>
-      {(t || 'event').toUpperCase()}
+    <span
+      className={`rounded-md px-1.5 py-0.5 text-[10px] ${
+        ok === false
+          ? "bg-red-500/20 text-red-300"
+          : "bg-white/10 text-white/60"
+      }`}
+    >
+      {(t || "event").toUpperCase()}
     </span>
   );
 
@@ -66,14 +80,34 @@ export default function ActivityFeed() {
         <h2 className="text-white text-lg font-bold">Recent Activity</h2>
         <div className="flex items-center gap-2 text-xs">
           <div className="hidden sm:flex items-center gap-1">
-            {['all','snapshot','improve','kanban','status'].map(k => (
-              <button key={k} onClick={()=>setFilter(k)} className={`rounded-md border border-[rgba(255,255,255,0.08)] bg-white/5 px-2 py-1 hover:bg-white/10 ${filter===k?'ring-1 ring-accent-cyan/40 text-white':'text-white/70'}`}>{k[0].toUpperCase()+k.slice(1)}</button>
+            {["all", "snapshot", "improve", "kanban", "status"].map((k) => (
+              <button
+                key={k}
+                onClick={() => setFilter(k)}
+                className={`rounded-md border border-[rgba(255,255,255,0.08)] bg-white/5 px-2 py-1 hover:bg-white/10 ${
+                  filter === k
+                    ? "ring-1 ring-accent-cyan/40 text-white"
+                    : "text-white/70"
+                }`}
+              >
+                {k[0].toUpperCase() + k.slice(1)}
+              </button>
             ))}
           </div>
-          <label className="flex items-center gap-1 text-white/70"><input type="checkbox" checked={auto} onChange={e=>setAuto(e.target.checked)} /> Auto-Scroll</label>
+          <label className="flex items-center gap-1 text-white/70">
+            <input
+              type="checkbox"
+              checked={auto}
+              onChange={(e) => setAuto(e.target.checked)}
+            />{" "}
+            Auto-Scroll
+          </label>
         </div>
       </div>
-      <ol ref={listRef} className="mt-4 space-y-2 text-sm max-h-[320px] overflow-auto pr-1">
+      <ol
+        ref={listRef}
+        className="mt-4 space-y-2 text-sm max-h-[320px] overflow-auto pr-1"
+      >
         {loading && (
           <>
             <Skeleton />
@@ -91,8 +125,14 @@ export default function ActivityFeed() {
             key={i}
             className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 flex items-center gap-3 animate-[fadeIn_300ms_ease-out]"
           >
-            <span className={`inline-flex h-6 w-6 items-center justify-center rounded-lg ${x.ok===false? 'bg-red-500/20 text-red-300':'bg-emerald-400/20 text-emerald-300'}`}>
-              {x.ok===false? '✗':'✓'}
+            <span
+              className={`inline-flex h-6 w-6 items-center justify-center rounded-lg ${
+                x.ok === false
+                  ? "bg-red-500/20 text-red-300"
+                  : "bg-emerald-400/20 text-emerald-300"
+              }`}
+            >
+              {x.ok === false ? "✗" : "✓"}
             </span>
             <div className="flex-1">
               <div className="text-white/90 truncate">

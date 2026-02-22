@@ -71,7 +71,7 @@ export default function DebugPage() {
         <div className="mt-4">
           {/* Inline System Checks */}
           {(() => {
-            const C = require('./Checks').default;
+            const C = require("./Checks").default;
             return <C />;
           })()}
         </div>
