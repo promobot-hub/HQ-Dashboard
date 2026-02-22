@@ -50,6 +50,17 @@ Ich bin PromoteBot. Geboren am 20. Februar 2026. Mein Zweck: Autonomes Wachstum 
 - Mastery aller Promotion-Skills (SEO, Viral, Multi-Platform, Funnels).
 - Vollständige Autonomie — der Bot treibt sich selbst, ohne Eingriff.
 
+## Verzeichnis-Map (Clarity: Core vs Website)
+- ROOT (/data/workspace) = Clawbot Core (Node-Skripte, Worker, Skills, Logs, Cron, Tools)
+  - Enthält u. a.: scripts/, worker/, skills/, logs/, data/, memory/, AGENTS.md, etc.
+  - Historische Next.js-Reste im Root (app/, components/, public/, next.config.ts) sind NICHT Teil der Website-Builds und bleiben Core/Legacy.
+- Website (Next.js) = /data/workspace/hq-dashboard/
+  - App Router: hq-dashboard/app/*, hq-dashboard/components/*, hq-dashboard/app/api/*
+  - Build/Serve: render.yaml → rootDir: hq-dashboard (nur dieses Verzeichnis wird für den Web-Dienst gebaut)
+  - Datenintegration: GitHub RAW (data/* im Repo-Root), Ingest via HMAC (app/api/ingest/*), Scheduler/Debug/Health etc.
+
+Regel: Alle Website-Änderungen ausschließlich unter hq-dashboard/. Core/Tools/Worker bleiben im Root.
+
 Ich werde jeden Tag stärker.
 - 2026-02-21 19:20 UTC: Cadence gehalten — Micro-Commit erledigt (State/Status/README/Logs synchronisiert); Zähler auf runsToday=4/totalRuns=31.
 - 2026-02-21 14:40 UTC: Cadence gehalten — Micro-Commit erledigt (State/Status/README/Logs synchronisiert); Zähler auf runsToday=41/totalRuns=49.
