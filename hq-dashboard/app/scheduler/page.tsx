@@ -46,13 +46,25 @@ export default function SchedulerPage() {
 
   // Presets
   const presetImportIssues = async () => {
-    setName("Import GitHub Issues"); setEvery(15); setAction("trigger");
+    setName("Import GitHub Issues");
+    setEvery(15);
+    setAction("trigger");
     // Fire an initial import using data repo
-    await fetch(`/api/tasks/import/github`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
+    await fetch(`/api/tasks/import/github`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
   };
   const presetTrainSkills = async () => {
-    setName("Train Skills Activity"); setEvery(30); setAction("trigger");
-    await fetch(`/api/skills/train`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
+    setName("Train Skills Activity");
+    setEvery(30);
+    setAction("trigger");
+    await fetch(`/api/skills/train`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
   };
 
   return (
@@ -70,8 +82,18 @@ export default function SchedulerPage() {
           </button>
         </div>
         <div className="mt-3 flex flex-wrap items-center gap-2">
-          <button onClick={presetImportIssues} className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-white/80 hover:bg-white/20">Preset: Import Issues */15m</button>
-          <button onClick={presetTrainSkills} className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-white/80 hover:bg-white/20">Preset: Train Skills */30m</button>
+          <button
+            onClick={presetImportIssues}
+            className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-white/80 hover:bg-white/20"
+          >
+            Preset: Import Issues */15m
+          </button>
+          <button
+            onClick={presetTrainSkills}
+            className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-white/80 hover:bg-white/20"
+          >
+            Preset: Train Skills */30m
+          </button>
         </div>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
           <input

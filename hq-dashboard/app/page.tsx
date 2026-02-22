@@ -31,7 +31,10 @@ export default function Home() {
               <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs">
                 <span className="inline-block h-2 w-2 rounded-full bg-[#22d3ee] animate-pulse shadow-[0_0_0_2px_rgba(34,211,238,0.2),0_0_40px_rgba(168,85,247,0.25)]"></span>
                 <span className="text-white/70">Heartbeat healthy</span>
-                {(() => { const B = require('./components/DataSourceBadge').default; return <B/>; })()}
+                {(() => {
+                  const B = require("./components/DataSourceBadge").default;
+                  return <B />;
+                })()}
               </div>
             </div>
           </div>
