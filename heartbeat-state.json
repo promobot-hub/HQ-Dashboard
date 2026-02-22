@@ -5,11 +5,17 @@
     "weather": null,
     "mentions": null,
     "repo": "2026-02-22T01:34:00Z",
-    "skills": null
+    "skills": null,
+    "heartbeat": "2026-02-22T01:36:48.890Z"
   },
   "runs": {
     "runsToday": 34,
     "totalRuns": 88
   },
-  "updatedAt": "2026-02-22T01:34:00Z"
+  "updatedAt": "2026-02-22T01:34:00Z",
+  "counters": {
+    "runsToday": 1,
+    "lastDay": "2026-02-22",
+    "totalRuns": 1
+  }
 }
