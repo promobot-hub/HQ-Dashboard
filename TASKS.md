@@ -1,10 +1,15 @@
 # TASKS.md - PromoteBot Backlog (Micro-commit friendly)
 
 ## TODO (next 24-48h)
-- GitHub Issues → Tasks Importer: /api/tasks/import/github?repo=<owner/repo> + Scheduler job */15m (action: importTasks)
-- Skills Aktivitätspulse: /api/skills/train sammelt Commits/PR‑Titel; UI zeigt „Letzte Aktivität“ + Level‑Pulse
-- Admin Seed Endpoint: /api/admin/seed → schreibt minimale data/* in GH_REPO (wenn leer), nur mit GH_TOKEN/GH_REPO
+- [x] GitHub Issues → Tasks Importer: /api/tasks/import/github (POST {repo}) + persist; optional Scheduler */15m (action: importTasks)
+- [x] Skills Aktivitätspulse: /api/skills/train (optional body.repo) → activity/lastTrainedAt
+- [x] Admin Seed Endpoint: /api/admin/seed → minimale data/* in GH_REPO (guarded)
 - Optional: Fallback-Badge in UI anzeigen, wenn Daten aus Fallback‑Repo statt ENV kommen (Transparenz)
+
+## NEXT (pick 1-2)
+- Add Scheduler job creator UI button presets (Import Issues */15m, Train Skills */30m)
+- Show data source badge (ENV vs Fallback) on pages consuming RAW
+- Improve Kanban drag UX on mobile (visual ghost, haptics)
 
 ## Roadmap – Scheduler + Observability (2026-02-21)
 - [x] Deploy/Cache: Force redeploy + edge cache break so new /api/scheduler/* and /scheduler are live
