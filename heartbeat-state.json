@@ -1,6 +1,6 @@
 {
   "lastChecks": {
-    "cron_denke": "2026-02-22T09:59:00Z"
+    "cron_denke": "2026-02-22T10:01:00Z"
   },
   "notes": "Timestamps are ISO8601 to avoid epoch drift; convert as needed."
 }
