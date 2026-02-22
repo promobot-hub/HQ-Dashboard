@@ -1,18 +1,15 @@
 {
-  "lastRunUtc": "2026-02-22T01:30:00Z",
   "lastChecks": {
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null
-  },
-  "kpis": {
-    "microCommit": true,
-    "skillProgress": false,
-    "stateUpdated": true
+    "mentions": null,
+    "repo": null,
+    "skills": null
   },
   "runs": {
-    "runsToday": 31,
-    "totalRuns": 85
-  }
+    "runsToday": 0,
+    "totalRuns": 0
+  },
+  "updatedAt": "2026-02-22T01:30:00Z"
 }

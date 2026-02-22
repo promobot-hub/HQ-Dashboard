@@ -45,6 +45,7 @@ export default function SkillsPage() {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [level, setLevel] = useState<number>(0);
   const [loading, setLoading] = useState(true);
+  const [sort, setSort] = useState<'name'|'level'|'trained'>('level');
 
   useEffect(() => {
     let live = true;
@@ -87,6 +88,10 @@ export default function SkillsPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
       });
+      // soft refresh after short delay
+      setTimeout(async ()=>{
+        try { const r = await fetch(`/api/skills`, { cache:'no-store' }); const j = await r.json(); const list: Skill[] = Array.isArray(j?.skills)?j.skills:(j?.items||[]); setSkills(list); } catch {}
+      }, 700);
     } catch {}
   };
 
@@ -95,15 +100,23 @@ export default function SkillsPage() {
     setActiveId(id);
   };
 
+  const sorted = useMemo(()=>{
+    const arr = [...skills];
+    if (sort==='name') arr.sort((a,b)=> (a.name||'').localeCompare(b.name||''));
+    else if (sort==='level') arr.sort((a,b)=> (Number(b.level||0) - Number(a.level||0)));
+    else if (sort==='trained') arr.sort((a,b)=> (new Date(b.lastTrainedAt||0).getTime() - new Date(a.lastTrainedAt||0).getTime()));
+    return arr;
+  }, [skills, sort]);
+
   const grid = useMemo(
     () => (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {skills.map((s) => (
+        {sorted.map((s) => (
           <SkillCard key={s.id} skill={s} onTrain={onTrain} onView={onView} />
         ))}
       </div>
     ),
-    [skills]
+    [sorted]
   );
 
   return (
@@ -118,7 +131,15 @@ export default function SkillsPage() {
               Clawbot Intelligence Level & training capabilities
             </p>
           </div>
-          <LevelRing value={level} />
+          <div className="flex items-center gap-4">
+            <div className="text-white/70 text-sm hidden sm:block">Sort by</div>
+            <select value={sort} onChange={e=>setSort(e.target.value as any)} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90">
+              <option value="level">Level</option>
+              <option value="name">Name</option>
+              <option value="trained">Last Trained</option>
+            </select>
+            <LevelRing value={level} />
+          </div>
         </div>
       </section>
 
