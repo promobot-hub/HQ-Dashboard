@@ -22,10 +22,13 @@ export default function AgentCard({ agent, onToggle }: { agent: Agent; onToggle:
     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 min-w-0">
-          <span className={`inline-block h-2.5 w-2.5 rounded-full ${ok? 'bg-emerald-400':'bg-amber-400'}`} />
-          <div className="text-white font-semibold truncate">{agent.name || agent.id}</div>
+          <span className={`inline-block h-2.5 w-2.5 rounded-full ${ok? 'bg-emerald-400 animate-pulse':'bg-amber-400'}`} />
+          <div className="text-white font-semibold truncate flex items-center gap-2">
+            {agent.name || agent.id}
+            {agent.paused && <span className="rounded-md bg-amber-400/20 text-amber-200 px-1.5 py-0.5 text-[10px]">PAUSED</span>}
+          </div>
         </div>
-        <button onClick={()=>onToggle(agent.id, !agent.paused)} className={`rounded-md px-2 py-1 text-xs ${agent.paused? 'bg-emerald-400/20 text-emerald-200 border border-emerald-400/20':'bg-red-500/20 text-red-200 border border-red-500/20'}`}>{agent.paused? 'Resume':'Pause'}</button>
+        <button aria-label={agent.paused? 'Resume agent':'Pause agent'} onClick={()=>onToggle(agent.id, !agent.paused)} className={`rounded-md px-2 py-1 text-xs ${agent.paused? 'bg-emerald-400/20 text-emerald-200 border border-emerald-400/20':'bg-red-500/20 text-red-200 border border-red-500/20'}`}>{agent.paused? 'Resume':'Pause'}</button>
       </div>
       <div className="mt-1 text-white/60 text-xs">Last Active: {agent.lastActiveAt? new Date(agent.lastActiveAt).toLocaleString() : '—'}</div>
       <div className="mt-2"><Heatmap activity={agent.activity} /></div>
