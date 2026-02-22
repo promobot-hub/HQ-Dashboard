@@ -14,10 +14,12 @@ import { useToaster } from "./Toaster";
 function Column({
   title,
   kind,
+  count,
   children,
 }: {
   title: string;
   kind: TaskItem["status"];
+  count: number;
   children: React.ReactNode;
 }) {
   return (
@@ -72,9 +74,14 @@ function Column({
           >
             {title}
           </div>
+          <span className="rounded-md bg-white/10 px-2 py-0.5 text-[10px] text-white/70">{count}</span>
         </div>
         <div data-list={kind} className="space-y-2">
-          {children}
+          {count === 0 ? (
+            <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-white/60 text-sm">No items</div>
+          ) : (
+            children
+          )}
         </div>
       </div>
     </section>
@@ -90,11 +97,19 @@ export default function KanbanBoard() {
   const [query, setQuery] = useState("");
   const mountedRef = useRef(false);
 
+  const lastErr = useRef<number>(0);
   const fetchTasks = useCallback(async () => {
     const r = await fetch(`/api/tasks`, {
       cache: "no-store",
-    });
-    if (!r.ok) throw new Error("tasks fetch failed");
+    }).catch(() => null);
+    if (!r || !r.ok) {
+      const now = Date.now();
+      if (now - lastErr.current > 8000) {
+        toaster.push({ message: `Failed to load tasks`, ttl: 2000 });
+        lastErr.current = now;
+      }
+      return;
+    }
     const j = await r.json();
     const items: TaskItem[] = (j?.tasks ?? []).map((t: any) => ({
       id: String(t.id ?? t.title ?? Math.random().toString(36).slice(2, 8)),
@@ -270,17 +285,17 @@ export default function KanbanBoard() {
         />
       </div>
       <div className="grid grid-cols-12 gap-4">
-        <Column title="Pending" kind="pending">
+        <Column title="Pending" kind="pending" count={byCol.pending.length}>
           {byCol.pending.map((t) => (
             <TaskCard key={t.id} task={t} onViewLog={viewLog} />
           ))}
         </Column>
-        <Column title="In Progress" kind="progress">
+        <Column title="In Progress" kind="progress" count={byCol.progress.length}>
           {byCol.progress.map((t) => (
             <TaskCard key={t.id} task={t} onViewLog={viewLog} />
           ))}
         </Column>
-        <Column title="Done" kind="done">
+        <Column title="Done" kind="done" count={byCol.done.length}>
           {byCol.done.map((t) => (
             <TaskCard key={t.id} task={t} onViewLog={viewLog} />
           ))}
