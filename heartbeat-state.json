@@ -1,6 +1,9 @@
 {
   "lastChecks": {
-    "heartbeat": "2026-02-22T00:55:00Z",
-    "cronDenke": "2026-02-22T00:55:00Z"
+    "cron": "2026-02-22T00:57:00Z"
+  },
+  "meta": {
+    "source": "cron: DENKE",
+    "note": "Auto-updated by cron micro-commit to track last cron run."
   }
 }
