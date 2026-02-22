@@ -93,7 +93,10 @@ export default function QuickStats() {
           data?.ok || data?.lastRunAt ? "text-emerald-400" : "text-red-400"
         }
       />
-      {(() => { const S = require('./RunsSparkline').default; return <S/>; })()}
+      {(() => {
+        const S = require("./RunsSparkline").default;
+        return <S />;
+      })()}
     </div>
   );
 }

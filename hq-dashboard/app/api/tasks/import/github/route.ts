@@ -44,25 +44,28 @@ export async function POST(req: NextRequest) {
     const tasks = (issues || [])
       .filter((x: any) => !x.pull_request)
       .map((it: any) => {
-        const labels = (it.labels || []).map((l:any)=>l?.name).filter(Boolean);
+        const labels = (it.labels || [])
+          .map((l: any) => l?.name)
+          .filter(Boolean);
         const st = mapStatus(it.labels, it.state);
-        const priority = (()=>{
-          const l = labels.map((x:string)=>x.toLowerCase());
-          if (l.some((x)=>['p0','p1','urgent','high'].includes(x))) return 'high';
-          if (l.some((x)=>['p2','medium'].includes(x))) return 'medium';
-          if (l.some((x)=>['p3','low'].includes(x))) return 'low';
-          return 'medium';
+        const priority = (() => {
+          const l = labels.map((x: string) => x.toLowerCase());
+          if (l.some((x) => ["p0", "p1", "urgent", "high"].includes(x)))
+            return "high";
+          if (l.some((x) => ["p2", "medium"].includes(x))) return "medium";
+          if (l.some((x) => ["p3", "low"].includes(x))) return "low";
+          return "medium";
         })();
         return {
           id: String(it.number),
           title: it.title,
           status: st,
-          progress: it.state === 'closed' ? 100 : (st === 'progress' ? 50 : 10),
+          progress: it.state === "closed" ? 100 : st === "progress" ? 50 : 10,
           created_at: it.created_at,
           updated_at: it.updated_at,
           url: it.html_url,
           labels,
-          priority
+          priority,
         };
       });
 
