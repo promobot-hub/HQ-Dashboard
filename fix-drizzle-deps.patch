@@ -1,0 +1,26 @@
+From a65a2224d4fc8c604a5d56151c736edaaa69b8d8 Mon Sep 17 00:00:00 2001
+From: Promobot <promobot@example.com>
+Date: Sun, 22 Feb 2026 14:22:11 +0000
+Subject: [PATCH] fix(build): add drizzle-kit and drizzle-orm as devDeps to
+ satisfy TS in drizzle.config.ts and schema
+
+---
+ hq-dashboard/package.json | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/hq-dashboard/package.json b/hq-dashboard/package.json
+index c0f5887..3a57e38 100644
+--- a/hq-dashboard/package.json
++++ b/hq-dashboard/package.json
+@@ -30,6 +30,8 @@
+     "@types/node": "^20",
+     "@types/react": "^19",
+     "@types/react-dom": "^19",
++    "drizzle-kit": "^0.26.1",
++    "drizzle-orm": "^0.36.4",
+     "eslint": "^9",
+     "eslint-config-next": "16.1.6",
+     "tailwindcss": "^4",
+-- 
+2.39.5
+

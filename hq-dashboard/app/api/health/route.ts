@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { CLAWBOT_API_BASE } from "../../components/config";
 
 async function timedFetch(url: string, init?: RequestInit) {
@@ -25,21 +25,38 @@ async function ghJson(path: string) {
   return r.json();
 }
 
-export async function GET() {
+function getBaseFromHeaders(req: NextRequest) {
+  const host = req.headers.get("x-forwarded-host") || req.headers.get("host");
+  const proto = req.headers.get("x-forwarded-proto") || "https";
+  return host ? `${proto}://${host}` : null;
+}
+
+export async function GET(req: NextRequest) {
   try {
-    const [hb, logs] = await Promise.all([
+    const selfBase = getBaseFromHeaders(req);
+
+    const [hb, logs, selfStatus] = await Promise.all([
       timedFetch(`${CLAWBOT_API_BASE}/api/heartbeat`, { cache: "no-store" }),
       timedFetch(`${CLAWBOT_API_BASE}/api/logs?limit=1`, { cache: "no-store" }),
+      selfBase
+        ? timedFetch(`${selfBase}/api/status`, { cache: "no-store" })
+        : Promise.resolve({ ok: false, ms: 0, res: null } as const),
     ]);
 
     const hbJson = hb.res ? await hb.res.json().catch(() => ({})) : {};
-    const lastRunAt: string | null = hbJson?.lastRunAt ?? null;
-    const ageMs = lastRunAt
-      ? Math.max(0, Date.now() - Date.parse(lastRunAt))
-      : null;
+    let lastRunAt: string | null = hbJson?.lastRunAt ?? null;
 
-    // Status fallback via GitHub raw (same as /api/status behavior)
-    const rawStatus = await timedFetch(
+    // Try derive from our own /api/status if heartbeat missing
+    if ((!lastRunAt || typeof lastRunAt !== "string") && selfStatus.ok && selfStatus.res) {
+      const s = await selfStatus.res.json().catch(() => null);
+      const fromChecks = s?.lastChecks?.heartbeat || s?.lastChecks?.cron_denke || null;
+      if (fromChecks) lastRunAt = fromChecks;
+    }
+
+    const ageMs = lastRunAt ? Math.max(0, Date.now() - Date.parse(lastRunAt)) : null;
+
+    // Status fallback via GitHub RAW (still keep as signal-only)
+    const rawFallback = await timedFetch(
       "https://raw.githubusercontent.com/promobot-hub/HQ-Dashboard/main/heartbeat-state.json",
       { cache: "no-store" }
     );
@@ -52,22 +69,22 @@ export async function GET() {
         `/repos/${repo}/contents/${encodeURIComponent("data/snapshots")}`
       );
       if (Array.isArray(items) && items.length) {
-        const names = items
-          .map((x: any) => x?.name)
-          .filter(Boolean) as string[];
+        const names = items.map((x: any) => x?.name).filter(Boolean) as string[];
         lastSnapshot = names.sort().at(-1) || null;
       }
     }
 
+    const ok = Boolean((hb.ok && lastRunAt) || (selfStatus.ok && lastRunAt));
+
     const status = {
-      ok: !!(hb.ok && lastRunAt),
+      ok,
       proxyLatencyMs: hb.ms,
       lastRunAt,
       heartbeatAgeMs: ageMs,
       lastSnapshot,
       checks: {
         heartbeatDirect: { ok: hb.ok, ms: hb.ms },
-        statusFallback: { ok: rawStatus.ok, ms: rawStatus.ms },
+        statusFallback: { ok: rawFallback.ok, ms: rawFallback.ms },
         logsProxy: { ok: logs.ok, ms: logs.ms },
       },
     } as const;
