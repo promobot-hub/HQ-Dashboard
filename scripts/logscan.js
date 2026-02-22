@@ -58,11 +58,15 @@ async function main() {
     report.scanned.push({ file: f, bytes: tail.length, findings: fnd.length });
     report.findings.push(...fnd.map(x => ({ file: f, ...x })));
   }
+  // aggregate pattern counts
+  const counts = report.findings.reduce((acc, f) => { acc[f.type] = (acc[f.type]||0)+1; return acc; }, {});
+  report.counts = counts;
   // write analysis json
   const out = path.join(ANALYSIS_DIR, `analysis-${Date.now()}.json`);
   fs.writeFileSync(out, JSON.stringify(report, null, 2));
   // write ndjson summary
-  writeNdjson(report.findings.length ? report.findings : [{ type:'logscan_ok', msg:'no critical findings' }]);
+  const summary = Object.entries(counts).map(([type, n]) => ({ type:'logscan_summary', msg:`${type}=${n}` }));
+  writeNdjson(report.findings.length ? report.findings.concat(summary) : [{ type:'logscan_ok', msg:'no critical findings' }]);
   console.log(`logscan complete: scanned=${report.scanned.length} files, findings=${report.findings.length}`);
   // optional Discord alert on findings
   if (report.findings.length && process.env.DISCORD_WEBHOOK_URL) {
