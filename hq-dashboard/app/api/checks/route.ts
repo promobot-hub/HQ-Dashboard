@@ -1,22 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ghGetContent, ghPutContent } from "../ingest/utils";
 
-const DEFAULT_REPO = process.env.GH_REPO || "promobot-hub/HQ-Dashboard";
-const RAW_BASE = `https://raw.githubusercontent.com/${DEFAULT_REPO}/main/`;
+const PRIMARY_REPO = process.env.GH_REPO || "";
+const FALLBACK_REPO = "promobot-hub/HQ-Dashboard";
+const BASES = [PRIMARY_REPO, FALLBACK_REPO].filter(Boolean).map(r => `https://raw.githubusercontent.com/${r}/main/`);
 
 async function rawOk(path: string) {
   const t0 = Date.now();
-  try {
-    const bust = Date.now();
-    const r = await fetch(`${RAW_BASE}${path}?t=${bust}`, {
-      cache: "no-store",
-    });
-    const ok = r.ok;
-    try { await r.text(); } catch {}
-    return { ok, status: r.status, durationMs: Date.now() - t0 };
-  } catch (e: any) {
-    return { ok: false, status: 0, durationMs: Date.now() - t0, error: String(e?.message || e) };
+  for (const base of BASES) {
+    try {
+      const bust = Date.now();
+      const url = `${base}${path}?t=${bust}`;
+      const r = await fetch(url, { cache: "no-store" });
+      const ok = r.ok;
+      try { await r.text(); } catch {}
+      if (ok) return { ok: true, status: r.status, durationMs: Date.now() - t0, url };
+    } catch {}
   }
+  return { ok: false, status: 404, durationMs: Date.now() - t0, error: "not found in any repo", tried: BASES };
 }
 
 export async function GET(req: NextRequest) {
@@ -32,7 +33,7 @@ export async function GET(req: NextRequest) {
     { key: "debugRead", path: "data/debug.ndjson" },
   ]) {
     const r = await rawOk(p.path);
-    results.push({ key: p.key, url: RAW_BASE + p.path, ...r });
+    results.push({ key: p.key, url: r.url || (BASES[0] + p.path), ...r });
   }
   // Scheduler via GitHub persistence (read)
   for (const p of [
@@ -40,7 +41,7 @@ export async function GET(req: NextRequest) {
     { key: "schedulerHistory", path: "data/scheduler/history.ndjson" },
   ]) {
     const r = await rawOk(p.path);
-    results.push({ key: p.key, url: RAW_BASE + p.path, ...r });
+    results.push({ key: p.key, url: r.url || (BASES[0] + p.path), ...r });
   }
   // schedulerExecute: append a noop history line via GH if creds available
   {
