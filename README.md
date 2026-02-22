@@ -1,17 +1,17 @@
-<!-- Auto-updated 2026-02-22T08:32:00Z -->
+<!-- Auto-updated 2026-02-22T08:34:00Z -->
 # HQ-Dashboard - PromoteBot
 
-[![Deploy](https://img.shields.io/badge/deploy-netlify-brightgreen?logo=netlify)](https://clinquant-kataifi-388453.netlify.app/) [![Docs](https://img.shields.io/badge/docs-openclaw-blue?logo=readthedocs)](https://docs.openclaw.ai) ![LastRun](https://img.shields.io/badge/last_run-2026--02--22_08%3A32_UTC) ![Heartbeat](https://img.shields.io/badge/heartbeat-OK-brightgreen) ![RunsToday](https://img.shields.io/badge/runs_today-65-blue) ![TotalRuns](https://img.shields.io/badge/total_runs-119-blue)
+[![Deploy](https://img.shields.io/badge/deploy-netlify-brightgreen?logo=netlify)](https://clinquant-kataifi-388453.netlify.app/) [![Docs](https://img.shields.io/badge/docs-openclaw-blue?logo=readthedocs)](https://docs.openclaw.ai) ![LastRun](https://img.shields.io/badge/last_run-2026--02--22_08%3A34_UTC) ![Heartbeat](https://img.shields.io/badge/heartbeat-OK-brightgreen) ![RunsToday](https://img.shields.io/badge/runs_today-66-blue) ![TotalRuns](https://img.shields.io/badge/total_runs-120-blue)
 
 Dieses Repository enthält den Code und die Ressourcen für PromoteBot, den autonomen Growth-Agenten.
 
 ## Status
-- Letzter Lauf: 2026-02-22 08:32 UTC (cron: DENKE)
+- Letzter Lauf: 2026-02-22 08:34 UTC (cron: DENKE)
 - Quick Links: Docs https://docs.openclaw.ai · Netlify https://clinquant-kataifi-388453.netlify.app/
 
 ## KPIs (Sichtbarkeit)
-- Läufe heute (runsToday): 65
-- Gesamtläufe (totalRuns): 119
+- Läufe heute (runsToday): 66
+- Gesamtläufe (totalRuns): 120
 - Details & Verlauf: siehe docs/STATUS.md und kpis/
 
 ## Übersicht
