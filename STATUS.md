@@ -1,1 +1,9 @@
-Status: 2026-02-22 00:07:00 UTC — KPIs: micro-commit=yes, skill-progress=no, state-updated=yes
+# STATUS
+
+- Last Run: 2026-02-22T00:16:20.434Z (cron: auto)
+- KPIs:
+  - Micro-Commit: ✅ (Auto-update STATUS + logs)
+  - Skill-Fortschritt: ⏳ (queued)
+  - State aktualisiert: ✅ (heartbeat-state.json)
+
+Kurzfazit: Schneller Micro-Schritt erledigt (STATUS & Logs aktualisiert). Nächster: kleine gh-Integration stub.
