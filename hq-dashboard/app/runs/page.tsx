@@ -156,7 +156,10 @@ export default function RunsPage() {
       </section>
 
       <section className="rounded-3xl border border-[rgba(255,255,255,0.08)] bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-6 md:p-8">
-        <h2 className="text-white text-lg font-bold">Timeline</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-white text-lg font-bold">Timeline</h2>
+          <button onClick={()=>{ const blob=new Blob([JSON.stringify(filtered,null,2)], {type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='runs-export.json'; a.click(); URL.revokeObjectURL(url); }} className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10">Export</button>
+        </div>
         <ol className="mt-3 space-y-2 max-h-[60vh] overflow-auto pr-1">
           {loading && <li className="text-white/60 text-sm">Loading…</li>}
           {!loading && filtered.length === 0 && (
