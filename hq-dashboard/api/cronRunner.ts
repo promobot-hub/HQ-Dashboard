@@ -24,7 +24,11 @@ function appendImproveFallback() {
     const dataDir = path.join(APP, "data");
     if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
     const ts = new Date().toISOString();
-    const line = JSON.stringify({ ts, kind: "improve", msg: "fallback: local improve marker" });
+    const line = JSON.stringify({
+      ts,
+      kind: "improve",
+      msg: "fallback: local improve marker",
+    });
     fs.appendFileSync(path.join(APP, "data", "improve.ndjson"), line + "\n");
     fs.writeFileSync(path.join(APP, ".deploy-bump"), ts + "\n");
     return true;
@@ -40,7 +44,11 @@ function writeLocalSnapshotFallback() {
     const snapDir = path.join(APP, "data", "snapshots-local");
     fs.mkdirSync(snapDir, { recursive: true });
     const ts = new Date().toISOString().replace(/[:.]/g, "-");
-    const content = JSON.stringify({ ts, note: "local snapshot fallback" }, null, 2);
+    const content = JSON.stringify(
+      { ts, note: "local snapshot fallback" },
+      null,
+      2
+    );
     fs.writeFileSync(path.join(snapDir, `${ts}.json`), content);
     return true;
   } catch {
@@ -62,9 +70,9 @@ async function runCycle() {
     if (!r || !r.ok) appendImproveFallback();
     const selfBase = process.env.CRON_SELF_URL;
     if (selfBase) {
-      const r2 = await fetch(`${selfBase}/api/snapshot`, { method: "POST" }).catch(
-        () => null
-      );
+      const r2 = await fetch(`${selfBase}/api/snapshot`, {
+        method: "POST",
+      }).catch(() => null);
       if (!r2 || !r2.ok) writeLocalSnapshotFallback();
     } else {
       // no configured self base, still create a local snapshot marker

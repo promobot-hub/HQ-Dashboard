@@ -47,13 +47,20 @@ export async function GET(req: NextRequest) {
     let lastRunAt: string | null = hbJson?.lastRunAt ?? null;
 
     // Try derive from our own /api/status if heartbeat missing
-    if ((!lastRunAt || typeof lastRunAt !== "string") && selfStatus.ok && selfStatus.res) {
+    if (
+      (!lastRunAt || typeof lastRunAt !== "string") &&
+      selfStatus.ok &&
+      selfStatus.res
+    ) {
       const s = await selfStatus.res.json().catch(() => null);
-      const fromChecks = s?.lastChecks?.heartbeat || s?.lastChecks?.cron_denke || null;
+      const fromChecks =
+        s?.lastChecks?.heartbeat || s?.lastChecks?.cron_denke || null;
       if (fromChecks) lastRunAt = fromChecks;
     }
 
-    const ageMs = lastRunAt ? Math.max(0, Date.now() - Date.parse(lastRunAt)) : null;
+    const ageMs = lastRunAt
+      ? Math.max(0, Date.now() - Date.parse(lastRunAt))
+      : null;
 
     // Status fallback via GitHub RAW (still keep as signal-only)
     const rawFallback = await timedFetch(
@@ -69,7 +76,9 @@ export async function GET(req: NextRequest) {
         `/repos/${repo}/contents/${encodeURIComponent("data/snapshots")}`
       );
       if (Array.isArray(items) && items.length) {
-        const names = items.map((x: any) => x?.name).filter(Boolean) as string[];
+        const names = items
+          .map((x: any) => x?.name)
+          .filter(Boolean) as string[];
         lastSnapshot = names.sort().at(-1) || null;
       }
     }
