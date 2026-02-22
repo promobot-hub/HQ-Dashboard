@@ -20,10 +20,16 @@ Architektur
 
 - App Router unter `app/`
   - `app/layout.tsx` – Root-Layout (Dark Theme, Navbar/Sidebar)
-  - `app/page.tsx` – Landing (Hero + Heartbeat + Kanban + Improve + Activity)
-  - `app/components/` – UI-Komponenten (KanbanBoard, TaskCard, HeartbeatWidget, SelfImproveWidget, ActivityFeed)
-  - `app/api/*` – Proxy-API-Routen zu ${CLAWBOT_API_BASE}
+  - `app/page.tsx` – Overview (HeroStatus + QuickStats + RunsSparkline)
+  - `app/{page}/page.tsx` – Tasks, Skills, Runs, Health, Scheduler, Debug, Chat, Agents
+  - `components/*` – UI-Komponenten (KanbanBoard, TaskCard, HeartbeatWidget, HealthWidget, ActivityFeed, HeroStatus, LogViewer, etc.)
+  - `app/api/*` – Website-APIs (READ via GitHub RAW; WRITE via GitHub Contents API)
   - `app/api/ingest/*` – HMAC-signierte Ingest-Endpoints (Core → UI) mit optionalen GitHub-Commits
+
+Core vs Website
+
+- Core (ROOT `/data/workspace`): Scripts/Worker/Skills/Logs/Snapshots/Memory (NICHT Teil des Web‑Builds)
+- Website (dieses Verzeichnis): Build/Serve via Render (rootDir: hq-dashboard). Daten liegen unter `data/*` im Repo‑Root (RAW) und werden per API konsumiert.
 
 API-Proxies (Server)
 
