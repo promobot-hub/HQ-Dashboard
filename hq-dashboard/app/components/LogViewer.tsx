@@ -78,11 +78,14 @@ export default function LogViewer() {
           return (
             <div id={aid} key={i} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90 flex items-center gap-3">
               <span className={`inline-flex h-6 w-6 items-center justify-center rounded-lg ${levelOf(x)==='error'?'bg-red-500/20 text-red-300':levelOf(x)==='warn'?'bg-amber-400/20 text-amber-200':'bg-emerald-400/20 text-emerald-200'}`}>{levelOf(x).toUpperCase().slice(0,1)}</span>
-              <div className="flex-1 min-w-0">
+              <div className="flex-1 min-w-0" aria-live="polite">
                 <div className="truncate">{x.msg || x.message || JSON.stringify(x)}</div>
                 <div className="text-[11px] text-white/50">{x.type || 'log'} • {x.ts ? new Date(x.ts).toLocaleString() : ''}</div>
               </div>
-              <button onClick={()=>copyLink(aid)} className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/80 hover:bg-white/10">Link</button>
+              <div className="flex items-center gap-1">
+                <button aria-label="Copy permalink" onClick={()=>copyLink(aid)} className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/80 hover:bg-white/10">Link</button>
+                <button aria-label="Copy JSON" onClick={async()=>{ try{ await navigator.clipboard.writeText(JSON.stringify(x,null,2)); } catch{} }} className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/80 hover:bg-white/10">JSON</button>
+              </div>
             </div>
           );
         })}

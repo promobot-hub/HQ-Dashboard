@@ -20,14 +20,18 @@ export function middleware(req: NextRequest) {
     if (req.method === 'OPTIONS') {
       return new NextResponse(null, { status: 204, headers: res.headers });
     }
-    // rudimentary rate limit: 60 req/min per ip (best-effort; in-memory)
+    // rudimentary rate limit per ip + stricter for ingest endpoints
     const ip = req.ip || req.headers.get('x-forwarded-for') || 'unknown';
     const now = Date.now();
-    const rec = rateMap.get(ip as string) || { count: 0, ts: now };
-    if (now - rec.ts > 60*1000) { rec.count = 0; rec.ts = now; }
-    rec.count += 1; rateMap.set(ip as string, rec);
-    if (rec.count > 120) {
-      return new NextResponse(JSON.stringify({ ok:false, error:'rate_limited' }), { status: 429, headers: { 'Content-Type': 'application/json' } });
+    const key = `${ip}:${req.nextUrl.pathname.startsWith('/api/ingest/')?'ingest':'api'}`;
+    const rec = rateMap.get(key) || { count: 0, ts: now };
+    const windowMs = 60*1000;
+    if (now - rec.ts > windowMs) { rec.count = 0; rec.ts = now; }
+    rec.count += 1; rateMap.set(key, rec);
+    const limit = req.nextUrl.pathname.startsWith('/api/ingest/') ? 60 : 180; // 60/min ingest, 180/min api
+    if (rec.count > limit) {
+      const headers = new Headers({ 'Content-Type': 'application/json', 'Retry-After': '60' });
+      return new NextResponse(JSON.stringify({ ok:false, error:'rate_limited' }), { status: 429, headers });
     }
   }
   return res;
