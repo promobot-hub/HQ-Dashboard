@@ -116,44 +116,8 @@ export default function DebugPage() {
             className="w-full sm:w-64 rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 pl-3 pr-3 py-1.5 text-xs text-white/90 placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-cyan/40"
           />
         </div>
-        <div
-          ref={listRef}
-          className="mt-4 max-h-[60vh] overflow-auto pr-1 space-y-2"
-        >
-          {visible.length === 0 && (
-            <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-white/60 text-sm">
-              No debug events.
-            </div>
-          )}
-          {visible.map((x: any, i: number) => (
-            <div
-              key={i}
-              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90"
-            >
-              <div className="flex items-center justify-between gap-2">
-                <div className="truncate text-white/90">
-                  {x.url || x.message || x.raw || "event"}
-                </div>
-                <div
-                  className={`rounded-md px-1.5 py-0.5 text-[10px] ${
-                    x.ok
-                      ? "bg-emerald-400/20 text-emerald-300"
-                      : "bg-red-500/20 text-red-300"
-                  }`}
-                >
-                  {x.status ?? (x.ok ? "OK" : "ERR")}
-                </div>
-              </div>
-              <div className="mt-1 text-white/60 text-xs flex items-center gap-3">
-                <span>{x.ts ? new Date(x.ts).toLocaleString() : ""}</span>
-                {typeof x.durationMs === "number" && (
-                  <span>{x.durationMs}ms</span>
-                )}
-                {x.kind && <span>{x.kind}</span>}
-                {x.error && <span className="text-red-300">{x.error}</span>}
-              </div>
-            </div>
-          ))}
+        <div className="mt-6">
+          {(() => { const LV = require('../components/LogViewer').default; return <LV/>; })()}
         </div>
       </section>
     </div>
