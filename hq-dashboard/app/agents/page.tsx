@@ -9,23 +9,26 @@ type Sessions = {
   lastUpdated?: string;
 };
 
+type Agent = { id: string; name?: string; status?: string; paused?: boolean; lastActiveAt?: string; activity?: Array<string> };
+
 export default function AgentsPage() {
   const [data, setData] = useState<Sessions | null>(null);
+  const [agents, setAgents] = useState<Agent[]>([]);
   useEffect(() => {
     let live = true;
     const load = async () => {
       try {
-        const r = await fetch(`/api/sessions`, { cache: "no-store" });
-        const j = await r.json();
-        if (live) setData(j || {});
+        const [sr, ar] = await Promise.all([
+          fetch(`/api/sessions`, { cache: 'no-store' }),
+          fetch(`/api/agents`, { cache: 'no-store' })
+        ]);
+        const sj = await sr.json(); const aj = await ar.json();
+        if (live) { setData(sj || {}); setAgents(aj?.agents||[]); }
       } catch {}
     };
     load();
     const iv = setInterval(load, 5000);
-    return () => {
-      live = false;
-      clearInterval(iv);
-    };
+    return () => { live = false; clearInterval(iv); };
   }, []);
 
   const Card = ({
@@ -62,9 +65,13 @@ export default function AgentsPage() {
           <Card label="Concurrent" value={data?.concurrent ?? "—"} />
           <Card label="Longest" value={(data?.longestSec ?? 0) + "s"} />
         </div>
-        <div className="mt-6 text-white/60 text-sm">
-          Per-Agent Details folgen, sobald der Core die Liste liefert. Aktuell
-          zeigt die Seite Live-Kennzahlen aus /api/sessions (GitHub RAW).
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {agents.length===0 && <div className="text-white/60 text-sm">No agents.</div>}
+          {agents.map(a => (
+            <div key={a.id}>
+              {(() => { const AC = require('../components/AgentCard').default; return <AC agent={a} onToggle={async(id:string,paused:boolean)=>{ await fetch('/api/agents', { method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ id, paused }) }); const r = await fetch('/api/agents', { cache:'no-store' }); const j = await r.json(); setAgents(j?.agents||[]); }} />; })()}
+            </div>
+          ))}
         </div>
       </section>
     </div>
