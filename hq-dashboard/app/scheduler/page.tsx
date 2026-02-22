@@ -163,11 +163,14 @@ export default function SchedulerPage() {
                   Every {j.everyMinutes} min • Action:{" "}
                   {j.payload?.action || "trigger"}
                 </div>
-                <div className="mt-1 text-white/50 text-xs">
-                  Last:{" "}
-                  {j.lastRunAt ? new Date(j.lastRunAt).toLocaleString() : "—"} •
-                  Next:{" "}
-                  {j.nextRunAt ? new Date(j.nextRunAt).toLocaleString() : "—"}
+                <div className="mt-1 text-white/50 text-xs flex items-center gap-2">
+                  <span>Last: {j.lastRunAt ? new Date(j.lastRunAt).toLocaleString() : "—"}</span>
+                  <span>•</span>
+                  <span>Next: {j.nextRunAt ? new Date(j.nextRunAt).toLocaleString() : "—"}</span>
+                </div>
+                <div className="mt-2 flex items-center gap-2">
+                  <button onClick={async()=>{ await fetch('/api/scheduler/jobs', { method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ id: j.id, enabled: !j.enabled }) }); await load(); }} className={`${j.enabled? 'bg-red-500/20 text-red-300 border border-red-400/20':'bg-emerald-400/20 text-emerald-300 border border-emerald-400/20'} rounded-md px-2 py-1 text-xs`}>{j.enabled? 'Disable':'Enable'}</button>
+                  <button onClick={async()=>{ await fetch('/api/scheduler/execute', { method:'POST' }); await load(); }} className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10">Run now</button>
                 </div>
               </div>
             ))}
