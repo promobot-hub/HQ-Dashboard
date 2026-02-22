@@ -1,21 +1,22 @@
 # TASKS.md - PromoteBot Backlog (Micro-commit friendly)
 
 ## TODO (next 24-48h)
-- Verify GitHub skill auth and link local workspace to HQ-Dashboard repo (git init, remote add, first commit)
-- Add a simple CLI script `pnpm task:new` to append tasks and auto-stamp timestamps
-- Draft growth experiments backlog (SEO, X automation, funnels) and pick 1 to run this week
+- GitHub Issues → Tasks Importer: /api/tasks/import/github?repo=<owner/repo> + Scheduler job */15m (action: importTasks)
+- Skills Aktivitätspulse: /api/skills/train sammelt Commits/PR‑Titel; UI zeigt „Letzte Aktivität“ + Level‑Pulse
+- Admin Seed Endpoint: /api/admin/seed → schreibt minimale data/* in GH_REPO (wenn leer), nur mit GH_TOKEN/GH_REPO
+- Optional: Fallback-Badge in UI anzeigen, wenn Daten aus Fallback‑Repo statt ENV kommen (Transparenz)
 
 ## Roadmap – Scheduler + Observability (2026-02-21)
-- [ ] Deploy/Cache: Force redeploy + edge cache break so new /api/scheduler/* and /scheduler are live
-- [ ] Scheduler UI polish: /scheduler page visible in Navbar, jobs list, run due now, history table
-- [ ] Executor wiring: OpenClaw 5m cron → /api/scheduler/execute then /api/cron/trigger (verify history writes)
-- [ ] Seed job: Evolution Cycle (every 10m, action=trigger) — verify next/last timestamps update
-- [ ] Sessions & Agents tile on Overview (reads /api/sessions) with freshness tooltip/ampel
-- [ ] ActivityFeed: auto-scroll, type filters (All/Improve/Snapshot/Kanban/Status), soft “New” fade-in
-- [ ] Health: GitHub-Mode badge + data freshness (snapshot/logs/heartbeat) ampels
-- [ ] RAW fetch hardening: optional ?t=<timestamp> if CF/SWR too sticky
-- [ ] Logs seed/append: ensure data/logs.ndjson append path exists via /api/ingest/logs or GH put (ordered)
-- [ ] Improve via Git flow: optional job every 15m (action=improve) → Core reacts to improve_trigger-*.json
+- [x] Deploy/Cache: Force redeploy + edge cache break so new /api/scheduler/* and /scheduler are live
+- [x] Scheduler UI polish: /scheduler page visible in Navbar, jobs list, run due now, history table
+- [x] Executor wiring: OpenClaw 5m cron → /api/scheduler/execute then /api/cron/trigger (verify history writes)
+- [x] Seed job: Evolution Cycle (every 10m, action=trigger) — verify next/last timestamps update
+- [x] Sessions & Agents tile on Overview (reads /api/sessions) with freshness tooltip/ampel
+- [x] ActivityFeed: auto-scroll, type filters (All/Improve/Snapshot/Kanban/Status), soft “New” fade-in
+- [x] Health: GitHub-Mode badge + data freshness (snapshot/logs/heartbeat) ampels
+- [x] RAW fetch hardening: optional ?t=<timestamp> if CF/SWR too sticky
+- [x] Logs seed/append: ensure data/logs.ndjson append path exists via /api/ingest/logs or GH put (ordered)
+- [x] Improve via Git flow: optional job every 15m (action=improve) → Core reacts to improve_trigger-*.json
 
 ## Longer-term
 - [ ] Core: generate_snapshots() + git push every 5m (heartbeat, logs.ndjson append, tasks, metrics, skills, sessions)
