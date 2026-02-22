@@ -1,8 +1,13 @@
 {
-  "lastRunUTC": "2026-02-22T01:04:36Z",
+  "lastRunUTC": "2026-02-22T01:20:43Z",
   "runsToday": 0,
   "totalRuns": 0,
   "completed": [
+    {
+      "timeUTC": "2026-02-22T01:20:43Z",
+      "type": "heartbeat-sync",
+      "summary": "feat(per-page): Overview DataSourceBadge; Tasks labels+GitHub link; Skills show lastTrainedAt/activity; Chat optimistic send UX; Scheduler preset buttons · 18 files (18 files changed, 317 insertions(+), 75 deletions(-))"
+    },
     {
       "timeUTC": "2026-02-22T01:04:36Z",
       "type": "heartbeat-sync",
@@ -216,26 +221,44 @@
       "source": "md"
     },
     {
-      "id": "github-issues-tasks-importer-api-tasks-import-github-repo-owner-repo-scheduler-j",
-      "title": "GitHub Issues → Tasks Importer: /api/tasks/import/github?repo=<owner/repo> + Scheduler job */15m (action: importTasks)",
+      "id": "x-github-issues-tasks-importer-api-tasks-import-github-post-repo-persist-optiona",
+      "title": "[x] GitHub Issues → Tasks Importer: /api/tasks/import/github (POST {repo}) + persist; optional Scheduler */15m (action: importTasks)",
       "priority": "normal",
       "source": "md"
     },
     {
-      "id": "skills-aktivit-tspulse-api-skills-train-sammelt-commits-pr-titel-ui-zeigt-letzte",
-      "title": "Skills Aktivitätspulse: /api/skills/train sammelt Commits/PR‑Titel; UI zeigt „Letzte Aktivität“ + Level‑Pulse",
+      "id": "x-skills-aktivit-tspulse-api-skills-train-optional-body-repo-activity-lasttraine",
+      "title": "[x] Skills Aktivitätspulse: /api/skills/train (optional body.repo) → activity/lastTrainedAt",
       "priority": "normal",
       "source": "md"
     },
     {
-      "id": "admin-seed-endpoint-api-admin-seed-schreibt-minimale-data-in-gh-repo-wenn-leer-n",
-      "title": "Admin Seed Endpoint: /api/admin/seed → schreibt minimale data/* in GH_REPO (wenn leer), nur mit GH_TOKEN/GH_REPO",
+      "id": "x-admin-seed-endpoint-api-admin-seed-minimale-data-in-gh-repo-guarded",
+      "title": "[x] Admin Seed Endpoint: /api/admin/seed → minimale data/* in GH_REPO (guarded)",
       "priority": "normal",
       "source": "md"
     },
     {
       "id": "optional-fallback-badge-in-ui-anzeigen-wenn-daten-aus-fallback-repo-statt-env-ko",
       "title": "Optional: Fallback-Badge in UI anzeigen, wenn Daten aus Fallback‑Repo statt ENV kommen (Transparenz)",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "add-scheduler-job-creator-ui-button-presets-import-issues-15m-train-skills-30m",
+      "title": "Add Scheduler job creator UI button presets (Import Issues */15m, Train Skills */30m)",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "show-data-source-badge-env-vs-fallback-on-pages-consuming-raw",
+      "title": "Show data source badge (ENV vs Fallback) on pages consuming RAW",
+      "priority": "normal",
+      "source": "md"
+    },
+    {
+      "id": "improve-kanban-drag-ux-on-mobile-visual-ghost-haptics",
+      "title": "Improve Kanban drag UX on mobile (visual ghost, haptics)",
       "priority": "normal",
       "source": "md"
     },
@@ -342,5 +365,5 @@
       "source": "md"
     }
   ],
-  "lastCommit": "37b19fb61302603a611f1a8bd0d5aa9446f30b8a"
+  "lastCommit": "9c2a1d05a985c166744c0d1adf7e4de1e5d1eed7"
 }
