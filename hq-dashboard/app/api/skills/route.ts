@@ -5,7 +5,7 @@ const RAW =
 
 export async function GET() {
   try {
-    const r = await fetch(RAW, { cache: "no-store" });
+    const r = await fetch(`${RAW}?t=${Date.now()}`, { cache: "no-store" });
     const json = r.ok
       ? await r.json().catch(() => ({ skills: [] }))
       : { skills: [] };
