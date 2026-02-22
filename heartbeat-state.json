@@ -4,7 +4,8 @@
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null
+    "social": null,
+    "heartbeat": "2026-02-22T01:20:43.737Z"
   },
   "kpis": {
     "microCommit": true,
@@ -14,5 +15,10 @@
   "runs": {
     "runsToday": 24,
     "totalRuns": 78
+  },
+  "counters": {
+    "runsToday": 1,
+    "lastDay": "2026-02-22",
+    "totalRuns": 1
   }
 }
