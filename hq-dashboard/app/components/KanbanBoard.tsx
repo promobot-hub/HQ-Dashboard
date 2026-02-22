@@ -99,7 +99,7 @@ export default function KanbanBoard() {
     "all"
   );
   const [query, setQuery] = useState("");
-  const [prio, setPrio] = useState<'all'|'high'|'medium'|'low'>('all');
+  const [prio, setPrio] = useState<"all" | "high" | "medium" | "low">("all");
   const mountedRef = useRef(false);
 
   const lastErr = useRef<number>(0);
@@ -118,18 +118,27 @@ export default function KanbanBoard() {
     const j = await r.json();
     const items: TaskItem[] = (j?.tasks ?? []).map((t: any) => {
       const labels: string[] = Array.isArray(t.labels) ? t.labels : [];
-      const priority = ((): 'high'|'medium'|'low'|undefined => {
-        const l = labels.map((x)=>String(x).toLowerCase());
-        if (l.some(x=>['p0','p1','urgent','high'].includes(x))) return 'high';
-        if (l.some(x=>['p2','medium'].includes(x))) return 'medium';
-        if (l.some(x=>['p3','low'].includes(x))) return 'low';
+      const priority = ((): "high" | "medium" | "low" | undefined => {
+        const l = labels.map((x) => String(x).toLowerCase());
+        if (l.some((x) => ["p0", "p1", "urgent", "high"].includes(x)))
+          return "high";
+        if (l.some((x) => ["p2", "medium"].includes(x))) return "medium";
+        if (l.some((x) => ["p3", "low"].includes(x))) return "low";
         return t.priority as any;
       })();
       return {
         id: String(t.id ?? t.title ?? Math.random().toString(36).slice(2, 8)),
         title: t.title ?? t.text ?? "Task",
-        status: t.status === 'todo' ? 'pending' : t.status === 'in_progress' ? 'progress' : (t.status ?? 'done'),
-        progress: Number(t.progress ?? (t.status === 'done' ? 100 : t.status === 'in_progress' ? 50 : 10)),
+        status:
+          t.status === "todo"
+            ? "pending"
+            : t.status === "in_progress"
+            ? "progress"
+            : t.status ?? "done",
+        progress: Number(
+          t.progress ??
+            (t.status === "done" ? 100 : t.status === "in_progress" ? 50 : 10)
+        ),
         created_at: t.created_at,
         updated_at: t.updated_at,
         log_link: t.log_link,
@@ -156,8 +165,10 @@ export default function KanbanBoard() {
     return tasks.filter(
       (t) =>
         (filter === "all" || t.status === filter) &&
-        (prio === 'all' || t.priority === prio) &&
-        (!q || t.title?.toLowerCase().includes(q) || String(t.id).toLowerCase().includes(q))
+        (prio === "all" || t.priority === prio) &&
+        (!q ||
+          t.title?.toLowerCase().includes(q) ||
+          String(t.id).toLowerCase().includes(q))
     );
   }, [tasks, filter, prio, query]);
 

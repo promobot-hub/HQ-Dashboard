@@ -43,7 +43,7 @@ export default function RunsPage() {
   const [items, setItems] = useState<LogItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
-  const [range, setRange] = useState<'24h'|'7d'>('24h');
+  const [range, setRange] = useState<"24h" | "7d">("24h");
 
   useEffect(() => {
     let live = true;
@@ -69,11 +69,13 @@ export default function RunsPage() {
   const filtered = useMemo(() => {
     const qq = q.trim().toLowerCase();
     const now = Date.now();
-    const win = range==='24h' ? 24*60*60*1000 : 7*24*60*60*1000;
+    const win = range === "24h" ? 24 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000;
     const arr = (items || []).filter((x) => {
       const t = x.ts ? Date.parse(String(x.ts)) : 0;
-      const inWin = t && (now - t) < win;
-      const typOk = ["snapshot", "improve", "kanban", "status"].includes(String(x.type || "").toLowerCase());
+      const inWin = t && now - t < win;
+      const typOk = ["snapshot", "improve", "kanban", "status"].includes(
+        String(x.type || "").toLowerCase()
+      );
       return inWin && typOk;
     });
     return qq
@@ -101,7 +103,11 @@ export default function RunsPage() {
             Runs
           </h1>
           <div className="flex items-center gap-2">
-            <select value={range} onChange={e=>setRange(e.target.value as any)} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90">
+            <select
+              value={range}
+              onChange={(e) => setRange(e.target.value as any)}
+              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/90"
+            >
               <option value="24h">Last 24h</option>
               <option value="7d">Last 7d</option>
             </select>
@@ -158,7 +164,22 @@ export default function RunsPage() {
       <section className="rounded-3xl border border-[rgba(255,255,255,0.08)] bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-6 md:p-8">
         <div className="flex items-center justify-between">
           <h2 className="text-white text-lg font-bold">Timeline</h2>
-          <button onClick={()=>{ const blob=new Blob([JSON.stringify(filtered,null,2)], {type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='runs-export.json'; a.click(); URL.revokeObjectURL(url); }} className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10">Export</button>
+          <button
+            onClick={() => {
+              const blob = new Blob([JSON.stringify(filtered, null, 2)], {
+                type: "application/json",
+              });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = "runs-export.json";
+              a.click();
+              URL.revokeObjectURL(url);
+            }}
+            className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80 hover:bg-white/10"
+          >
+            Export
+          </button>
         </div>
         <ol className="mt-3 space-y-2 max-h-[60vh] overflow-auto pr-1">
           {loading && <li className="text-white/60 text-sm">Loading…</li>}
