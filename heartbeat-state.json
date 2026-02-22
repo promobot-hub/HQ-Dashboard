@@ -1,15 +1,18 @@
 {
+  "lastRunUtc": "2026-02-22T01:10:00Z",
   "lastChecks": {
-    "cronQuick": {
-      "iso": "2026-02-22T01:00:00Z",
-      "source": "cron:065329dc-eeff-4c85-a259-16730f4e8319",
-      "note": "Quick one-step maintenance run: recorded timestamp for cron quick-check."
-    },
-    "heartbeat": "2026-02-22T01:04:36.122Z"
+    "email": null,
+    "calendar": null,
+    "weather": null,
+    "social": null
   },
-  "counters": {
-    "runsToday": 1,
-    "lastDay": "2026-02-22",
-    "totalRuns": 1
+  "kpis": {
+    "microCommit": true,
+    "skillProgress": false,
+    "stateUpdated": true
+  },
+  "runs": {
+    "runsToday": 3,
+    "totalRuns": 3
   }
 }
