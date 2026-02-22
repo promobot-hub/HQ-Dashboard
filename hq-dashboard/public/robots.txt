@@ -1,0 +1,8 @@
+# robots.txt for HQ-Dashboard
+User-agent: *
+Allow: /
+
+# Crawl-delay kept minimal for fast iteration
+# Crawl-delay: 1
+
+Sitemap: /sitemap.xml
