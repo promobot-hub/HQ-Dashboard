@@ -33,8 +33,11 @@ export default function ChatPage() {
 
   const send = async () => {
     const m = text.trim();
-    if (!m) return;
+    if (!m || sending) return;
     setSending(true);
+    // optimistic bubble
+    const optimistic = { ts: new Date().toISOString(), role: 'user', message: m } as Msg;
+    setItems(prev => [...prev, optimistic]);
     try {
       const r = await fetch(`/api/chat/send`, {
         method: "POST",
@@ -45,8 +48,12 @@ export default function ChatPage() {
       if (j?.ok) {
         setText("");
         setTimeout(load, 700);
+      } else {
+        // revert optimistic on failure
+        setItems(prev => prev.slice(0, -1));
       }
     } catch {
+      setItems(prev => prev.slice(0, -1));
     } finally {
       setSending(false);
     }
