@@ -1,5 +1,11 @@
 {
   "lastChecks": {
-    "cron_denke": "2026-02-22T11:34:00Z"
+    "cron_denke": "2026-02-22T11:34:00Z",
+    "heartbeat": "2026-02-22T15:53:03.891Z"
+  },
+  "counters": {
+    "runsToday": 1,
+    "lastDay": "2026-02-22",
+    "totalRuns": 1
   }
 }
