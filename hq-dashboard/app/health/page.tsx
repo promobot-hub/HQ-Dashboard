@@ -58,12 +58,24 @@ export default function HealthPage() {
     </div>
   );
 
-  const githubMode = !!data?.checks?.statusFallback?.ok && !data?.checks?.heartbeatDirect?.ok;
+  const githubMode =
+    !!data?.checks?.statusFallback?.ok && !data?.checks?.heartbeatDirect?.ok;
   const freshness = (ms?: number | null) => {
-    if (ms == null) return { label: '—', cls: 'bg-white/10 text-white/60' };
-    if (ms < 2*60*1000) return { label: `${Math.round(ms/1000)}s`, cls: 'bg-emerald-400/20 text-emerald-300' };
-    if (ms < 10*60*1000) return { label: `${Math.round(ms/60000)}m`, cls: 'bg-amber-400/20 text-amber-300' };
-    return { label: `${Math.round(ms/60000)}m`, cls: 'bg-red-500/20 text-red-300' };
+    if (ms == null) return { label: "—", cls: "bg-white/10 text-white/60" };
+    if (ms < 2 * 60 * 1000)
+      return {
+        label: `${Math.round(ms / 1000)}s`,
+        cls: "bg-emerald-400/20 text-emerald-300",
+      };
+    if (ms < 10 * 60 * 1000)
+      return {
+        label: `${Math.round(ms / 60000)}m`,
+        cls: "bg-amber-400/20 text-amber-300",
+      };
+    return {
+      label: `${Math.round(ms / 60000)}m`,
+      cls: "bg-red-500/20 text-red-300",
+    };
   };
 
   return (
@@ -74,7 +86,11 @@ export default function HealthPage() {
             System Health
           </h1>
           <div className="flex items-center gap-2">
-            {githubMode && <span className="rounded-md bg-cyan-400/20 text-cyan-200 px-2 py-0.5 text-[10px]">GitHub Mode</span>}
+            {githubMode && (
+              <span className="rounded-md bg-cyan-400/20 text-cyan-200 px-2 py-0.5 text-[10px]">
+                GitHub Mode
+              </span>
+            )}
             {badge(!!data?.ok)}
           </div>
         </div>
@@ -90,8 +106,16 @@ export default function HealthPage() {
             }
           />
           <div className="rounded-2xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-4 backdrop-blur-md">
-            <div className="text-xs uppercase tracking-wide text-white/60">Heartbeat Freshness</div>
-            <div className={`mt-1 inline-block rounded-md px-2 py-0.5 text-[12px] ${freshness(data?.heartbeatAgeMs).cls}`}>{freshness(data?.heartbeatAgeMs).label}</div>
+            <div className="text-xs uppercase tracking-wide text-white/60">
+              Heartbeat Freshness
+            </div>
+            <div
+              className={`mt-1 inline-block rounded-md px-2 py-0.5 text-[12px] ${
+                freshness(data?.heartbeatAgeMs).cls
+              }`}
+            >
+              {freshness(data?.heartbeatAgeMs).label}
+            </div>
           </div>
           <Tile label="Last Snapshot" value={data?.lastSnapshot ?? "—"} />
         </div>
