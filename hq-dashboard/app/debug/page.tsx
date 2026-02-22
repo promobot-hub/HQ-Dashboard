@@ -75,6 +75,10 @@ export default function DebugPage() {
             return <C />;
           })()}
         </div>
+        <div className="mt-3 flex items-center gap-2 text-xs">
+          <a href={`https://raw.githubusercontent.com/promobot-hub/HQ-Dashboard/main/data/debug.ndjson?t=${Date.now()}`} target="_blank" className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-white/70 hover:bg-white/20">Download debug.ndjson</a>
+          <a href={`https://raw.githubusercontent.com/promobot-hub/HQ-Dashboard/main/data/logs.ndjson?t=${Date.now()}`} target="_blank" className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-white/70 hover:bg-white/20">Download logs.ndjson</a>
+        </div>
         <div className="mt-4 flex items-center gap-2">
           <div
             className="flex items-center gap-1"
