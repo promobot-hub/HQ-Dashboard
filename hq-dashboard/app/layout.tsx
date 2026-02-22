@@ -25,7 +25,15 @@ export const metadata: Metadata = {
     title: 'Clawbot HQ',
     description: 'Live status and controls for Clawbot HQ Dashboard',
     images: ['/og.png'],
-  }
+  },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/',
+      'de-DE': '/',
+    },
+  },
+  metadataBase: new URL('https://hq-dashboard.example.com'),
 };
 
 export default function RootLayout({
