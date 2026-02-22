@@ -6,10 +6,26 @@ import ToasterProvider from "./components/Toaster";
 import MobileTabBar from "./components/MobileTabBar";
 
 export const metadata: Metadata = {
-  title: "Clawbot HQ – Premium Dark",
+  title: {
+    default: "Clawbot HQ – Premium Dark",
+    template: "%s | Clawbot HQ",
+  },
   description: "Live status and controls for Clawbot HQ Dashboard",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   themeColor: "#0a0a0a",
+  openGraph: {
+    type: 'website',
+    title: 'Clawbot HQ',
+    description: 'Live status and controls for Clawbot HQ Dashboard',
+    url: 'https://hq-dashboard.example.com/',
+    images: [{ url: '/og.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Clawbot HQ',
+    description: 'Live status and controls for Clawbot HQ Dashboard',
+    images: ['/og.png'],
+  }
 };
 
 export default function RootLayout({
