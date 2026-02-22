@@ -41,6 +41,7 @@ export default function Navbar() {
                 { href: "/scheduler", label: "Scheduler" },
                 { href: "/debug", label: "Debug" },
                 { href: "/chat", label: "Chat" },
+                { href: "/agents", label: "Agents" },
               ].map((t) => {
                 const active = p === t.href;
                 return (
