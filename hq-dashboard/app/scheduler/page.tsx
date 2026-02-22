@@ -44,6 +44,17 @@ export default function SchedulerPage() {
     await load();
   };
 
+  // Presets
+  const presetImportIssues = async () => {
+    setName("Import GitHub Issues"); setEvery(15); setAction("trigger");
+    // Fire an initial import using data repo
+    await fetch(`/api/tasks/import/github`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
+  };
+  const presetTrainSkills = async () => {
+    setName("Train Skills Activity"); setEvery(30); setAction("trigger");
+    await fetch(`/api/skills/train`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
+  };
+
   return (
     <div className="space-y-6">
       <section className="rounded-3xl border border-[rgba(255,255,255,0.08)] bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-6 md:p-8">
@@ -57,6 +68,10 @@ export default function SchedulerPage() {
           >
             Run due now
           </button>
+        </div>
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <button onClick={presetImportIssues} className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-white/80 hover:bg-white/20">Preset: Import Issues */15m</button>
+          <button onClick={presetTrainSkills} className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-white/80 hover:bg-white/20">Preset: Train Skills */30m</button>
         </div>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
           <input
