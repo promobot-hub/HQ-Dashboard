@@ -32,7 +32,7 @@
     "@types/react-dom": "^19",
     "drizzle-kit": "^0.26.1",
     "drizzle-orm": "^0.36.4",
-    "eslint": "^9",
+    "eslint": "^10",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "5.9.3"
