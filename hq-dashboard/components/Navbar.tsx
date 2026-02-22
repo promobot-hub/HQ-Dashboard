@@ -40,6 +40,7 @@ export default function Navbar() {
                 { href: "/health", label: "Health" },
                 { href: "/scheduler", label: "Scheduler" },
                 { href: "/debug", label: "Debug" },
+                { href: "/chat", label: "Chat" },
               ].map((t) => {
                 const active = p === t.href;
                 return (

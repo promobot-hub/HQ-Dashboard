@@ -10,3 +10,4 @@
 - Add heartbeat-state update script stub (no external calls) to sync STATUS.md + LOG.md + counters.
 - Create .gitkeep files for empty dirs (logs/, tasks/) if needed.
 - Add ALARMS.md with the single line template: "🚨 Zu langsam – pushen! (awaiting approval)" and reference when pace < 9/10.
+- Add KPI badges to README via shields.io (text-only fallback if blocked).
