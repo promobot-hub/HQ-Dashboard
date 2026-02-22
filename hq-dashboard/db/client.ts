@@ -1,5 +1,12 @@
 // Data source wrapper. Selects adapter by DATA_SOURCE env (supabase|github). Default: github
-import { createClient } from '@supabase/supabase-js';
+// Optional supabase dependency: only required when DATA_SOURCE=supabase
+let createClient: any;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  ({ createClient } = require('@supabase/supabase-js'));
+} catch (_) {
+  // not installed; ok when using github adapter
+}
 
 export type DBAdapter = {
   tasks: {
@@ -33,6 +40,9 @@ export function getDbAdapter(): DBAdapter {
 }
 
 function supabaseAdapter(): DBAdapter {
+  if (!createClient) {
+    throw new Error("@supabase/supabase-js is not installed. Set DATA_SOURCE=github or add the dependency.");
+  }
   const url = process.env.SUPABASE_URL || '';
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE || '';
   const sb = createClient(url, serviceKey, { auth: { persistSession: false } });
