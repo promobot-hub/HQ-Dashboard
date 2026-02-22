@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CLAWBOT_API_BASE } from "../../components/config";
-const RAW =
-  "https://raw.githubusercontent.com/promobot-hub/HQ-Dashboard/main/data/tasks.json";
+import { fetchRaw } from "../_utils/raw";
 
 export async function GET() {
   try {
@@ -10,8 +9,9 @@ export async function GET() {
       cache: "no-store",
     }).catch(() => null);
     if (!r || !r.ok) {
-      // Fallback to GitHub raw snapshot
-      r = await fetch(`${RAW}?t=${Date.now()}`, { cache: "no-store" });
+      // Fallback to GitHub raw snapshot (dual-repo)
+      const fr = await fetchRaw("data/tasks.json");
+      if (!fr.ok || !fr.text) r = null; else r = new Response(fr.text, { status: 200 });
     }
     const json = r && r.ok ? await r.json() : { tasks: [] };
     return NextResponse.json(json, { status: 200 });
