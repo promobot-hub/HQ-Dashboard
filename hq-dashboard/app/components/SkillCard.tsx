@@ -10,6 +10,8 @@ export type Skill = {
   mastered?: boolean;
   stats?: Record<string, any>;
   capabilities?: Array<{ key: string; label: string; value?: string | number }>;
+  lastTrainedAt?: string;
+  activity?: Array<{ ts?: string; kind?: string; message?: string }>;
 };
 
 function Ring({ value, color = "#22d3ee" }: { value: number; color?: string }) {
@@ -55,7 +57,7 @@ export default function SkillCard({
   const level = Number(skill.level ?? 0);
   return (
     <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] p-4">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 relative">
         <div className="relative">
           <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#22d3ee]/30 to-[#a855f7]/30 blur animate-glow" />
           <div className="relative h-10 w-10 grid place-items-center rounded-xl bg-[#0f0f10] text-white font-extrabold">
@@ -69,7 +71,14 @@ export default function SkillCard({
             {skill.mastered ? "Mastered" : "Training"}
           </div>
         </div>
-        <Ring value={level} />
+        <div className="relative">
+          <Ring value={level} />
+          {skill.lastTrainedAt && (
+            <span className="absolute -bottom-1 right-0 rounded-md bg-white/10 px-1 py-0.5 text-[10px] text-white/70">
+              {new Date(skill.lastTrainedAt).toLocaleDateString()}
+            </span>
+          )}
+        </div>
       </div>
       {skill.capabilities && skill.capabilities.length > 0 && (
         <button
