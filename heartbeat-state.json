@@ -1,14 +1,8 @@
 {
-  "lastCron": 1771720800,
-  "lastUpdated": "2026-02-22T00:41:00Z",
-  "notes": "Auto-updated by cron micro-commit: keep cadence lean.",
-  "cronQuickTask": "00:41",
   "lastChecks": {
-    "heartbeat": "2026-02-22T00:48:33.672Z"
+    "heartbeat": 1771720920000,
+    "cronDenkeISO": "2026-02-22T00:44:00Z"
   },
-  "counters": {
-    "runsToday": 1,
-    "lastDay": "2026-02-22",
-    "totalRuns": 1
-  }
+  "lastRunUnix": 1771720920000,
+  "lastQuickRunISO": "2026-02-22T00:44:00Z"
 }
