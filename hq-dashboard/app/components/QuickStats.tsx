@@ -69,7 +69,7 @@ export default function QuickStats() {
     <div
       className={`rounded-xl border border-[rgba(255,255,255,0.08)] bg-white/5 p-3 text-center transition ${
         flash ? "ring-2 ring-accent-cyan/40" : ""
-      }`}
+      } hover:bg-white/10 hover:scale-[1.02] duration-150`}
     >
       <div className="text-[10px] uppercase tracking-wide text-white/60">
         {label}
