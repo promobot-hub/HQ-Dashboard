@@ -11,6 +11,7 @@ export interface TaskItem {
   log_link?: string;
   url?: string;
   labels?: string[];
+  priority?: 'low'|'medium'|'high';
 }
 
 export default function TaskCard({
@@ -63,13 +64,20 @@ export default function TaskCard({
         <div className="font-semibold truncate">
           {task.id} — {task.title}
         </div>
-        <span className="rounded-md bg-white/10 px-1.5 py-0.5 text-[10px] text-white/70">
-          {task.status === "pending"
-            ? "Pending"
-            : task.status === "progress"
-            ? "In Progress"
-            : "Done"}
-        </span>
+        <div className="flex items-center gap-1">
+          {task.priority && (
+            <span className={`rounded-md px-1.5 py-0.5 text-[10px] ${
+              task.priority==='high' ? 'bg-red-500/20 text-red-300' : task.priority==='medium' ? 'bg-amber-400/20 text-amber-200' : 'bg-emerald-400/20 text-emerald-200'
+            }`}>{task.priority.toUpperCase()}</span>
+          )}
+          <span className="rounded-md bg-white/10 px-1.5 py-0.5 text-[10px] text-white/70">
+            {task.status === "pending"
+              ? "Pending"
+              : task.status === "progress"
+              ? "In Progress"
+              : "Done"}
+          </span>
+        </div>
       </div>
       <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-white/10">
         <div

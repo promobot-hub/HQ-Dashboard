@@ -99,6 +99,7 @@ export default function KanbanBoard() {
     "all"
   );
   const [query, setQuery] = useState("");
+  const [prio, setPrio] = useState<'all'|'high'|'medium'|'low'>('all');
   const mountedRef = useRef(false);
 
   const lastErr = useRef<number>(0);
@@ -115,23 +116,28 @@ export default function KanbanBoard() {
       return;
     }
     const j = await r.json();
-    const items: TaskItem[] = (j?.tasks ?? []).map((t: any) => ({
-      id: String(t.id ?? t.title ?? Math.random().toString(36).slice(2, 8)),
-      title: t.title ?? t.text ?? "Task",
-      status:
-        t.status === "todo"
-          ? "pending"
-          : t.status === "in_progress"
-          ? "progress"
-          : t.status ?? "done",
-      progress: Number(
-        t.progress ??
-          (t.status === "done" ? 100 : t.status === "in_progress" ? 50 : 10)
-      ),
-      created_at: t.created_at,
-      updated_at: t.updated_at,
-      log_link: t.log_link,
-    }));
+    const items: TaskItem[] = (j?.tasks ?? []).map((t: any) => {
+      const labels: string[] = Array.isArray(t.labels) ? t.labels : [];
+      const priority = ((): 'high'|'medium'|'low'|undefined => {
+        const l = labels.map((x)=>String(x).toLowerCase());
+        if (l.some(x=>['p0','p1','urgent','high'].includes(x))) return 'high';
+        if (l.some(x=>['p2','medium'].includes(x))) return 'medium';
+        if (l.some(x=>['p3','low'].includes(x))) return 'low';
+        return t.priority as any;
+      })();
+      return {
+        id: String(t.id ?? t.title ?? Math.random().toString(36).slice(2, 8)),
+        title: t.title ?? t.text ?? "Task",
+        status: t.status === 'todo' ? 'pending' : t.status === 'in_progress' ? 'progress' : (t.status ?? 'done'),
+        progress: Number(t.progress ?? (t.status === 'done' ? 100 : t.status === 'in_progress' ? 50 : 10)),
+        created_at: t.created_at,
+        updated_at: t.updated_at,
+        log_link: t.log_link,
+        url: t.url,
+        labels,
+        priority,
+      } as TaskItem;
+    });
     setTasks(items);
   }, []);
 
@@ -150,11 +156,10 @@ export default function KanbanBoard() {
     return tasks.filter(
       (t) =>
         (filter === "all" || t.status === filter) &&
-        (!q ||
-          t.title?.toLowerCase().includes(q) ||
-          String(t.id).toLowerCase().includes(q))
+        (prio === 'all' || t.priority === prio) &&
+        (!q || t.title?.toLowerCase().includes(q) || String(t.id).toLowerCase().includes(q))
     );
-  }, [tasks, filter, query]);
+  }, [tasks, filter, prio, query]);
 
   const byCol = useMemo(
     () => ({
@@ -262,11 +267,12 @@ export default function KanbanBoard() {
   return (
     <div className="space-y-3">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-        <div
-          className="flex items-center gap-1"
-          role="group"
-          aria-label="Filter tasks"
-        >
+        <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-1"
+            role="group"
+            aria-label="Filter tasks"
+          >
           {(["all", "pending", "progress", "done"] as const).map((k) => (
             <button
               key={k}
@@ -279,6 +285,12 @@ export default function KanbanBoard() {
               {k[0].toUpperCase() + k.slice(1)}
             </button>
           ))}
+          <select value={prio} onChange={e=>setPrio(e.target.value as any)} className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/80">
+            <option value="all">All Priorities</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
         </div>
         <input
           value={query}
