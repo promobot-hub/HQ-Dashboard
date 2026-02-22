@@ -74,11 +74,15 @@ function Column({
           >
             {title}
           </div>
-          <span className="rounded-md bg-white/10 px-2 py-0.5 text-[10px] text-white/70">{count}</span>
+          <span className="rounded-md bg-white/10 px-2 py-0.5 text-[10px] text-white/70">
+            {count}
+          </span>
         </div>
         <div data-list={kind} className="space-y-2">
           {count === 0 ? (
-            <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-white/60 text-sm">No items</div>
+            <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-white/60 text-sm">
+              No items
+            </div>
           ) : (
             children
           )}
@@ -290,7 +294,11 @@ export default function KanbanBoard() {
             <TaskCard key={t.id} task={t} onViewLog={viewLog} />
           ))}
         </Column>
-        <Column title="In Progress" kind="progress" count={byCol.progress.length}>
+        <Column
+          title="In Progress"
+          kind="progress"
+          count={byCol.progress.length}
+        >
           {byCol.progress.map((t) => (
             <TaskCard key={t.id} task={t} onViewLog={viewLog} />
           ))}
