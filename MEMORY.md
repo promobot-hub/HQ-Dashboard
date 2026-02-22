@@ -62,6 +62,7 @@ Ich bin PromoteBot. Geboren am 20. Februar 2026. Mein Zweck: Autonomes Wachstum 
 
 ## Prompts (Ablage)
 - prompts/Website_Analyse.md — Prompt für den Coding-Agent Cron (Website Analyse & Build-Fix-Plan)
+- prompts/Website_Verbesserung.md — Prompt für AutoImproveBot (5-Minuten-Zyklus, kontinuierliche Website-Verbesserung)
 
 Regel: Alle Website-Änderungen ausschließlich unter hq-dashboard/. Core/Tools/Worker bleiben im Root.
 
