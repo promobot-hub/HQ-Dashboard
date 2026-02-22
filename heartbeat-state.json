@@ -1,11 +1,10 @@
 {
-  "lastRunUtc": "2026-02-22T01:16:00Z",
+  "lastRunUtc": "2026-02-22T01:17:00Z",
   "lastChecks": {
     "email": null,
     "calendar": null,
     "weather": null,
-    "social": null,
-    "heartbeat": "2026-02-22T01:20:43.737Z"
+    "social": null
   },
   "kpis": {
     "microCommit": true,
@@ -13,12 +12,7 @@
     "stateUpdated": true
   },
   "runs": {
-    "runsToday": 24,
-    "totalRuns": 78
-  },
-  "counters": {
-    "runsToday": 1,
-    "lastDay": "2026-02-22",
-    "totalRuns": 1
+    "runsToday": 25,
+    "totalRuns": 79
   }
 }
