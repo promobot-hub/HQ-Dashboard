@@ -1,13 +1,13 @@
 {
   "lastChecks": {
-    "cron": "2026-02-22T08:22:00Z",
-    "state": "2026-02-22T08:22:00Z",
-    "logs": "2026-02-22T08:22:00Z",
-    "heartbeat": "2026-02-22T08:22:00Z"
+    "cron": "2026-02-22T08:23:00Z",
+    "state": "2026-02-22T08:23:00Z",
+    "logs": "2026-02-22T08:23:00Z",
+    "heartbeat": "2026-02-22T08:23:00Z"
   },
   "meta": {
     "note": "Auto-updated by heartbeat micro-commit.",
-    "runType": "heartbeat",
+    "runType": "cron",
     "kpis": {
       "microCommit": true,
       "skillProgress": false,
@@ -15,8 +15,8 @@
     }
   },
   "counters": {
-    "runsToday": 57,
+    "runsToday": 58,
     "lastDay": "2026-02-22",
-    "totalRuns": 111
+    "totalRuns": 112
   }
 }
