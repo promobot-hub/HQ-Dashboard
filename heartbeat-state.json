@@ -2,7 +2,8 @@
   "lastChecks": {
     "cron": "2026-02-22T01:50:00Z",
     "state": "2026-02-22T01:50:00Z",
-    "logs": "2026-02-22T01:50:00Z"
+    "logs": "2026-02-22T01:50:00Z",
+    "heartbeat": "2026-02-22T01:52:56.745Z"
   },
   "meta": {
     "note": "Auto-updated by cron micro-commit.",
@@ -12,5 +13,10 @@
       "skillProgress": false,
       "stateUpdated": true
     }
+  },
+  "counters": {
+    "runsToday": 1,
+    "lastDay": "2026-02-22",
+    "totalRuns": 1
   }
 }
