@@ -33,7 +33,7 @@
 - 2026-02-21 21:03:13 UTC — Micro-commit: Cron DENKE — synced heartbeat-state, counters, STATUS, README badges/time. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
 
 - 2026-02-21T21:01:00Z — Counters updated (runsToday=21, totalRuns=21); state/README/STATUS refreshed.
-- 2026-02-21 21:01:00 UTC — Micro-commit: Cron DENKE — synced heartbeat-state, counters, STATUS, README badges/time. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
+- 2026-02-21 21:01:00 UTC — Micro-commit: Cron DENKE — synced heartbeat-state, STATUS, README badges/time. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
 
 - 2026-02-21T20:54:00Z — Counters updated (runsToday=18, totalRuns=18); state/README/STATUS refreshed.
 - 2026-02-21 20:54:00 UTC — Micro-commit: Cron DENKE — synced heartbeat-state, STATUS, README badges/time. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
@@ -223,3 +223,8 @@
 
 - 2026-02-22T00:18:00Z — Counters updated (runsToday=5, totalRuns=59); state/STATUS/logs refreshed.
 - 2026-02-22 00:18 UTC — Micro-commit: cron: DENKE — synced heartbeat-state, bumped counters, updated STATUS and HEARTBEAT-LOG. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
+
+2026-02-22T00:21:14Z — DENKE quick-run — KPIs: micro-commit=yes, skill-progress=no, state-updated=yes
+
+- 2026-02-22T00:21:14Z — Counters updated (runsToday=6, totalRuns=60); state/STATUS/README refreshed.
+- 2026-02-22 00:21 UTC — Micro-commit: cron: DENKE — synced heartbeat-state, counters, STATUS, README badges/time. KPIs: microCommit=yes, skillProgress=no, stateUpdated=yes.
