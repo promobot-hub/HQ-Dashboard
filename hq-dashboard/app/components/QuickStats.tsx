@@ -90,12 +90,14 @@ export default function QuickStats() {
   );
 
   const runsUp = useMemo(()=> { const up = prevRuns.current!=null && (data?.runsToday ?? 0) > (prevRuns.current as number); prevRuns.current = data?.runsToday ?? null; return up; }, [data?.runsToday]);
+  const prevTotal = useRef<number | null>(null);
+  const totalTrend = useMemo(()=> { const cur = data?.totalRuns ?? null; const prev = prevTotal.current; const res = prev!=null && cur!=null ? (cur>prev? 'up': cur<prev? 'down':'flat') : 'flat'; prevTotal.current = cur; return res; }, [data?.totalRuns]);
   const latTrend = useMemo(()=> { const cur = health?.proxyLatencyMs ?? null; const prev = prevLatency.current; const res = prev!=null && cur!=null ? (cur<prev? 'up': cur>prev? 'down': 'flat') : 'flat'; prevLatency.current = cur; return res; }, [health?.proxyLatencyMs]);
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-6 gap-3 w-full md:w-auto">
       <Stat label="Runs Today" value={<span>{data?.runsToday ?? '—'}<Trend up={runsUp} down={false} /></span>} />
-      <Stat label="Total Runs" value={data?.totalRuns ?? "—"} />
+      <Stat label="Total Runs" value={<span>{data?.totalRuns ?? '—'}<Trend up={totalTrend==='up'} down={totalTrend==='down'} /></span>} />
       <Stat label="Last Run" value={last} />
       <Stat label="Age" value={ageSec != null ? `${ageSec}s` : "—"} />
       <Stat

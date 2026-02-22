@@ -85,6 +85,7 @@ export default function LogViewer() {
               <div className="flex items-center gap-1">
                 <button aria-label="Copy permalink" onClick={()=>copyLink(aid)} className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/80 hover:bg-white/10">Link</button>
                 <button aria-label="Copy JSON" onClick={async()=>{ try{ await navigator.clipboard.writeText(JSON.stringify(x,null,2)); } catch{} }} className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/80 hover:bg-white/10">JSON</button>
+                <button aria-label="Copy message" onClick={async()=>{ try{ await navigator.clipboard.writeText(String(x.msg||x.message||'')); } catch{} }} className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/80 hover:bg-white/10">Msg</button>
               </div>
             </div>
           );

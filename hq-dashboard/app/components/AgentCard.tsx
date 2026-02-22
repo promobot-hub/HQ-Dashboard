@@ -30,7 +30,7 @@ export default function AgentCard({ agent, onToggle }: { agent: Agent; onToggle:
         </div>
         <button aria-label={agent.paused? 'Resume agent':'Pause agent'} onClick={()=>onToggle(agent.id, !agent.paused)} className={`rounded-md px-2 py-1 text-xs ${agent.paused? 'bg-emerald-400/20 text-emerald-200 border border-emerald-400/20':'bg-red-500/20 text-red-200 border border-red-500/20'}`}>{agent.paused? 'Resume':'Pause'}</button>
       </div>
-      <div className="mt-1 text-white/60 text-xs">Last Active: {agent.lastActiveAt? new Date(agent.lastActiveAt).toLocaleString() : '—'}</div>
+      <div className="mt-1 text-white/60 text-xs">Last Active: {agent.lastActiveAt? (()=>{ const ms=Date.now()-Date.parse(agent.lastActiveAt as string); const m=Math.max(0,Math.floor(ms/60000)); return m<1? 'just now': `${m}m ago`; })() : '—'}</div>
       <div className="mt-2"><Heatmap activity={agent.activity} /></div>
     </div>
   );
