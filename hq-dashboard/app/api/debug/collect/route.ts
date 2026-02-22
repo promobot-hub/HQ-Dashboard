@@ -7,37 +7,35 @@ export async function POST(req: NextRequest) {
   try {
     const repo = process.env.GH_REPO;
     const token = process.env.GH_TOKEN;
-    const body = await req.text().catch(() => "");
-    if (!body)
+    const bodyText = await req.text().catch(() => "");
+    if (!bodyText)
       return NextResponse.json({ ok: false, error: "empty" }, { status: 400 });
+    // payload cap ~200KB
+    if (bodyText.length > 200 * 1024) {
+      return NextResponse.json({ ok: false, error: "payload too large" }, { status: 413 });
+    }
     if (!repo || !token)
       return NextResponse.json({ ok: true, persisted: false }, { status: 200 });
 
-    const existing = await ghGetContent(repo, PATH);
+    const existing = await ghGetContent(repo, PATH).catch(() => null);
     let old = "";
     if (existing?.content && existing.encoding === "base64") {
       old = Buffer.from(existing.content, "base64").toString("utf8");
     }
-    const line = (() => {
+    // normalize to NDJSON; cap to last 200 lines to avoid runaway growth
+    const incomingLines = (() => {
       try {
-        const j = JSON.parse(body);
-        if (Array.isArray(j)) return j.map((x) => JSON.stringify(x)).join("\n");
-        return JSON.stringify(j);
+        const j = JSON.parse(bodyText);
+        const arr = Array.isArray(j) ? j : [j];
+        return arr.map((x) => JSON.stringify(x));
       } catch {
-        return body.trim();
+        return bodyText.split(/\n+/).filter(Boolean);
       }
     })();
-    const next = (old ? old + "\n" : "") + line;
-    const put = await ghPutContent(
-      repo,
-      PATH,
-      next,
-      `chore(debug): append debug events`
-    );
-    return NextResponse.json(
-      { ok: put.ok, persisted: true },
-      { status: put.ok ? 200 : 502 }
-    );
+    const oldLines = old ? old.split(/\n+/).filter(Boolean) : [];
+    const next = [...oldLines, ...incomingLines].slice(-200).join("\n");
+    const put = await ghPutContent(repo, PATH, next, `chore(debug): append debug events`);
+    return NextResponse.json({ ok: put.ok, persisted: true }, { status: put.ok ? 200 : 502 });
   } catch (e: any) {
     return NextResponse.json(
       { ok: false, error: String(e?.message || e) },
