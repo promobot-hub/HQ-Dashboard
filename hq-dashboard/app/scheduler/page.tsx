@@ -7,19 +7,29 @@ export default function SchedulerPage() {
   const [name, setName] = useState("");
   const [every, setEvery] = useState(5);
   const [action, setAction] = useState("trigger");
+  const [tick, setTick] = useState(0);
+  const [lastError, setLastError] = useState<string | null>(null);
 
   const load = async () => {
     setLoading(true);
     try {
-      const r = await fetch(`/api/scheduler/jobs`, { cache: "no-store" });
-      const j = await r.json();
-      setJobs(j?.jobs || []);
+      const [jr, hr] = await Promise.all([
+        fetch(`/api/scheduler/jobs`, { cache: "no-store" }),
+        fetch(`/api/scheduler/history?limit=50`, { cache: "no-store" })
+      ]);
+      const jj = await jr.json();
+      const hj = await hr.json();
+      setJobs(jj?.jobs || []);
+      const err = (hj?.items||[]).reverse().find((x:any)=> x?.ok===false);
+      setLastError(err? (err.message || err.error || JSON.stringify(err)) : null);
     } catch {}
     setLoading(false);
   };
 
   useEffect(() => {
     load();
+    const iv = setInterval(()=> setTick(t=>t+1), 1000);
+    return () => clearInterval(iv);
   }, []);
 
   const create = async () => {
@@ -74,12 +84,15 @@ export default function SchedulerPage() {
           <h1 className="text-white text-2xl font-extrabold tracking-tight">
             Scheduler
           </h1>
-          <button
-            onClick={runNow}
-            className="rounded-xl bg-accent-cyan px-3 py-1.5 text-xs font-semibold text-black hover:brightness-110"
-          >
-            Run due now
-          </button>
+          <div className="flex items-center gap-2">
+            {lastError && <span className="rounded-md bg-red-500/20 text-red-200 px-2 py-0.5 text-[10px] truncate max-w-[220px]" title={lastError}>Last error: {lastError}</span>}
+            <button
+              onClick={runNow}
+              className="rounded-xl bg-accent-cyan px-3 py-1.5 text-xs font-semibold text-black hover:brightness-110"
+            >
+              Run due now
+            </button>
+          </div>
         </div>
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <button
@@ -176,6 +189,7 @@ export default function SchedulerPage() {
                   <span>
                     Next:{" "}
                     {j.nextRunAt ? new Date(j.nextRunAt).toLocaleString() : "—"}
+                    {j.nextRunAt && (()=>{ const ms = Date.parse(j.nextRunAt) - Date.now(); if (ms>0) { const s=Math.floor(ms/1000); const m=Math.floor(s/60); const ss=s%60; return <span className="ml-1 text-white/50">(in {m}m {ss}s)</span>; } return null; })()}
                   </span>
                 </div>
                 <div className="mt-2 flex items-center gap-2">

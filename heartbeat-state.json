@@ -1,14 +1,16 @@
 {
   "lastChecks": {
-    "email": null,
-    "calendar": null,
-    "weather": null,
-    "social": null
+    "cron": "2026-02-22T01:49:00Z",
+    "state": "2026-02-22T01:49:00Z",
+    "logs": "2026-02-22T01:49:00Z"
   },
-  "lastRun": "2026-02-22T01:46:00Z",
-  "kpis": {
-    "microCommit": true,
-    "skillProgress": false,
-    "stateUpdated": true
+  "meta": {
+    "note": "Auto-updated by cron micro-commit.",
+    "runType": "cron",
+    "kpis": {
+      "microCommit": true,
+      "skillProgress": false,
+      "stateUpdated": true
+    }
   }
 }
